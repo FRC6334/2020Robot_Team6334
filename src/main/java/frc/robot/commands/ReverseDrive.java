@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.DriveTrain;
+
 // import frc.robot.subsystems.DriveTrain;
 // import frc.robot.subsystems.LimeLightVision;
 
@@ -16,31 +18,17 @@ import frc.robot.RobotMap;
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class ReverseDrive extends InstantCommand {
-  public enum Direction { FORWARD, REVERSE }
-  private Direction dir;
+  private DriveTrain drive;
   
 
-  public ReverseDrive() {
+  public ReverseDrive(DriveTrain d) {
     // Use addRequirements() here to declare subsystem dependencies.
-    dir = null;
-  }
-
-  public ReverseDrive(Direction d) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    dir = d;
+    drive = d;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (dir == null) {
-       if (RobotMap.direction == 1) dir = Direction.REVERSE;
-       else dir = Direction.FORWARD;
-
-       if (dir == Direction.FORWARD) RobotMap.direction = 1;
-       else RobotMap.direction = -1;
-    }
-    else if (dir == Direction.REVERSE) RobotMap.direction = 1;
-    else RobotMap.direction = -1;
+    drive.reverseDriveDirection();
   }
 }

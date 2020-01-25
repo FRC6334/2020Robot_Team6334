@@ -19,7 +19,6 @@ import frc.robot.commands.ResetEncoderDistance;
 import frc.robot.subsystems.LimeLightVision;
 import frc.robot.subsystems.ColorSensor;
 import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.ReverseDrive.Direction;
 import frc.robot.commands.DriveToTarget;
 import frc.robot.commands.DriveInInchesGroup;
 import frc.robot.commands.DriveInInches;
@@ -94,7 +93,7 @@ public class RobotContainer {
     m_button03.whileHeld(new DriveToTarget(m_limelight, m_drivetrain));
 
     final JoystickButton m_button04 = new JoystickButton(m_joystick0, 4);
-    m_button04.whenPressed(new ReverseDrive());
+    m_button04.whenPressed(new ReverseDrive(m_drivetrain));
 
     final JoystickButton m_button06 = new JoystickButton(m_joystick0, 6);
     m_button06.whenPressed(new ToggleLimeLightVision(m_limelight));

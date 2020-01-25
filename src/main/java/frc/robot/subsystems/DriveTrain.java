@@ -80,6 +80,14 @@ public class DriveTrain extends SubsystemBase {
     m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (x*RobotMap.driveTrainPower));
   }
 
+  public void reverseDriveDirection() {
+    RobotMap.direction *= -1;
+  }
+
+  // -1 is forward
+  //  1 is reverse
+  public void setDriveDirection(int direction) { RobotMap.direction = direction; }
+
   /* not used but example of calling tank drive */
   /*
   public void TankDrive(double left, double right) {
