@@ -24,6 +24,10 @@ public class RobotMap {
     //1 = full power
     public static final double driveTrainPower = 0.8;
 
+    //Drive Train
+    // -1 is forward, 1 is reverse
+    public static int direction = -1;
+
     //Motor rotations per inch for DriveInInches
     public static final double roations_per_angle = 0.1079282407;//0.117555;
     public static final double rotations_per_inch = 0.536100860941121;//0.5361;//0.5629;
