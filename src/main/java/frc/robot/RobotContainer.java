@@ -37,7 +37,7 @@ public class RobotContainer {
     // Assign default commands
     //m_drivetrain.setDefaultCommand(new TankDrive(() -> m_joystick.getY(Hand.kLeft),
     //    () -> m_joystick.getY(Hand.kRight), m_dhttps://www.kauailabs.com/dist/frc/2020/navx_frc.jsonrivetrain));
-    m_ballintake.setDefaultCommand(new DriveBallIntakeSpeed(m_ballintake, m_joystick0));
+    //m_ballintake.setDefaultCommand(new DriveBallIntakeSpeed(m_ballintake, m_joystick0));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -58,10 +58,10 @@ public class RobotContainer {
     m_button03.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0));
     
     final JoystickButton m_button04 = new JoystickButton(m_joystick0, 4);
-    m_button04.whenReleased(new SetBallIntakeSpeed(m_ballintake, -0.2));
+    m_button04.whenReleased(new SetBallIntakeSpeed(m_ballintake, -0.8));
 
     final JoystickButton m_button05 = new JoystickButton(m_joystick0, 5);
-    m_button05.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0.2));
+    m_button05.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0.8));
   }
 
 
