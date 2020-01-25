@@ -7,25 +7,44 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BallIntake;
+import edu.wpi.first.wpilibj.Joystick;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class SetBallIntakeSpeed extends InstantCommand {
-  private double speed;
+public class DriveBallIntakeSpeed extends CommandBase {
+  private Joystick stick;
   private BallIntake ballintake;
 
-  public SetBallIntakeSpeed(BallIntake _b, double _s) {
+  /**
+   * Creates a new DriveBallIntakeSpeed.
+   */
+  public DriveBallIntakeSpeed(BallIntake _bi, Joystick _js) {
     // Use addRequirements() here to declare subsystem dependencies.
-    ballintake = _b;
-    speed = _s;
+    ballintake = _bi;
+    stick = _js;
+    addRequirements(ballintake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ballintake.drive(speed);
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    ballintake.drive(stick.getY());
+  }
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    ballintake.drive(0);
+  }
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
   }
 }
