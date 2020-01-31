@@ -17,14 +17,17 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.SPI;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
+import com.analog.adis16448.frc.ADIS16448_IMU;
+
 
 public class DriveTrain extends SubsystemBase {
   /**
    * The DriveTrain subsystem incorporates the sensors and actuators attached to the robots chassis.
    * These include four drive motors, a left and right encoder and a gyro.
    */
-  private final AHRS navx;
+  //private final AHRS navx;
+  private final ADIS16448_IMU navx;
 
   private final CANSparkMax leftFrontMotor = new CANSparkMax(RobotMap.leftFrontMotor, MotorType.kBrushless);
   private final CANSparkMax leftBackMotor = new CANSparkMax(RobotMap.leftBackMotor, MotorType.kBrushless);
@@ -50,17 +53,20 @@ public class DriveTrain extends SubsystemBase {
     this.resetEncoders();
 
     //initialize NavX
-    navx = new AHRS(SPI.Port.kMXP);
+    //navx = new AHRS(SPI.Port.kMXP);
+    navx = new ADIS16448_IMU();
     navx.reset();
+    System.out.println("TEMPATURE="+this.getTempature());
 
     // Let's name the sensors on the LiveWindow
     //addChild("Drive", m_drive);
   }
 
   //NAVX methods
-  public float getNAVXDisplacementX() { return navx.getDisplacementX(); }
-  public float getNAVXDisplacementY() { return navx.getDisplacementY(); }
-  public void  resetNAVX() { navx.resetDisplacement(); }
+  //public float getNAVXDisplacementX() { return navx.get.getDisplacementX(); }
+  //public float getNAVXDisplacementY() { return navx.getDisplacementY(); }
+  //public void  resetNAVX() { navx.resetDisplacement(); }
+  public double getTempature() { return navx.getTemperature(); }
 
   /**
    * The log method puts interesting information to the SmartDashboard.
