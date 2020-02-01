@@ -39,6 +39,7 @@ public class LimeLightVision extends SubsystemBase {
   }
 
   public void outputLimeLightValues() {
+      this.setLedMode(RobotMap.ll_on);
       System.out.println(">>>>>>>>>>>>>>tx="+getValue("tx").getDouble(RobotMap.defaultLimeLight)+
         ", ty="+getValue("ty").getDouble(RobotMap.defaultLimeLight)+
         ",ta="+getValue("ta").getDouble(RobotMap.defaultLimeLight)+
@@ -50,6 +51,7 @@ public class LimeLightVision extends SubsystemBase {
 
   //working within 1-2" of actual distance, a wider angle makes it less accurate
   public double getDistanceToTarget() {
+    this.setLedMode(RobotMap.ll_on);
     if (this.getTV() != 1.0) return RobotMap.defaultLimeLight;
     
     //d = (h2-h1) / tan(a1+a2)

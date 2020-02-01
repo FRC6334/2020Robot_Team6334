@@ -18,7 +18,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.SPI;
 //import com.kauailabs.navx.frc.AHRS;
-import com.analog.adis16448.frc.ADIS16448_IMU;
+//import com.analog.adis16448.frc.ADIS16448_IMU;
 
 
 public class DriveTrain extends SubsystemBase {
@@ -27,9 +27,9 @@ public class DriveTrain extends SubsystemBase {
    * These include four drive motors, a left and right encoder and a gyro.
    */
   //private final AHRS navx;
-  private final ADIS16448_IMU navx;
-  private static final double kAngleSetpoint = 0.0;
-	private static final double kP = 0.005; // propotional turning constant
+  //private final ADIS16448_IMU navx;
+  //private static final double kAngleSetpoint = 0.0;
+	//private static final double kP = 0.005; // propotional turning constant
 
   private final CANSparkMax leftFrontMotor = new CANSparkMax(RobotMap.leftFrontMotor, MotorType.kBrushless);
   private final CANSparkMax leftBackMotor = new CANSparkMax(RobotMap.leftBackMotor, MotorType.kBrushless);
@@ -56,9 +56,9 @@ public class DriveTrain extends SubsystemBase {
 
     //initialize NavX
     //navx = new AHRS(SPI.Port.kMXP);
-    navx = new ADIS16448_IMU();
-    navx.reset();
-    System.out.println("TEMPATURE="+this.getTempature());
+    //navx = new ADIS16448_IMU();
+    //navx.reset();
+    //System.out.println("TEMPATURE="+this.getTempature());
 
     // Let's name the sensors on the LiveWindow
     //addChild("Drive", m_drive);
@@ -68,7 +68,7 @@ public class DriveTrain extends SubsystemBase {
   //public float getNAVXDisplacementX() { return navx.get.getDisplacementX(); }
   //public float getNAVXDisplacementY() { return navx.getDisplacementY(); }
   //public void  resetNAVX() { navx.resetDisplacement(); }
-  public double getTempature() { return navx.getTemperature(); }
+  //public double getTempature() { return navx.getTemperature(); }
 
   /**
    * The log method puts interesting information to the SmartDashboard.
@@ -88,11 +88,11 @@ public class DriveTrain extends SubsystemBase {
     m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (x*RobotMap.driveTrainPower));
   }
 
-  public void driveStraight(double y) {
+  /*public void driveStraight(double y) {
     double turningValue = (kAngleSetpoint - navx.getAngle()) * kP;
     turningValue = Math.copySign(turningValue, y);
     this.drive(y, turningValue);
-  }
+  }*/
 
   public void reverseDriveDirection() {
     RobotMap.direction *= -1;
@@ -115,6 +115,7 @@ public class DriveTrain extends SubsystemBase {
     //System.out.println("Start Reset: L:"+left_encoder.getPosition()+",R:"+right_encoder.getPosition());
     left_encoder.setPosition(0.0000);
     right_encoder.setPosition(0.0000); 
+    //navx.reset();
     log();
     //System.out.println("End Reset: L:"+left_encoder.getPosition()+",R:"+right_encoder.getPosition());
   }
