@@ -29,6 +29,7 @@ import frc.robot.commands.ToggleLimeLightVision;
 import frc.robot.commands.GetColorInformation;
 import frc.robot.commands.IntakeAndShoot;
 import frc.robot.subsystems.BallShooter;
+import frc.robot.commands.Fire;
 
 
 /**
@@ -43,24 +44,24 @@ public class RobotContainer {
 
   private final BallIntake m_ballintake = new BallIntake();
   private final BallShooter m_ballshooter = new BallShooter();
-  private final DriveTrain m_drivetrain = new DriveTrain();
-  private final USBCamera m_camera = new USBCamera();
-  private final LimeLightVision m_limelight = new LimeLightVision();
-  private final ColorSensor m_color_sensor = new ColorSensor();
+  //private final DriveTrain m_drivetrain = new DriveTrain();
+  //private final USBCamera m_camera = new USBCamera();
+  //private final LimeLightVision m_limelight = new LimeLightVision();
+  //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    m_limelight.setLedMode(RobotMap.ll_off);
+    //m_limelight.setLedMode(RobotMap.ll_off);
 
     // Assign default commands
     //m_drivetrain.setDefaultCommand(new TankDrive(() -> m_joystick.getY(Hand.kLeft),
     //    () -> m_joystick.getY(Hand.kRight), m_dhttps://www.kauailabs.com/dist/frc/2020/navx_frc.jsonrivetrain));
     //m_ballintake.setDefaultCommand(new DriveBallIntakeSpeed(m_ballintake, m_joystick0));
     // Assign default commands
-    m_drivetrain.setDefaultCommand(new ArcadeDrive(m_joystick0, m_drivetrain));
+    //m_drivetrain.setDefaultCommand(new ArcadeDrive(m_joystick0, m_drivetrain));
     
     // Configure the button bindings
     configureButtonBindings();
@@ -84,8 +85,13 @@ public class RobotContainer {
     m_button04.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.3, -0.5));
 
     final JoystickButton m_button05 = new JoystickButton(m_joystick0, 5);
-    m_button05.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, -0.3, 0.5));
+    m_button05.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, -0.8, 0.5));
+
+    final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
+    m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
     
+    final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
+    m_button09.whenReleased(new Fire(m_ballshooter, m_ballintake));
 
     /*
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
