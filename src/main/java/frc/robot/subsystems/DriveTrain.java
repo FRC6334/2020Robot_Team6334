@@ -28,6 +28,8 @@ public class DriveTrain extends SubsystemBase {
    */
   //private final AHRS navx;
   private final ADIS16448_IMU navx;
+  private static final double kAngleSetpoint = 0.0;
+	private static final double kP = 0.005; // propotional turning constant
 
   private final CANSparkMax leftFrontMotor = new CANSparkMax(RobotMap.leftFrontMotor, MotorType.kBrushless);
   private final CANSparkMax leftBackMotor = new CANSparkMax(RobotMap.leftBackMotor, MotorType.kBrushless);
@@ -84,6 +86,12 @@ public class DriveTrain extends SubsystemBase {
    */
   public void drive(double y, double x) {
     m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (x*RobotMap.driveTrainPower));
+  }
+
+  public void driveStraight(double y) {
+    double turningValue = (kAngleSetpoint - navx.getAngle()) * kP;
+    turningValue = Math.copySign(turningValue, y);
+    this.drive(y, turningValue);
   }
 
   public void reverseDriveDirection() {
