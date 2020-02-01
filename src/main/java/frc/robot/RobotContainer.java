@@ -74,8 +74,6 @@ public class RobotContainer {
    // final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
    // m_button01.whenHeld(new DriveBallIntakeSpeed(m_ballintake, m_joystick0.getY()*-1));
 
-    /* 
-    //for single motor testing
     final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
     m_button03.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0));
     
@@ -84,8 +82,9 @@ public class RobotContainer {
 
     final JoystickButton m_button05 = new JoystickButton(m_joystick0, 5);
     m_button05.whenReleased(new SetBallIntakeSpeed(m_ballintake, 1.5));
-    */
+    
 
+    /*
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
     m_button02.whenReleased(new DriveInInchesGroup(m_drivetrain));
 
@@ -109,6 +108,7 @@ public class RobotContainer {
 
     final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
     m_button11.whenPressed(new GetLimeLightValues(m_limelight));
+    */
   }
 
 
