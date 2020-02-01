@@ -27,6 +27,8 @@ import frc.robot.commands.GetLimeLightValues;
 import frc.robot.commands.ToggleLimeLightLED;
 import frc.robot.commands.ToggleLimeLightVision;
 import frc.robot.commands.GetColorInformation;
+import frc.robot.commands.IntakeAndShoot;
+import frc.robot.subsystems.BallShooter;
 
 
 /**
@@ -40,6 +42,7 @@ public class RobotContainer {
   //private final DriveTrain m_drivetrain = new DriveTrain();
 
   private final BallIntake m_ballintake = new BallIntake();
+  private final BallShooter m_ballshooter = new BallShooter();
   private final DriveTrain m_drivetrain = new DriveTrain();
   private final USBCamera m_camera = new USBCamera();
   private final LimeLightVision m_limelight = new LimeLightVision();
@@ -75,13 +78,13 @@ public class RobotContainer {
    // m_button01.whenHeld(new DriveBallIntakeSpeed(m_ballintake, m_joystick0.getY()*-1));
 
     final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
-    m_button03.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0));
+    m_button03.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0, 0));
     
     final JoystickButton m_button04 = new JoystickButton(m_joystick0, 4);
-    m_button04.whenReleased(new SetBallIntakeSpeed(m_ballintake, -1.5));
+    m_button04.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.3, -0.5));
 
     final JoystickButton m_button05 = new JoystickButton(m_joystick0, 5);
-    m_button05.whenReleased(new SetBallIntakeSpeed(m_ballintake, 1.5));
+    m_button05.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, -0.3, 0.5));
     
 
     /*
