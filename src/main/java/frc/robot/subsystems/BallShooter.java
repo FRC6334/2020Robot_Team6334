@@ -12,17 +12,17 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.RobotMap;
 
-public class BallIntake extends SubsystemBase {
+public class BallShooter extends SubsystemBase {
   /**
    * The DriveTrain subsystem incorporates the sensors and actuators attached to the robots chassis.
    * These include four drive motors, a left and right encoder and a gyro.
    */
-  private final CANSparkMax m_ballintake = new CANSparkMax(RobotMap.ballIntakeMotor, MotorType.kBrushless);
+  private final CANSparkMax m_ballshooter = new CANSparkMax(RobotMap.ballShooterMotor, MotorType.kBrushless);
 
   /**
    * Create a new drive train subsystem.
    */
-  public BallIntake() {
+  public BallShooter() {
     super();
 
     
@@ -40,7 +40,7 @@ public class BallIntake extends SubsystemBase {
    */
   public void drive(double speed) {
     System.out.println("speed set to: "+speed);
-    m_ballintake.set(speed);
+    m_ballshooter.set(speed);
   }
 
 }

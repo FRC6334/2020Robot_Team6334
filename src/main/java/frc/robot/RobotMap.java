@@ -17,6 +17,8 @@ public class RobotMap {
     public static final int leftBackMotor = 4;
     public static final int rightFrontMotor = 1;
     public static final int rightBackMotor = 2;
+    public static final int ballShooterMotor = 2;
+    public static final int ballIntakeMotor = 1;
 
     //Drive Train Power
     //0 = no power
