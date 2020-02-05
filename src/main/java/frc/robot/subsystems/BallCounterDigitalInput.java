@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.RobotMap;
 
 public class BallCounterDigitalInput extends SubsystemBase {
   private static DigitalInput di_in;
@@ -21,7 +22,7 @@ public class BallCounterDigitalInput extends SubsystemBase {
   public BallCounterDigitalInput(int channel1, int channel2) {
     di_in = new DigitalInput(channel1);
     di_out = new DigitalInput(channel2);
-    num_balls = 0;
+    num_balls = RobotMap.startingNumberOfBalls;
   }
 
   public int getNumberofBalls() { return num_balls; }

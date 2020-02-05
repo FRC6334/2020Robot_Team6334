@@ -63,4 +63,7 @@ public class RobotMap {
       //limelight cam mode
       public static final int ll_vision = 0;
       public static final int ll_driver = 1;
+
+      //ball intake system variables
+      public static final int startingNumberOfBalls = 3;
 }
