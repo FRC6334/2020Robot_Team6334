@@ -38,7 +38,7 @@ public class BallIntake extends SubsystemBase {
   /**
     *
    */
-  public void drive(double speed) {
+  public void setSpeed(double speed) {
     System.out.println("speed set to: "+speed);
     m_ballintake.set(speed);
   }

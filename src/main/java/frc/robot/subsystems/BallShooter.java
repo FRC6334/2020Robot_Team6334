@@ -38,7 +38,7 @@ public class BallShooter extends SubsystemBase {
   /**
     *
    */
-  public void drive(double speed) {
+  public void setSpeed(double speed) {
     System.out.println("speed set to: "+speed);
     m_ballshooter.set(speed);
   }

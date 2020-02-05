@@ -9,18 +9,21 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BallCounterDigitalInput;
+import frc.robot.subsystems.BallIntake;
 
 public class BallCounterManagementSystem extends CommandBase {
   private BallCounterDigitalInput bcdi;
+  private BallIntake ball_intake;
   private boolean out_pressed;
   private boolean in_pressed;
 
   /**
    * Creates a new BallCounterManagementSystem.
    */
-  public BallCounterManagementSystem(BallCounterDigitalInput _bcdi) {
+  public BallCounterManagementSystem(BallCounterDigitalInput _bcdi, BallIntake _bi) {
     // Use addRequirements() here to declare subsystem dependencies.
     bcdi = _bcdi;
+    ball_intake = _bi;
     addRequirements(bcdi);
     out_pressed=false;
     in_pressed=false;

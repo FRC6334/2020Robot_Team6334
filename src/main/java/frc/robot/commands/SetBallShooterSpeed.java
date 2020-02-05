@@ -26,7 +26,7 @@ public class SetBallShooterSpeed extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ballshooter.drive(speed);
+    ballshooter.setSpeed(speed);
   }
 }
 

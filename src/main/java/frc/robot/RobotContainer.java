@@ -44,16 +44,14 @@ import frc.robot.commands.BallCounterManagementSystem;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   //private final DriveTrain m_drivetrain = new DriveTrain();
-
-  //private final BallIntake m_ballintake = new BallIntake();
-  //private final BallShooter m_ballshooter = new BallShooter();
-  //private final DriveTrain m_drivetrain = new DriveTrain();
   //private final USBCamera m_camera = new USBCamera();
   //private final LimeLightVision m_limelight = new LimeLightVision();
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
+  private final BallIntake m_ballintake = new BallIntake();
+  private final BallShooter m_ballshooter = new BallShooter();
   private final BallCounterDigitalInput bcdi = new BallCounterDigitalInput(RobotMap.ballIntakeChannel,RobotMap.ballOutputChannel);
-
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -66,7 +64,7 @@ public class RobotContainer {
     //m_ballintake.setDefaultCommand(new DriveBallIntakeSpeed(m_ballintake, m_joystick0));
     // Assign default commands
     //m_drivetrain.setDefaultCommand(new ArcadeDrive(m_joystick0, m_drivetrain));
-    bcdi.setDefaultCommand(new BallCounterManagementSystem(bcdi));
+    bcdi.setDefaultCommand(new BallCounterManagementSystem(bcdi, m_ballintake));
     
     // Configure the button bindings
     configureButtonBindings();
