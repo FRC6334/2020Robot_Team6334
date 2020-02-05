@@ -52,7 +52,7 @@ public class RobotContainer {
   //private final LimeLightVision m_limelight = new LimeLightVision();
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
-  private final BallCounterDigitalInput bcdi = new BallCounterDigitalInput(8,9);
+  private final BallCounterDigitalInput bcdi = new BallCounterDigitalInput(RobotMap.ballIntakeChannel,RobotMap.ballOutputChannel);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

@@ -60,10 +60,12 @@ public class RobotMap {
     public static final int ll_blink = 2;
     public static final int ll_on = 3;
 
-      //limelight cam mode
-      public static final int ll_vision = 0;
-      public static final int ll_driver = 1;
+    //limelight cam mode
+    public static final int ll_vision = 0;
+    public static final int ll_driver = 1;
 
-      //ball intake system variables
-      public static final int startingNumberOfBalls = 3;
+    //ball intake system variables
+    public static final int startingNumberOfBalls = 3;
+    public static final int ballIntakeChannel = 0;  //Analog channel ports
+    public static final int ballOutputChannel = 9;  //DIO ports
 }

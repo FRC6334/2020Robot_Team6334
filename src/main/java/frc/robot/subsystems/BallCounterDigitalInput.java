@@ -20,9 +20,9 @@ public class BallCounterDigitalInput extends SubsystemBase {
   /**
    * Creates a new BallCounterDigitalInput.
    */
-  public BallCounterDigitalInput(int channel1, int channel2) {
-    di_in = new AnalogInput(0);
-    di_out = new DigitalInput(channel2);
+  public BallCounterDigitalInput(int intake, int output) {
+    di_in = new AnalogInput(intake);
+    di_out = new DigitalInput(output);
     num_balls = RobotMap.startingNumberOfBalls;
   }
 
