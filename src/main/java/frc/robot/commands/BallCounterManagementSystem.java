@@ -34,6 +34,7 @@ public class BallCounterManagementSystem extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //System.out.println("IN="+bcdi.getInValue());
     //a ball came into the tube and the intake switch has not previously been pressed during this ball coming in
     if (bcdi.getInStatus() && !in_pressed) {
       in_pressed=true;

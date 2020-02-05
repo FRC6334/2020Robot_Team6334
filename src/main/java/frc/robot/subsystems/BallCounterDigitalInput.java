@@ -9,10 +9,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.RobotMap;
 
 public class BallCounterDigitalInput extends SubsystemBase {
-  private static DigitalInput di_in;
+  private static AnalogInput di_in;
   private static DigitalInput di_out;
   private static int num_balls;
 
@@ -20,7 +21,7 @@ public class BallCounterDigitalInput extends SubsystemBase {
    * Creates a new BallCounterDigitalInput.
    */
   public BallCounterDigitalInput(int channel1, int channel2) {
-    di_in = new DigitalInput(channel1);
+    di_in = new AnalogInput(0);
     di_out = new DigitalInput(channel2);
     num_balls = RobotMap.startingNumberOfBalls;
   }
@@ -28,11 +29,12 @@ public class BallCounterDigitalInput extends SubsystemBase {
   public int getNumberofBalls() { return num_balls; }
   public void addBall() { num_balls++; }
   public void removeBall() { num_balls--; }
-  public boolean getInStatus() { return di_in.get(); }
+  public boolean getInStatus() { return (di_in.getValue() > 3000); }
+  public int getInValue() { return di_in.getValue(); }
   public boolean getOutStatus() { return di_out.get(); }
  
   public void printStatus(){
-    System.out.println("IN = " + di_in.get()+", OUT = "+di_out);
+    //System.out.println("IN = " + di_in.get()+", OUT = "+di_out);
   }
 
   @Override
