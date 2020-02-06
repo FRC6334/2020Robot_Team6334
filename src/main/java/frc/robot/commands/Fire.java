@@ -11,9 +11,12 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 import frc.robot.commands.SetBallIntakeSpeed;
 import frc.robot.commands.SetBallShooterSpeed;
+import frc.robot.RobotMap;
+import frc.robot.commands.DriveElevatorInInches;;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.BallShooter;
-import edu.wpi.first.wpilibj.Timer;
+import frc.robot.subsystems.BallElevator;
+import frc.robot.subsystems.BallCounterDigitalInput;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -22,27 +25,29 @@ public class Fire extends SequentialCommandGroup {
   /**
    * Creates a new Fire.
    */
-  public Fire(BallShooter _bs, BallIntake _bi) {
+  public Fire(BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     //super();
-    Timer t = new Timer();
-    
 
     //set all speed to 0
     addCommands(new SetBallShooterSpeed(_bs, 0));
     addCommands(new SetBallIntakeSpeed(_bi, 0));
+    addCommands(new SetBallElevatorSpeed(_be, 0));
 
     //back up balls in intake tube
-    addCommands(new SetBallIntakeSpeed(_bi, -1.0));
-    //t.start(); while (t.get() < 1.5); t.stop();
-    addCommands(new SetBallIntakeSpeed(_bi, 0));
+    addCommands(new DriveElevatorInInches(_be, -3));
 
     //fire up the shooter
     addCommands(new SetBallShooterSpeed(_bs, -0.8));
-    t.start(); while (t.get() < 1.0); t.stop();
 
     //load balls from the intake to the shooter
-    addCommands(new SetBallIntakeSpeed(_bi, 1.0));
+    addCommands(new DriveElevatorInInches(_be, 50));
+
+    //reset number of balls to 0
+    addCommands(new ResetBallCounter(_bcdi));
+
+    //start the ball intake
+    addCommands(new SetBallIntakeSpeed(_bi, RobotMap.ballIntakeSpeed));
   }
 }

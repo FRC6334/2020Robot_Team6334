@@ -27,6 +27,7 @@ public class BallCounterDigitalInput extends SubsystemBase {
   }
 
   public int getNumberofBalls() { return num_balls; }
+  public void setNumberofBalls(int n) { num_balls = n; }
   public void addBall() { num_balls++; }
   public void removeBall() { num_balls--; }
   public boolean getInStatus() { return (di_in.getValue() > 3000); }

@@ -10,20 +10,24 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BallCounterDigitalInput;
 import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.BallElevator;
+import frc.robot.RobotMap;
 
 public class BallCounterManagementSystem extends CommandBase {
   private BallCounterDigitalInput bcdi;
   private BallIntake ball_intake;
+  private BallElevator ball_elevator;
   private boolean out_pressed;
   private boolean in_pressed;
 
   /**
    * Creates a new BallCounterManagementSystem.
    */
-  public BallCounterManagementSystem(BallCounterDigitalInput _bcdi, BallIntake _bi) {
+  public BallCounterManagementSystem(BallCounterDigitalInput _bcdi, BallIntake _bi, BallElevator _be) {
     // Use addRequirements() here to declare subsystem dependencies.
     bcdi = _bcdi;
     ball_intake = _bi;
+    ball_elevator = _be;
     addRequirements(bcdi);
     out_pressed=false;
     in_pressed=false;
@@ -38,20 +42,36 @@ public class BallCounterManagementSystem extends CommandBase {
   @Override
   public void execute() {
     //System.out.println("IN="+bcdi.getInValue());
-    //a ball came into the tube and the intake switch has not previously been pressed during this ball coming in
+
+    //a ball came into the intake and the intake switch has not previously been pressed during this ball coming in
     if (bcdi.getInStatus() && !in_pressed) {
-      in_pressed=true;
+      //reduce speed to very very slow
+      ball_intake.setSpeed(0.05);  
+      //lift ball into the elevator by X inches
+      while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch) < 7) ball_elevator.setSpeed(RobotMap.ballElevatorSpeed); 
+      //stop the elevator & reset the elevator encoder so it is ready to lift the next ball
+      ball_elevator.setSpeed(0.0);
+      ball_elevator.resetEncoders();
+      //add a ball to the counter
       bcdi.addBall();
+      //if there are less than 5 balls then start the ball intake, if there are 5 balls stop the ball intake
+      if (bcdi.getNumberofBalls() < 5) ball_intake.setSpeed(RobotMap.ballIntakeSpeed); else ball_intake.setSpeed(0);
+      //record that we took in a ball
+      in_pressed=true;
+      //print the number of balls
       System.out.println("BALLS="+bcdi.getNumberofBalls());
     }
+    
     //the intake switch has been deprsessed so we need to account for the next time it is pressed
     if (!bcdi.getInStatus()) in_pressed=false;
+    
     //a ball left the tube and the out switch has not previously been pressed during this ball leaving
     if (bcdi.getOutStatus() && !out_pressed) { 
       out_pressed=true;
       bcdi.removeBall();
       System.out.println("BALLS="+bcdi.getNumberofBalls());
     }
+    
     //the output switch has been deprsessed so we need to account for the next time it is pressed
     if (!bcdi.getOutStatus()) out_pressed=false;
   }
