@@ -17,9 +17,9 @@ public class RobotMap {
     public static final int leftBackMotor = 4;
     public static final int rightFrontMotor = 1;
     public static final int rightBackMotor = 2;
-    public static final int ballShooterMotor = 2;
-    public static final int ballIntakeMotor = 1;
-    public static final int ballElevatorMotor = 7;
+    public static final int ballShooterMotor = 3;
+    public static final int ballIntakeMotor = 4;
+    public static final int ballElevatorMotor = 2;
 
     //Drive Train Power
     //0 = no power
@@ -71,4 +71,5 @@ public class RobotMap {
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final double ballIntakeSpeed = 0.5;  //ball intake motor speed
     public static final double ballElevatorSpeed = 0.5;  //ball elevator motor speed
+    public static final double rotations_per_inch_elevtor = 0.2;
 }

@@ -46,9 +46,9 @@ public class BallCounterManagementSystem extends CommandBase {
     //a ball came into the intake and the intake switch has not previously been pressed during this ball coming in
     if (bcdi.getInStatus() && !in_pressed) {
       //reduce speed to very very slow
-      ball_intake.setSpeed(0.05);  
+      ball_intake.setSpeed(0.2);  
       //lift ball into the elevator by X inches
-      while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch) < 7) ball_elevator.setSpeed(RobotMap.ballElevatorSpeed); 
+      while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) > -20) ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed); 
       //stop the elevator & reset the elevator encoder so it is ready to lift the next ball
       ball_elevator.setSpeed(0.0);
       ball_elevator.resetEncoders();

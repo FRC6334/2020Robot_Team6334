@@ -34,6 +34,7 @@ import frc.robot.subsystems.BallCounterDigitalInput;
 import frc.robot.commands.GetBallCounterStatus;
 import frc.robot.commands.BallCounterManagementSystem;
 import frc.robot.subsystems.BallElevator;
+import frc.robot.commands.DriveElevatorInInches;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -58,6 +59,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     //m_limelight.setLedMode(RobotMap.ll_off);
+    m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
 
     // Assign default commands
     //m_drivetrain.setDefaultCommand(new TankDrive(() -> m_joystick.getY(Hand.kLeft),
@@ -94,13 +96,11 @@ public class RobotContainer {
     // final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
     // m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
     
-    // final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
-    // m_button09.whenReleased(new Fire(m_ballshooter, m_ballintake));
+    final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
+    m_button09.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
 
-    //final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
-    //m_button10.whenReleased(new GetBallCounterStatus(bcdi));
-
-    
+    final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
+    m_button10.whenReleased(new DriveElevatorInInches(m_ballelevator, -20));
 
     /*
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
