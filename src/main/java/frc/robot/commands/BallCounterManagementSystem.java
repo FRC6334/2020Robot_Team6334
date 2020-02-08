@@ -52,9 +52,9 @@ public class BallCounterManagementSystem extends CommandBase {
         while (!bcdi.getHoldStatus())
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
       //for balls 2-5, we want to do the following:
-      //first - run the elevator until the bottom sensor no longer sees the ball
-      //second - run the elevator X number of crannks
-      //thrid - run the elevator to just past where the hold sensor can see the ball
+      //first "while" loop - run the elevator until the bottom sensor no longer sees the ball
+      //second "while" loop - run the elevator X number of crannks
+      //third "while" loop - run the elevator to just past where the hold sensor can see the ball
       else {
         while (bcdi.getInStatus()) 
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
