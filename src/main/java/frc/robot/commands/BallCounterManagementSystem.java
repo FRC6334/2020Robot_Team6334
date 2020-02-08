@@ -41,21 +41,27 @@ public class BallCounterManagementSystem extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
+    System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
     
     //a ball came into the intake and the intake switch has not previously been pressed during this ball coming in
     if (bcdi.getInStatus() && !in_pressed) {
       //reduce speed to very very slow
       ball_intake.setSpeed(0.3);  
-      //lift ball into the elevator by X inches
-      //while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) > -20) ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed); 
+      //for the first ball, we want to run the elevator until the hold sensor sees the ball
       if (bcdi.getNumberofBalls() == 0)
-        while (!bcdi.getHoldStatus()) ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+        while (!bcdi.getHoldStatus())
+          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+      //for balls 2-5, we want to do the following:
+      //first - run the elevator until the bottom sensor no longer sees the ball
+      //second - run the elevator X number of crannks
+      //thrid - run the elevator to just past where the hold sensor can see the ball
       else {
-        while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) > -10) {
+        while (bcdi.getInStatus()) 
+          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+        while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) > -12)
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);        
-        }
-        while (bcdi.getHoldStatus()) ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+        while (bcdi.getHoldStatus()) 
+          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
       }
       //stop the elevator & reset the elevator encoder so it is ready to lift the next ball
       ball_elevator.setSpeed(0.0);
