@@ -51,6 +51,11 @@ public class BallCounterManagementSystem extends CommandBase {
       if (bcdi.getNumberofBalls() == 0)
         while (!bcdi.getHoldStatus())
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+      //for the last ball, we want to pull it in just enough to hold it in the basin but not bring it up the elevator
+      else if (bcdi.getNumberofBalls() == 4) {
+        while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) > -5)
+          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+      }
       //for balls 2-5, we want to do the following:
       //first "while" loop - run the elevator until the bottom sensor no longer sees the ball
       //second "while" loop - run the elevator X number of crannks

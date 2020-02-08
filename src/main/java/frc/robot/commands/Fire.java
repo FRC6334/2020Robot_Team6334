@@ -47,7 +47,10 @@ public class Fire extends SequentialCommandGroup {
     addCommands(new SetBallElevatorSpeed(_be, 0));
     Timer.delay(0.5);
     //load balls from the intake to the shooter
-    addCommands(new DriveElevatorInInches(_be, 70));
+    new ParallelCommandGroup(
+      new DriveElevatorInInches(_be, 70), 
+      new SetBallIntakeSpeed(_bi, RobotMap.ballIntakeSpeed)
+    );
     //Now turn off the shooter
     addCommands(new SetBallShooterSpeed(_bs, 0.0));
 
