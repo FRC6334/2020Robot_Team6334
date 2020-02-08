@@ -29,11 +29,11 @@ public class DriveElevatorInInches extends InstantCommand {
   @Override
   public void initialize() {
     if (inches > 0)
-      while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) > -inches) {
+      while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevator) > -inches) {
         ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
       }
     else if (inches < 0)
-      while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) < -inches) {
+      while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevator) < -inches) {
         ball_elevator.setSpeed(RobotMap.ballElevatorSpeed); 
       }
     ball_elevator.setSpeed(0.0);
