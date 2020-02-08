@@ -52,7 +52,10 @@ public class RobotContainer {
   private final BallIntake m_ballintake = new BallIntake();
   private final BallShooter m_ballshooter = new BallShooter();
   private final BallElevator m_ballelevator = new BallElevator();
-  private final BallCounterDigitalInput bcdi = new BallCounterDigitalInput(RobotMap.ballIntakeChannel,RobotMap.ballOutputChannel);
+  private final BallCounterDigitalInput bcdi = new BallCounterDigitalInput(
+                                              RobotMap.ballIntakeChannel,
+                                              RobotMap.ballOutputChannel,
+                                              RobotMap.ballHoldChannel);
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

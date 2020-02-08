@@ -35,14 +35,14 @@ public class Fire extends SequentialCommandGroup {
     addCommands(new SetBallIntakeSpeed(_bi, 0));
     addCommands(new SetBallElevatorSpeed(_be, 0));
 
-    //back up balls in intake tube
-    addCommands(new DriveElevatorInInches(_be, -3));
-
     //fire up the shooter
     addCommands(new SetBallShooterSpeed(_bs, -0.8));
 
+    //back up balls in intake tube
+    addCommands(new DriveElevatorInInches(_be, -7));
+
     //load balls from the intake to the shooter
-    addCommands(new DriveElevatorInInches(_be, 50));
+    addCommands(new DriveElevatorInInches(_be, 70));
     addCommands(new SetBallShooterSpeed(_bs, 0.0));
 
     //reset number of balls to 0

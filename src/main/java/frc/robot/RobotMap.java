@@ -66,10 +66,11 @@ public class RobotMap {
     public static final int ll_driver = 1;
 
     //ball intake system variables
-    public static final int startingNumberOfBalls = 3;
+    public static final int startingNumberOfBalls = 0;
     public static final int ballIntakeChannel = 0;  //Analog channel ports
     public static final int ballOutputChannel = 9;  //DIO ports
+    public static final int ballHoldChannel = 1; //Analog channel port
     public static final double ballIntakeSpeed = 0.5;  //ball intake motor speed
     public static final double ballElevatorSpeed = 0.5;  //ball elevator motor speed
-    public static final double rotations_per_inch_elevtor = 0.2;
+    public static final double rotations_per_inch_elevtor = 0.6;
 }

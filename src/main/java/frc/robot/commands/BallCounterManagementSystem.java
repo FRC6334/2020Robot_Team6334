@@ -41,21 +41,30 @@ public class BallCounterManagementSystem extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //System.out.println("IN="+bcdi.getInValue());
-
+    //System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
+    
     //a ball came into the intake and the intake switch has not previously been pressed during this ball coming in
     if (bcdi.getInStatus() && !in_pressed) {
       //reduce speed to very very slow
-      ball_intake.setSpeed(0.2);  
+      ball_intake.setSpeed(0.3);  
       //lift ball into the elevator by X inches
-      while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) > -20) ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed); 
+      //while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) > -20) ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed); 
+      if (bcdi.getNumberofBalls() == 0)
+        while (!bcdi.getHoldStatus()) ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+      else {
+        while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevtor) > -10) {
+          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);        
+        }
+        while (bcdi.getHoldStatus()) ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+      }
       //stop the elevator & reset the elevator encoder so it is ready to lift the next ball
       ball_elevator.setSpeed(0.0);
       ball_elevator.resetEncoders();
       //add a ball to the counter
       bcdi.addBall();
       //if there are less than 5 balls then start the ball intake, if there are 5 balls stop the ball intake
-      if (bcdi.getNumberofBalls() < 5) ball_intake.setSpeed(RobotMap.ballIntakeSpeed); else ball_intake.setSpeed(0);
+      if (bcdi.getNumberofBalls() < 5) ball_intake.setSpeed(RobotMap.ballIntakeSpeed); 
+      else ball_intake.setSpeed(0);
       //record that we took in a ball
       in_pressed=true;
       //print the number of balls
@@ -66,14 +75,14 @@ public class BallCounterManagementSystem extends CommandBase {
     if (!bcdi.getInStatus()) in_pressed=false;
     
     //a ball left the tube and the out switch has not previously been pressed during this ball leaving
-    if (bcdi.getOutStatus() && !out_pressed) { 
+    /*if (bcdi.getOutStatus() && !out_pressed) { 
       out_pressed=true;
       bcdi.removeBall();
       System.out.println("BALLS="+bcdi.getNumberofBalls());
     }
     
     //the output switch has been deprsessed so we need to account for the next time it is pressed
-    if (!bcdi.getOutStatus()) out_pressed=false;
+    if (!bcdi.getOutStatus()) out_pressed=false;*/
   }
 
   // Called once the command ends or is interrupted.
