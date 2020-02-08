@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 import frc.robot.commands.SetBallIntakeSpeed;
 import frc.robot.commands.SetBallShooterSpeed;
@@ -31,18 +32,19 @@ public class Fire extends SequentialCommandGroup {
     //super();
 
     //set all speed to 0
-    addCommands(new SetBallShooterSpeed(_bs, 0));
-    addCommands(new SetBallIntakeSpeed(_bi, 0));
-    addCommands(new SetBallElevatorSpeed(_be, 0));
+    new ParallelCommandGroup(
+      new SetBallShooterSpeed(_bs, 0),
+      new SetBallIntakeSpeed(_bi, 0),
+      new SetBallElevatorSpeed(_be, 0)
+    );
 
-    //fire up the shooter
-    addCommands(new SetBallShooterSpeed(_bs, -0.8));
 
-    //back up balls in intake tube
-    addCommands(new DriveElevatorInInches(_be, -7));
+    //fire up the shooter && back up balls in intake tube
+    new ParallelCommandGroup(new SetBallShooterSpeed(_bs, -0.8), new DriveElevatorInInches(_be, -7));
 
     //load balls from the intake to the shooter
     addCommands(new DriveElevatorInInches(_be, 70));
+    //Now turn off the shooter
     addCommands(new SetBallShooterSpeed(_bs, 0.0));
 
     //reset number of balls to 0
