@@ -20,6 +20,7 @@ import frc.robot.subsystems.BallElevator;
 import frc.robot.subsystems.BallCounterDigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.commands.setFireMode;
+import frc.robot.commands.SetBallIntakeSpeed;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -44,12 +45,14 @@ public class Fire extends SequentialCommandGroup {
 
     //fire up the shooter && back up balls in intake tube
     //new ParallelCommandGroup(new SetBallShooterSpeed(_bs, -0.8), new DriveElevatorInInches(_be, -7));
+    addCommands(new SetBallIntakeSpeed(_bi, -0.2));
     addCommands(new DriveElevatorInInches(_be, -5));
+    addCommands(new SetBallIntakeSpeed(_bi, 0.0));
     addCommands(new SetBallShooterSpeed(_bs, -0.8, true));
     addCommands(new SetBallElevatorSpeed(_be, 0));
   
     //load balls from the intake to the shooter
-    addCommands(new SetBallIntakeSpeed(_bi, RobotMap.ballIntakeSpeed));
+    addCommands(new SetBallIntakeSpeed(_bi, 0.2));
     addCommands(new DriveElevatorInInches(_be, 150)); 
 
     //Now turn off the shooter
