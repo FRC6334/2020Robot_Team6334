@@ -8,27 +8,23 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.BallShooter;
+import frc.robot.RobotMap;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class SetBallShooterSpeed extends InstantCommand {
-  private double speed;
-  private BallShooter ballshooter;
-  private boolean wait;
+public class setFireMode extends InstantCommand {
+  private boolean fire;
 
-  public SetBallShooterSpeed(BallShooter _b, double _s, boolean _wait) {
+  public setFireMode(boolean _fire) {
     // Use addRequirements() here to declare subsystem dependencies.
-    ballshooter = _b;
-    speed = _s;
-    wait = _wait;
+    fire = _fire;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ballshooter.setSpeed(speed, wait);
+    RobotMap.InFireMode = fire;
   }
-}
 
+}

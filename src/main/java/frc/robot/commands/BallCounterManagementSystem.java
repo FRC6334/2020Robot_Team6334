@@ -41,21 +41,22 @@ public class BallCounterManagementSystem extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
+    ball_elevator.resetEncoders();
+    //System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
     
     //a ball came into the intake and the intake switch has not previously been pressed during this ball coming in
-    if (bcdi.getInStatus() && !in_pressed && bcdi.getNumberofBalls() < 5) {
+    if (!RobotMap.InFireMode && bcdi.getInStatus() && !in_pressed && bcdi.getNumberofBalls() < 5) {
       //reduce speed to very very slow
       ball_intake.setSpeed(0.3);  
       //for the first ball, we want to run the elevator until the hold sensor sees the ball
-      if (bcdi.getNumberofBalls() == 0)
+      if (bcdi.getNumberofBalls() == 0) {
         while (!bcdi.getHoldStatus())
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
-      //for the last ball, we want to pull it in just enough to hold it in the basin but not bring it up the elevator
-      else if (bcdi.getNumberofBalls() == 4) {
-        while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevator) > -5)
-          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+        //ball_elevator.driveInInches(-1);  
       }
+      //for the last ball, we want to pull it in just enough to hold it in the basin but not bring it up the elevator
+      else if (bcdi.getNumberofBalls() == 4)
+        ball_elevator.driveInInches(4);
       //for balls 2-4, we want to do the following:
       //first "while" loop - run the elevator until the bottom sensor no longer sees the ball
       //second "while" loop - run the elevator X number of crannks
@@ -63,8 +64,8 @@ public class BallCounterManagementSystem extends CommandBase {
       else {
         while (bcdi.getInStatus()) 
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
-        while ((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevator) > -12)
-          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);        
+        ball_elevator.resetEncoders();
+        ball_elevator.driveInInches(6);        
         while (bcdi.getHoldStatus()) 
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
       }

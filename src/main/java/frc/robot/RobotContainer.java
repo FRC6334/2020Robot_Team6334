@@ -28,6 +28,7 @@ import frc.robot.commands.ToggleLimeLightLED;
 import frc.robot.commands.ToggleLimeLightVision;
 import frc.robot.commands.GetColorInformation;
 import frc.robot.commands.IntakeAndShoot;
+import frc.robot.commands.ResetBallCounter;
 import frc.robot.subsystems.BallShooter;
 import frc.robot.commands.Fire;
 import frc.robot.subsystems.BallCounterDigitalInput;
@@ -45,7 +46,7 @@ import frc.robot.subsystems.LEDLightStrip12V;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final LEDLightStrip12V ledLightStrip = new LEDLightStrip12V();
+  //private final LEDLightStrip12V ledLightStrip = new LEDLightStrip12V();
   //private final DriveTrain m_drivetrain = new DriveTrain();
   //private final USBCamera m_camera = new USBCamera();
   //private final LimeLightVision m_limelight = new LimeLightVision();
@@ -100,7 +101,9 @@ public class RobotContainer {
 
     // final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
     // m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
-    
+    final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
+    m_button08.whenReleased(new ResetBallCounter(bcdi));
+
     final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
     m_button09.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
 

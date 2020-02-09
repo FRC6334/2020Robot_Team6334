@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.RobotMap;
+import com.revrobotics.CANEncoder;
 
 public class BallShooter extends SubsystemBase {
   /**
@@ -18,6 +19,7 @@ public class BallShooter extends SubsystemBase {
    * These include four drive motors, a left and right encoder and a gyro.
    */
   private final CANSparkMax m_ballshooter = new CANSparkMax(RobotMap.ballShooterMotor, MotorType.kBrushless);
+  private final CANEncoder m_encoder = m_ballshooter.getEncoder();
 
   /**
    * Create a new drive train subsystem.
@@ -39,7 +41,20 @@ public class BallShooter extends SubsystemBase {
     *
    */
   public void setSpeed(double speed) {
+    this.setSpeed(speed, false);
+  }
+
+  public void setSpeed(double speed, boolean wait) {
     m_ballshooter.set(speed);
+    if (wait) {
+      while (m_encoder.getVelocity() > -3200) ;
+    }
+  }
+
+  public double getCurrentVelocity() {
+   //System.out.println(">"+m_encoder.getVelocity());
+   //return m_encoder.getVelocity();
+   return 0;
   }
 
 }

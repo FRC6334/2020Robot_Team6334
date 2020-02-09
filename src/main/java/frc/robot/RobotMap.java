@@ -72,9 +72,12 @@ public class RobotMap {
     public static final int ballHoldChannel = 1; //Analog channel port
     public static final double ballIntakeSpeed = 0.5;  //ball intake motor speed
     public static final double ballElevatorSpeed = 0.5;  //ball elevator motor speed
-    public static final double rotations_per_inch_elevator = 0.6; //higher values mean less movement per turn
+    public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
     //led Lights
     public static final int LEDLightsPWMport = 0; // PWM port the LED lights are connected to
     public static final double LEDLightsInitialColor = 0.77;
+
+    //sets mode to be in fireing
+    public static boolean InFireMode = false; //when in fire mode this is true so the robot will not intkae balls
 }

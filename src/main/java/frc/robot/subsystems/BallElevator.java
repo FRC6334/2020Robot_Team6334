@@ -39,4 +39,18 @@ public class BallElevator extends SubsystemBase {
 
   public synchronized void resetEncoders() { m_encoder.setPosition(0.0000); }
 
+  public void driveInInches(int inches) {
+    this.resetEncoders();
+    if (inches > 0)
+      while ((this.getDistance()*RobotMap.rotations_per_inch_elevator) > -inches) {
+        this.setSpeed(-RobotMap.ballElevatorSpeed);
+      }
+    else if (inches < 0)
+      while ((this.getDistance()*RobotMap.rotations_per_inch_elevator) < -inches) {
+        this.setSpeed(RobotMap.ballElevatorSpeed); 
+      }
+    this.setSpeed(0.0);
+    this.resetEncoders();
+  }
+
 }
