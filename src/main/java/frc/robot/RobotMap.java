@@ -73,4 +73,8 @@ public class RobotMap {
     public static final double ballIntakeSpeed = 0.5;  //ball intake motor speed
     public static final double ballElevatorSpeed = 0.5;  //ball elevator motor speed
     public static final double rotations_per_inch_elevator = 0.6; //higher values mean less movement per turn
+
+    //led Lights
+    public static final int LEDLightsPWMport = 0; // PWM port the LED lights are connected to
+    public static final double LEDLightsInitialColor = 0.77;
 }

@@ -35,6 +35,7 @@ import frc.robot.commands.GetBallCounterStatus;
 import frc.robot.commands.BallCounterManagementSystem;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.commands.DriveElevatorInInches;
+import frc.robot.subsystems.LEDLightStrip12V;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -44,6 +45,7 @@ import frc.robot.commands.DriveElevatorInInches;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private final LEDLightStrip12V ledLightStrip = new LEDLightStrip12V();
   //private final DriveTrain m_drivetrain = new DriveTrain();
   //private final USBCamera m_camera = new USBCamera();
   //private final LimeLightVision m_limelight = new LimeLightVision();
@@ -63,7 +65,7 @@ public class RobotContainer {
   public RobotContainer() {
     //m_limelight.setLedMode(RobotMap.ll_off);
     m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
-
+    
     // Assign default commands
     //m_drivetrain.setDefaultCommand(new TankDrive(() -> m_joystick.getY(Hand.kLeft),
     //    () -> m_joPystick.getY(Hand.kRight), m_dhttps://www.kauailabs.com/dist/frc/2020/navx_frc.jsonrivetrain));
