@@ -75,7 +75,7 @@ public class RobotMap {
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
     //ball shooter variables
-    public static final double ball_shooter_max = 1.0; //need to test
+    public static final double ball_shooter_max = -1.0; //need to test
     public static final double ball_shooter_max_v = -3800; //need to test
     public static final double ball_shooter_far = -0.8; //shooter speed for 18.5 feet (tested)
     public static final double ball_shooter_far_v = -3600; //motor velocity for 18.5 feet (tested)
