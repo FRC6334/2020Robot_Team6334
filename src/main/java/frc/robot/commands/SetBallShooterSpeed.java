@@ -16,19 +16,18 @@ import frc.robot.subsystems.BallShooter;
 public class SetBallShooterSpeed extends InstantCommand {
   private double speed;
   private BallShooter ballshooter;
-  private boolean wait;
 
-  public SetBallShooterSpeed(BallShooter _b, double _s, boolean _wait) {
+
+  public SetBallShooterSpeed(BallShooter _b, double _s) {
     // Use addRequirements() here to declare subsystem dependencies.
     ballshooter = _b;
     speed = _s;
-    wait = _wait;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ballshooter.setSpeed(speed, wait);
+    ballshooter.setSpeed(speed);
   }
 }
 

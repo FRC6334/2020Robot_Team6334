@@ -41,14 +41,19 @@ public class BallShooter extends SubsystemBase {
     *
    */
   public void setSpeed(double speed) {
-    this.setSpeed(speed, false);
+    m_ballshooter.set(speed);
   }
 
-  public void setSpeed(double speed, boolean wait) {
-    m_ballshooter.set(speed);
-    if (wait) {
-      while (m_encoder.getVelocity() > -3200) ;
-    }
+  public void setSpeedForDistance(double distance) {
+    m_ballshooter.set(distance);
+    double v = 0;
+
+    if (distance == RobotMap.ball_shooter_max) v = RobotMap.ball_shooter_max_v;
+    else if (distance == RobotMap.ball_shooter_far) v = RobotMap.ball_shooter_far_v;
+    else if (distance == RobotMap.ball_shooter_med) v = RobotMap.ball_shooter_med_v;
+    else if (distance == RobotMap.ball_shooter_min) v = RobotMap.ball_shooter_min_v;
+
+    while (m_encoder.getVelocity() > v) ;
   }
 
   public double getCurrentVelocity() {

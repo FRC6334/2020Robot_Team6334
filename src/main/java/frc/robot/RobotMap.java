@@ -74,6 +74,16 @@ public class RobotMap {
     public static final double ballElevatorSpeed = 0.5;  //ball elevator motor speed
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
+    //ball shooter variables
+    public static final double ball_shooter_max = 1.0; //need to test
+    public static final double ball_shooter_max_v = -3800; //need to test
+    public static final double ball_shooter_far = -0.8; //shooter speed for 18.5 feet (tested)
+    public static final double ball_shooter_far_v = -3600; //motor velocity for 18.5 feet (tested)
+    public static final double ball_shooter_med = -0.6; //need to test
+    public static final double ball_shooter_med_v = -3400; //need to test
+    public static final double ball_shooter_min = -0.5; //need to test
+    public static final double ball_shooter_min_v = -3300; //need to test
+
     //led Lights
     public static final int LEDLightsPWMport = 0; // PWM port the LED lights are connected to
     public static final double LEDLightsInitialColor = 0.77;
