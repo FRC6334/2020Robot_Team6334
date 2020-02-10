@@ -102,7 +102,7 @@ public class RobotContainer {
     // final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
     // m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
     final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
-    m_button08.whenReleased(new ResetBallCounter(bcdi));
+    m_button08.whenReleased(new ResetBallCounter(bcdi, m_ballintake));
 
     final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
     m_button09.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));

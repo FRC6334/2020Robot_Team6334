@@ -9,23 +9,27 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.BallCounterDigitalInput;
+import frc.robot.subsystems.BallIntake;
+import frc.robot.RobotMap;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class ResetBallCounter extends InstantCommand {
   private BallCounterDigitalInput bcdi;
+  private BallIntake bi;
   private int balls;
 
-  public ResetBallCounter(BallCounterDigitalInput _bcdi, int _balls) {
+  public ResetBallCounter(BallCounterDigitalInput _bcdi, BallIntake _bi, int _balls) {
     // Use addRequirements() here to declare subsystem dependencies.
     bcdi = _bcdi;
+    bi = _bi;
     balls = _balls;
   }
 
-  public ResetBallCounter(BallCounterDigitalInput _bcdi) {
+  public ResetBallCounter(BallCounterDigitalInput _bcdi, BallIntake _bi) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this(_bcdi , 0);
+    this(_bcdi , _bi, 0);
   }
 
 
@@ -33,5 +37,6 @@ public class ResetBallCounter extends InstantCommand {
   @Override
   public void initialize() {
     bcdi.setNumberofBalls(balls);
+    bi.setSpeed(RobotMap.ballIntakeSpeed);
   }
 }

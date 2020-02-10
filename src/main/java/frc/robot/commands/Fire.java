@@ -63,11 +63,8 @@ public class Fire extends SequentialCommandGroup {
     //Now turn off the shooter
     addCommands(new SetBallShooterSpeed(_bs, 0.0));
 
-    //reset number of balls to 0
-    addCommands(new ResetBallCounter(_bcdi));
-
-    //start the ball intake
-    addCommands(new SetBallIntakeSpeed(_bi, RobotMap.ballIntakeSpeed));
+    //reset number of balls to 0 which will also restart the ball intake
+    addCommands(new ResetBallCounter(_bcdi, _bi));
 
     //turn off fire mode that the bal intake will activate
     addCommands(new setFireMode(false));
