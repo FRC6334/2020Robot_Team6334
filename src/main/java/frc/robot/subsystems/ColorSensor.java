@@ -57,6 +57,7 @@ public class ColorSensor extends SubsystemBase {
     }
   }
 
+  //get the color from what the color sensor is currently looking at
   public int detectColor() {
     Color detectedColor = m_colorSensor.getColor();
     
