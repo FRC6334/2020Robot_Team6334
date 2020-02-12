@@ -49,11 +49,12 @@ public class RobotMap {
     public static final double x_flex = 2; //amount of acceptable error in degrees when lining up on the X axis
 
     //color wheel colors
-    public static final int red = 0;
-    public static final int green = 1;
-    public static final int blue = 2;
-    public static final int yellow = 3;
-    public static final int unknown = -1;
+    public static final int color_red = 0;
+    public static final int color_green = 1;
+    public static final int color_blue = 2;
+    public static final int color_yellow = 3;
+    public static final int color_unknown = -1;
+    public static final int color_error = -2;
 
     //limelight ledmode
     public static final int ll_current = 0;

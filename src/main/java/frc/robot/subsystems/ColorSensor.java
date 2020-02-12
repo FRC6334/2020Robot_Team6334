@@ -12,6 +12,8 @@ import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.util.Color;
 import com.revrobotics.ColorSensorV3;
+import edu.wpi.first.wpilibj.DriverStation;
+
 
 public class ColorSensor extends SubsystemBase {
   /**
@@ -24,19 +26,50 @@ public class ColorSensor extends SubsystemBase {
     
   }
 
-  public int getColor() {
+  /*
+  In the 2020 FIRST® Robotics Competition game, the Position Control objective requires alliances to select 
+  a specific color transmitted to them when specific pre-requisites have been met. The field will transmit 
+  the selected color to teams using Game Data. 
+  https://docs.wpilib.org/en/latest/docs/software/wpilib-overview/2020-Game-Data.html
+  */
+  public int getGameDataColor() {
+    String gameData;
+    gameData = DriverStation.getInstance().getGameSpecificMessage();
+    if(gameData.length() > 0)
+    {
+      switch (gameData.charAt(0))
+      {
+        case 'B' :
+          return RobotMap.color_blue;
+        case 'G' :
+          return RobotMap.color_green;
+        case 'R' :
+          return RobotMap.color_red;
+        case 'Y' :
+          return RobotMap.color_yellow;
+        default :
+          //This is corrupt data
+          return RobotMap.color_error;
+      }
+    } else {
+      //Code for no data received yet
+      return RobotMap.color_unknown;
+    }
+  }
+
+  public int detectColor() {
     Color detectedColor = m_colorSensor.getColor();
     
     if(detectedColor.red > 0.3 && detectedColor.red < detectedColor.green && detectedColor.blue < 0.3)
-      return RobotMap.yellow;
+      return RobotMap.color_yellow;
     else if (detectedColor.red > detectedColor.blue && detectedColor.red > detectedColor.green) 
-      return RobotMap.red;
+      return RobotMap.color_red;
     else if(detectedColor.green > detectedColor.red && detectedColor.green > detectedColor.blue) 
-      return RobotMap.green;
+      return RobotMap.color_green;
     else if(detectedColor.blue > detectedColor.red && detectedColor.blue > detectedColor.green) 
-      return RobotMap.blue;
+      return RobotMap.color_blue;
     else 
-      return RobotMap.unknown; 
+      return RobotMap.color_unknown; 
   }
 
   public void printColorInformation() {
