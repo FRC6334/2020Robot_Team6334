@@ -20,12 +20,15 @@ public class RobotMap {
     public static final int ballShooterMotor = 3;
     public static final int ballIntakeMotor = 4;
     public static final int ballElevatorMotor = 2;
+    public static final int climberMotorRight = 8;
+    public static final int climberMotorLeft = 9;
 
     //Drive Train Power
     //0 = no power
     //0.5 = half power
     //1 = full power
     public static final double driveTrainPower = 0.8;
+    public static final double climberPower = 0.8;
 
     //Drive Train
     // -1 is forward, 1 is reverse

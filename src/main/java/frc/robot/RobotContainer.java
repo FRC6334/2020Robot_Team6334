@@ -37,6 +37,8 @@ import frc.robot.commands.BallCounterManagementSystem;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.commands.DriveElevatorInInches;
 import frc.robot.subsystems.LEDLightStrip12V;
+import frc.robot.commands.ClimberDrive;
+import frc.robot.subsystems.RobotClimber;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -52,9 +54,11 @@ public class RobotContainer {
   //private final LimeLightVision m_limelight = new LimeLightVision();
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
+  private final Joystick m_joystick1 = new Joystick(1);
   private final BallIntake m_ballintake = new BallIntake();
   private final BallShooter m_ballshooter = new BallShooter();
   private final BallElevator m_ballelevator = new BallElevator();
+  private final RobotClimber m_climber = new RobotClimber();
   private final BallCounterDigitalInput bcdi = new BallCounterDigitalInput(
                                               RobotMap.ballIntakeChannel,
                                               RobotMap.ballOutputChannel,
@@ -73,6 +77,7 @@ public class RobotContainer {
     //m_ballintake.setDefaultCommand(new DriveBallIntakeSpeed(m_ballintake, m_joystick0));
     // Assign default commands
     //m_drivetrain.setDefaultCommand(new ArcadeDrive(m_joystick0, m_drivetrain));
+    m_climber.setDefaultCommand(new ClimberDrive(m_joystick1, m_climber));
     bcdi.setDefaultCommand(new BallCounterManagementSystem(bcdi, m_ballintake, m_ballelevator));
     
     // Configure the button bindings
