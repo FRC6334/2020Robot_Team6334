@@ -25,9 +25,9 @@ public class ArcadeDrive extends CommandBase {
    * @param right      The control input for the right sight of the drive
    * @param drivetrain The drivetrain subsystem to drive
    */
-  public ArcadeDrive(Joystick stick, DriveTrain drivetrain) {
+  public ArcadeDrive(Joystick stick0, DriveTrain drivetrain) {
     m_drivetrain = drivetrain;
-    m_stick = stick;
+    m_stick = stick0;
     addRequirements(m_drivetrain);
   }
 

@@ -34,7 +34,7 @@ public class ClimberDrive extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    m_climber.drive(m_stick.getY(), m_stick.getX());
+    m_climber.drive(m_stick.getX(), m_stick.getY());
     //m_climber.log();
   }
 

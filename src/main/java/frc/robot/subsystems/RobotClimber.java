@@ -34,7 +34,7 @@ public class RobotClimber extends SubsystemBase {
    * Joystick to the left will move the left side up and right side down
    */
   public void drive(double y, double x) {
-    m_drive.arcadeDrive((y*RobotMap.climberPower), (x*RobotMap.climberPower));
+    m_drive.arcadeDrive((y*RobotMap.climberPower*-1), (x*RobotMap.climberPower*-1));
   }
 
   @Override

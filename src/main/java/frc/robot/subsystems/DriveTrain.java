@@ -83,9 +83,7 @@ public class DriveTrain extends SubsystemBase {
     this.drive(y, turningValue);
   }*/
 
-  public void reverseDriveDirection() {
-    RobotMap.direction *= -1;
-  }
+  public void reverseDriveDirection() { RobotMap.direction *= -1; }
 
   // -1 is forward
   //  1 is reverse
@@ -116,7 +114,7 @@ public class DriveTrain extends SubsystemBase {
    * @return The distance driven (average of left and right encoders).
    */
   public double getDistance() {
-        return (Math.abs(left_encoder.getPosition())+Math.abs(right_encoder.getPosition()))/2;
+    return (Math.abs(left_encoder.getPosition())+Math.abs(right_encoder.getPosition()))/2;
   }
 
   public double getLeftEncoderDistance() { return left_encoder.getPosition(); }
