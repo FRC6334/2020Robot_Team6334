@@ -58,7 +58,7 @@ public class RobotContainer {
   private final BallIntake m_ballintake = new BallIntake();
   private final BallShooter m_ballshooter = new BallShooter();
   private final BallElevator m_ballelevator = new BallElevator();
-  private final RobotClimber m_climber = new RobotClimber();
+  //private final RobotClimber m_climber = new RobotClimber();
   private final BallCounterDigitalInput bcdi = new BallCounterDigitalInput(
     RobotMap.ballIntakeChannel,
     RobotMap.ballOutputChannel,
@@ -74,7 +74,7 @@ public class RobotContainer {
     // Assign default commands
     //
     m_drivetrain.setDefaultCommand(new ArcadeDrive(m_joystick0, m_drivetrain));
-    m_climber.setDefaultCommand(new ClimberDrive(m_joystick1, m_climber));
+    //m_climber.setDefaultCommand(new ClimberDrive(m_joystick1, m_climber));
     bcdi.setDefaultCommand(new BallCounterManagementSystem(bcdi, m_ballintake, m_ballelevator));
     
     // Configure the button bindings
@@ -108,10 +108,10 @@ public class RobotContainer {
     // m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
     /*final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
     m_button08.whenReleased(new ResetBallCounter(bcdi, m_ballintake));
-
+*/
     final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
     m_button10.whenReleased(new DriveElevatorInInches(m_ballelevator, -20));
-    */
+  
     /*
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
     m_button02.whenReleased(new DriveInInchesGroup(m_drivetrain));

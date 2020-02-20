@@ -30,42 +30,38 @@ public class Fire extends SequentialCommandGroup {
    * Creates a new Fire.
    */
   public Fire(BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
-    // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
-    //super();
-
     //set mode to fire so that the ball intake will not activate
     addCommands(new setFireMode(true));
-
+    
     //set all speed to 0
-    new ParallelCommandGroup(
-      new SetBallShooterSpeed(_bs, 0),
-      new SetBallIntakeSpeed(_bi, 0),
-      new SetBallElevatorSpeed(_be, 0)
-    );
+    addCommands(new SetBallShooterSpeed(_bs, 0));
+    addCommands(new SetBallIntakeSpeed(_bi, 0));
+    addCommands(new SetBallElevatorSpeed(_be, 0));
+
 
     //back up balls in intake tube
-    new ParallelCommandGroup(
-      new SetBallIntakeSpeed(_bi, -0.2),
-      new DriveElevatorInInches(_be, -5)
-    );
+    addCommands(new SetBallIntakeSpeed(_bi, -0.2));
+    addCommands(new DriveElevatorInInches(_be, -5));
+
     addCommands(new SetBallIntakeSpeed(_bi, 0.0));
+    System.out.println("intake speed set");
 
     //fire up the shooter for 18.5 foot shot
+    System.out.println("start shooter");
     addCommands(new SetBallShooterDistance(_bs, RobotMap.ball_shooter_far));
+    
   
+    System.out.println("DRIVinG ELEV");
     //load balls from the intake to the shooter
-    new ParallelCommandGroup(
-      new SetBallIntakeSpeed(_bi, 0.2),
-      new DriveElevatorInInches(_be, 150)
-    ); 
-
+    addCommands(new SetBallIntakeSpeed(_bi, 0.2));
+    addCommands(new DriveElevatorInInches(_be, 150));
+  
     //Now turn off the shooter
     addCommands(new SetBallShooterSpeed(_bs, 0.0));
 
     //reset number of balls to 0 which will also restart the ball intake
     addCommands(new ResetBallCounter(_bcdi, _bi));
-
+    
     //turn off fire mode that the bal intake will activate
     addCommands(new setFireMode(false));
   }

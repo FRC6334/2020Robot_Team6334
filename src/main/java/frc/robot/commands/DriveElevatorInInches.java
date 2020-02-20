@@ -28,6 +28,7 @@ public class DriveElevatorInInches extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+   System.out.println("Driving elevator in inches: "+inches);
    ball_elevator.driveInInches(inches);
   }
 }

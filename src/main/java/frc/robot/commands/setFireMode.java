@@ -25,6 +25,7 @@ public class setFireMode extends InstantCommand {
   @Override
   public void initialize() {
     RobotMap.InFireMode = fire;
+    System.out.println("fire mode now "+RobotMap.InFireMode);
   }
 
 }
