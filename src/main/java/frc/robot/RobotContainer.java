@@ -58,7 +58,7 @@ public class RobotContainer {
   private final BallIntake m_ballintake = new BallIntake();
   private final BallShooter m_ballshooter = new BallShooter();
   private final BallElevator m_ballelevator = new BallElevator();
-  //private final RobotClimber m_climber = new RobotClimber();
+  private final RobotClimber m_climber = new RobotClimber();
   private final BallCounterDigitalInput bcdi = new BallCounterDigitalInput(
     RobotMap.ballIntakeChannel,
     RobotMap.ballOutputChannel,
@@ -74,7 +74,7 @@ public class RobotContainer {
     // Assign default commands
     //
     m_drivetrain.setDefaultCommand(new ArcadeDrive(m_joystick0, m_drivetrain));
-    //m_climber.setDefaultCommand(new ClimberDrive(m_joystick1, m_climber));
+    m_climber.setDefaultCommand(new ClimberDrive(m_joystick1, m_climber));
     bcdi.setDefaultCommand(new BallCounterManagementSystem(bcdi, m_ballintake, m_ballelevator));
     
     // Configure the button bindings
@@ -91,7 +91,7 @@ public class RobotContainer {
     // Create some buttons
    // final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
    // m_button01.whenHeld(new DriveBallIntakeSpeed(m_ballintake, m_joystick0.getY()*-1));
-
+/*
      final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
      m_button03.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0));
     
@@ -103,28 +103,31 @@ public class RobotContainer {
 
      final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
      m_button09.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
-     
+     */
     // final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
     // m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
     /*final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
     m_button08.whenReleased(new ResetBallCounter(bcdi, m_ballintake));
-*/
+
     final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
     m_button10.whenReleased(new DriveElevatorInInches(m_ballelevator, -20));
   
-    /*
+    
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
     m_button02.whenReleased(new DriveInInchesGroup(m_drivetrain));
-
+*/
     final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
     m_button03.whileHeld(new DriveToTarget(m_limelight, m_drivetrain));
+
+    final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
+    m_button11.whenPressed(new GetLimeLightValues(m_limelight));
 
     final JoystickButton m_button04 = new JoystickButton(m_joystick0, 4);
     m_button04.whenPressed(new ReverseDrive(m_drivetrain));
 
     final JoystickButton m_button06 = new JoystickButton(m_joystick0, 6);
     m_button06.whenPressed(new ToggleLimeLightVision(m_limelight));
-
+/*
     final JoystickButton m_button07 = new JoystickButton(m_joystick0, 7);
     m_button07.whenPressed(new ToggleLimeLightLED(m_limelight));
 
@@ -134,8 +137,7 @@ public class RobotContainer {
     final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
     m_button10.whenPressed(new GetColorInformation(m_color_sensor));
 
-    final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
-    m_button11.whenPressed(new GetLimeLightValues(m_limelight));
+   
     */
   }
 

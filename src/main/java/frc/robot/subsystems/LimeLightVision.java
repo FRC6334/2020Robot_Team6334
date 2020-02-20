@@ -35,7 +35,6 @@ public class LimeLightVision extends SubsystemBase {
    * Creates a new LimeLightVision.
    */
   public LimeLightVision() {
-    
   }
 
   public void outputLimeLightValues() {

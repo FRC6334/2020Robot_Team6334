@@ -44,8 +44,8 @@ public class RobotMap {
 
     //target height calculaitons
     public static final double heightOfTarget = 115.625;   //(h2) The height of the target 
-    public static final double heightOfLimeLight = 36.125;   //(h1) The height of your camera above the floor
-    public static final double angleOfLimeLight = 45; // in degrees
+    public static final double heightOfLimeLight = 42.25;   //(h1) The height of your camera above the floor
+    public static final double angleOfLimeLight = 50.3; // in degrees 44.7
     public static final double shoot_distance = 55; //how far to shoot from
     public static final double x_speed = 0.8; //drive to target right/left speed
     public static final double y_speed = 0.8; //drive to trget forward/back up speed
