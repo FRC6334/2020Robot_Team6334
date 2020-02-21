@@ -89,47 +89,71 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Create some buttons
+    final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
+    m_button01.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
+
+    final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
+    m_button02.whileHeld(new DriveToTarget(m_limelight, m_drivetrain));
+
+    final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
+    m_button03.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0));
+
+    final JoystickButton m_button04 = new JoystickButton(m_joystick0, 4);
+     m_button04.whenReleased(new SetBallIntakeSpeed(m_ballintake, -0.5));
+
+    final JoystickButton m_button05 = new JoystickButton(m_joystick0, 5);
+    m_button05.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0.5));
+
+    final JoystickButton m_button06 = new JoystickButton(m_joystick0, 6);
+    m_button06.whenReleased(new ReverseDrive(m_drivetrain));
+
+    final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
+    m_button10.whenReleased(new ToggleLimeLightLED(m_limelight));
+
+    final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
+    m_button11.whenReleased(new ToggleLimeLightVision(m_limelight));
+
+    final JoystickButton m_button2 = new JoystickButton(m_joystick1, 2);
+    m_button2.whenReleased(new GetLimeLightValues(m_limelight));
+
+    final JoystickButton m_button4 = new JoystickButton(m_joystick1, 4);
+    m_button4.whenReleased(new DriveElevatorInInches(m_ballelevator, -7));
+
+    final JoystickButton m_button5 = new JoystickButton(m_joystick1, 5);
+    m_button5.whenReleased(new DriveElevatorInInches(m_ballelevator, 7));
+
+    final JoystickButton m_button6 = new JoystickButton(m_joystick1, 6);
+    m_button6.whenReleased(new ResetBallCounter(bcdi, m_ballintake));
+
    // final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
    // m_button01.whenHeld(new DriveBallIntakeSpeed(m_ballintake, m_joystick0.getY()*-1));
 /*
-     final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
-     m_button03.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0));
+     
     
-     final JoystickButton m_button04 = new JoystickButton(m_joystick0, 4);
-     m_button04.whenReleased(new SetBallIntakeSpeed(m_ballintake, -0.5));
+     
 
-     final JoystickButton m_button05 = new JoystickButton(m_joystick0, 5);
-     m_button05.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0.5));
 
-     final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
-     m_button09.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
+
      */
     // final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
     // m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
-    /*final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
-    m_button08.whenReleased(new ResetBallCounter(bcdi, m_ballintake));
+    /*
 
-    final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
-    m_button10.whenReleased(new DriveElevatorInInches(m_ballelevator, -20));
+   
   
     
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
     m_button02.whenReleased(new DriveInInchesGroup(m_drivetrain));
-*/
-    final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
-    m_button03.whileHeld(new DriveToTarget(m_limelight, m_drivetrain));
 
-    final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
-    m_button11.whenPressed(new GetLimeLightValues(m_limelight));
+    
 
-    final JoystickButton m_button04 = new JoystickButton(m_joystick0, 4);
-    m_button04.whenPressed(new ReverseDrive(m_drivetrain));
+    
 
-    final JoystickButton m_button06 = new JoystickButton(m_joystick0, 6);
-    m_button06.whenPressed(new ToggleLimeLightVision(m_limelight));
-/*
-    final JoystickButton m_button07 = new JoystickButton(m_joystick0, 7);
-    m_button07.whenPressed(new ToggleLimeLightLED(m_limelight));
+   
+
+  
+
+
 
     final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
     m_button09.whenPressed(new ResetEncoderDistance(m_drivetrain));
