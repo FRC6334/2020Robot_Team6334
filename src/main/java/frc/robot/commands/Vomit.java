@@ -14,6 +14,8 @@ import frc.robot.RobotMap;
 import frc.robot.commands.setFireMode;
 import frc.robot.commands.DriveElevatorInInches;
 import frc.robot.subsystems.BallElevator;
+import frc.robot.commands.ResetBallCounter;
+import frc.robot.subsystems.BallCounterDigitalInput;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -22,11 +24,12 @@ public class Vomit extends SequentialCommandGroup {
   /**
    * Creates a new Vomit.
    */
-  public Vomit(BallIntake _bi, BallElevator _be) {
+  public Vomit(BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
     addCommands(new setFireMode(true));
     addCommands(new SetBallIntakeSpeed(_bi, -RobotMap.ballIntakeSpeed));
     addCommands(new DriveElevatorInInches(_be, -150));
     addCommands(new SetBallIntakeSpeed(_bi, RobotMap.ballIntakeSpeed));
+    addCommands(new ResetBallCounter(_bcdi, _bi));
     addCommands(new setFireMode(false));
   }
 }

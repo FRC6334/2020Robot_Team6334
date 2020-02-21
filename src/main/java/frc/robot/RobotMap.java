@@ -32,7 +32,9 @@ public class RobotMap {
 
     //Drive Train
     // -1 is forward, 1 is reverse
-    public static int direction = -1;
+    public static final int direction_forward = -1;
+    public static final int direction_backward = 1;
+    public static int direction = direction_forward;
 
     //Motor rotations per inch for DriveInInches
     public static final double roations_per_angle = 0.1079282407;//0.117555;
@@ -94,4 +96,7 @@ public class RobotMap {
 
     //sets mode to be in fireing
     public static boolean InFireMode = false; //when in fire mode this is true so the robot will not intkae balls
+
+    //camera server DIO port
+    public static final int USB_camera_port = 4;
 }

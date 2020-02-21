@@ -37,6 +37,6 @@ public class ResetBallCounter extends InstantCommand {
   @Override
   public void initialize() {
     bcdi.setNumberofBalls(balls);
-    bi.setSpeed(RobotMap.ballIntakeSpeed);
+    if (balls < 5) bi.setSpeed(RobotMap.ballIntakeSpeed);
   }
 }

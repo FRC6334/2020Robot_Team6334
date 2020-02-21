@@ -85,8 +85,9 @@ public class DriveTrain extends SubsystemBase {
 
   public void reverseDriveDirection() { RobotMap.direction *= -1; }
 
-  // -1 is forward
-  //  1 is reverse
+  // as defined in robot map
+  // public static final int direction_forward = -1;
+   // public static final int direction_backward = 1;
   public void setDriveDirection(int direction) { RobotMap.direction = direction; }
 
   /* not used but example of calling tank drive */

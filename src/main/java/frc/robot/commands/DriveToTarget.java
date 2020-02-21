@@ -23,7 +23,7 @@ public class DriveToTarget extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies    
     lime_light = m_lime;
     drive_train = m_drive;
-    m_drive.setDriveDirection(1);
+    m_drive.setDriveDirection(RobotMap.direction_backward);
   }
 
   // Called when the command is initially scheduled.

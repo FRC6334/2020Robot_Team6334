@@ -7,16 +7,30 @@
 
 package frc.robot.subsystems;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Servo;
+import frc.robot.RobotMap;
+
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class USBCamera extends SubsystemBase {
+  private final Servo cameraServo;
+
 
   /**
    * Creates a new USBCamera.
    */
   public USBCamera() {
     CameraServer.getInstance().startAutomaticCapture();
+    cameraServo = new Servo(RobotMap.USB_camera_port);
+  }
+
+  public void lookForward() {
+    cameraServo.set(0.1);
+  }
+
+  public void lookBackward() {
+    cameraServo.set(0.9);
   }
 
   @Override

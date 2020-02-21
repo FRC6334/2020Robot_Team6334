@@ -82,7 +82,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Create some buttons
+    //
+    // Create some buttons Joystick 0 (Drive train)
+    //
     final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
     m_button01.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
 
@@ -107,6 +109,9 @@ public class RobotContainer {
     final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
     m_button11.whenReleased(new ToggleLimeLightVision(m_limelight));
 
+    //
+    // Create some buttons Joystick 1 (climber drive)
+    //
     final JoystickButton m_button2 = new JoystickButton(m_joystick1, 2);
     m_button2.whenReleased(new GetLimeLightValues(m_limelight));
 
@@ -120,26 +125,25 @@ public class RobotContainer {
     m_button6.whenReleased(new ResetBallCounter(bcdi, m_ballintake));
 
     final JoystickButton m_button8 = new JoystickButton(m_joystick1, 8);
-    m_button8.whenReleased(new Vomit(m_ballintake, m_ballelevator));
+    m_button8.whenReleased(new Vomit(m_ballintake, m_ballelevator, bcdi));
 
-// final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
-// m_button01.whenHeld(new DriveBallIntakeSpeed(m_ballintake, m_joystick0.getY()*-1));
-//      */
+    //Extra commands not used in this release
+/*
+    final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
+    m_button01.whenHeld(new DriveBallIntakeSpeed(m_ballintake, m_joystick0.getY()*-1));
+    
+    final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
+    m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
 
-//     // final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
-//     // m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
-//     /*
+    final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
+    m_button02.whenReleased(new DriveInInchesGroup(m_drivetrain));
 
-//     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
-//     m_button02.whenReleased(new DriveInInchesGroup(m_drivetrain));
+    final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
+    m_button09.whenPressed(new ResetEncoderDistance(m_drivetrain));
 
-//     final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
-//     m_button09.whenPressed(new ResetEncoderDistance(m_drivetrain));
-
-//     final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
-//     m_button10.whenPressed(new GetColorInformation(m_color_sensor));
-//     */
+   final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
+   m_button10.whenPressed(new GetColorInformation(m_color_sensor));
+*/
   }
-
 
 }
