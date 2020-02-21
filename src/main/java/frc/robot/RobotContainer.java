@@ -63,7 +63,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     m_limelight.setLedMode(RobotMap.ll_off);
-    //m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
+    m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
     
     // Assign default commands
     //

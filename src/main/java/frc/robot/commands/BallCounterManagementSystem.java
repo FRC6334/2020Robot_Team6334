@@ -41,13 +41,13 @@ public class BallCounterManagementSystem extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
+  System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
     
     //a ball came into the intake and the intake switch has not previously been pressed during this ball coming in
     if (!RobotMap.InFireMode && bcdi.getInStatus() && !in_pressed && bcdi.getNumberofBalls() < 5) {
-      ball_elevator.resetEncoders();
+      //ball_elevator.resetEncoders();
       //reduce speed to very very slow
-      ball_intake.setSpeed(0.3);  
+      ball_intake.setSpeed(0.3);
       //for the first ball, we want to run the elevator until the hold sensor sees the ball
       if (bcdi.getNumberofBalls() == 0) {
         while (!bcdi.getHoldStatus())
