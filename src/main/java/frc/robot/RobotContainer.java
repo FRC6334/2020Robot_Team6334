@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.SetBallIntakeSpeed;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
-// import frc.robot.subsystems.USBCamera;
+import frc.robot.subsystems.USBCamera;
 import frc.robot.subsystems.LimeLightVision;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveToTarget;
@@ -44,7 +44,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   //private final LEDLightStrip12V ledLightStrip = new LEDLightStrip12V();
   private final DriveTrain m_drivetrain = new DriveTrain();
-  //private final USBCamera m_camera = new USBCamera();
+  private final USBCamera m_camera = new USBCamera();
   private final LimeLightVision m_limelight = new LimeLightVision();
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
