@@ -11,34 +11,28 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.SetBallIntakeSpeed;
-import frc.robot.commands.DriveBallIntakeSpeed;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.USBCamera;
-import frc.robot.commands.ResetEncoderDistance;
+// import frc.robot.subsystems.USBCamera;
 import frc.robot.subsystems.LimeLightVision;
-import frc.robot.subsystems.ColorSensor;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveToTarget;
-import frc.robot.commands.DriveInInchesGroup;
-import frc.robot.commands.DriveInInches;
+//import frc.robot.commands.DriveInInchesGroup;
 import frc.robot.commands.ReverseDrive;
 import frc.robot.commands.GetLimeLightValues;
 import frc.robot.commands.ToggleLimeLightLED;
 import frc.robot.commands.ToggleLimeLightVision;
-import frc.robot.commands.GetColorInformation;
-import frc.robot.commands.IntakeAndShoot;
 import frc.robot.commands.ResetBallCounter;
 import frc.robot.subsystems.BallShooter;
 import frc.robot.commands.Fire;
 import frc.robot.subsystems.BallCounterDigitalInput;
-import frc.robot.commands.GetBallCounterStatus;
 import frc.robot.commands.BallCounterManagementSystem;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.commands.DriveElevatorInInches;
-import frc.robot.subsystems.LEDLightStrip12V;
+//import frc.robot.subsystems.LEDLightStrip12V;
 import frc.robot.commands.ClimberDrive;
 import frc.robot.subsystems.RobotClimber;
+import frc.robot.commands.Vomit;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -125,44 +119,26 @@ public class RobotContainer {
     final JoystickButton m_button6 = new JoystickButton(m_joystick1, 6);
     m_button6.whenReleased(new ResetBallCounter(bcdi, m_ballintake));
 
-   // final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
-   // m_button01.whenHeld(new DriveBallIntakeSpeed(m_ballintake, m_joystick0.getY()*-1));
-/*
-     
-    
-     
+    final JoystickButton m_button8 = new JoystickButton(m_joystick1, 8);
+    m_button8.whenReleased(new Vomit(m_ballintake, m_ballelevator));
 
+// final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
+// m_button01.whenHeld(new DriveBallIntakeSpeed(m_ballintake, m_joystick0.getY()*-1));
+//      */
 
+//     // final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
+//     // m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
+//     /*
 
-     */
-    // final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
-    // m_button08.whenReleased(new IntakeAndShoot(m_ballshooter, m_ballintake, 0.05, 0.5));
-    /*
+//     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
+//     m_button02.whenReleased(new DriveInInchesGroup(m_drivetrain));
 
-   
-  
-    
-    final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
-    m_button02.whenReleased(new DriveInInchesGroup(m_drivetrain));
+//     final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
+//     m_button09.whenPressed(new ResetEncoderDistance(m_drivetrain));
 
-    
-
-    
-
-   
-
-  
-
-
-
-    final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
-    m_button09.whenPressed(new ResetEncoderDistance(m_drivetrain));
-
-    final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
-    m_button10.whenPressed(new GetColorInformation(m_color_sensor));
-
-   
-    */
+//     final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
+//     m_button10.whenPressed(new GetColorInformation(m_color_sensor));
+//     */
   }
 
 
