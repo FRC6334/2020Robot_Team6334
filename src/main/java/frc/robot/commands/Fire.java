@@ -38,20 +38,15 @@ public class Fire extends SequentialCommandGroup {
     addCommands(new SetBallIntakeSpeed(_bi, 0));
     addCommands(new SetBallElevatorSpeed(_be, 0));
 
-
     //back up balls in intake tube
     addCommands(new SetBallIntakeSpeed(_bi, -0.2));
     addCommands(new DriveElevatorInInches(_be, -5));
 
     addCommands(new SetBallIntakeSpeed(_bi, 0.0));
-    System.out.println("intake speed set");
 
     //fire up the shooter for 18.5 foot shot
-    System.out.println("start shooter");
     addCommands(new SetBallShooterDistance(_bs, RobotMap.ball_shooter_far));
     
-  
-    System.out.println("DRIVinG ELEV");
     //load balls from the intake to the shooter
     addCommands(new SetBallIntakeSpeed(_bi, 0.2));
     addCommands(new DriveElevatorInInches(_be, 150));
