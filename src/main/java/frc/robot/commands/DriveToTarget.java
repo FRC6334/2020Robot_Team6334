@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimeLightVision;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Timer;
 
 public class DriveToTarget extends CommandBase {
   LimeLightVision lime_light;
@@ -31,6 +32,19 @@ public class DriveToTarget extends CommandBase {
     lime_light.setCameraMode(RobotMap.ll_vision);
     lime_light.setLedMode(RobotMap.ll_on);
     drive_train.setDriveDirection(RobotMap.direction_backward);
+
+    //check if we can see a target
+    double tv = lime_light.getTV();  
+
+    //spin around and look for a target, if not target found in 10 seconds exit the routine
+    Timer t = new Timer();
+    t.start();
+    while (tv == 0 && t.get() < 10) {
+        drive_train.drive(0, 0.35);
+        tv = lime_light.getTV();
+    }
+    t.stop();
+    if (tv == 0) this.end(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,12 +52,7 @@ public class DriveToTarget extends CommandBase {
   public void execute() {
       //check if we can see a target
       double tv = lime_light.getTV();  
-
-      //spin around and look for a target
-      while (tv == 0) {
-        drive_train.drive(0, 0.35);
-        tv = lime_light.getTV();
-      }
+      if (tv == 0) this.end(true);
 
       //once we find a target get the distance and X offset
       double dist = lime_light.getDistanceToTarget();  
@@ -75,7 +84,7 @@ public class DriveToTarget extends CommandBase {
       }
       //too close to target move back
       else if (tv==1 && (dist <= RobotMap.shoot_distance-2.5 || Math.abs(tx) > RobotMap.x_flex+1)) {
-        drive_train.drive(RobotMap.y_speed, 0);
+        drive_train.drive(RobotMap.y_speed*0.5, 0);
         alignReport(20, tv, tx, RobotMap.y_speed*0.5, 0, dist);
       } 
   }
