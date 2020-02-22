@@ -33,7 +33,7 @@ public class BallCounterDigitalInput extends SubsystemBase {
   public void addBall() { num_balls++; }
   public void removeBall() { num_balls--; }
   public boolean getInStatus() { return (ai_in.getValue() > 4000); }
-  public boolean getHoldStatus() { return (ai_hold.getValue() > 4000); }
+  public boolean getHoldStatus() { return !(ai_hold.getValue() > 4000); }
   public int getInValue() { return ai_in.getValue(); }
   public int getHoldValue() { return ai_hold.getValue(); }
   public boolean getOutStatus() { return di_out.get(); }

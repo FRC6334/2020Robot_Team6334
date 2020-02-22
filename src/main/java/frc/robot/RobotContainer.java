@@ -33,6 +33,7 @@ import frc.robot.commands.DriveElevatorInInches;
 import frc.robot.commands.ClimberDrive;
 import frc.robot.subsystems.RobotClimber;
 import frc.robot.commands.Vomit;
+import frc.robot.commands.PivotCamera;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -43,8 +44,8 @@ import frc.robot.commands.Vomit;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   //private final LEDLightStrip12V ledLightStrip = new LEDLightStrip12V();
-  private final DriveTrain m_drivetrain = new DriveTrain();
   private final USBCamera m_camera = new USBCamera();
+  private final DriveTrain m_drivetrain = new DriveTrain(m_camera);
   private final LimeLightVision m_limelight = new LimeLightVision();
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
@@ -64,6 +65,7 @@ public class RobotContainer {
   public RobotContainer() {
     m_limelight.setLedMode(RobotMap.ll_off);
     m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
+    m_camera.lookForward();
     
     // Assign default commands
     //
@@ -103,11 +105,18 @@ public class RobotContainer {
     final JoystickButton m_button06 = new JoystickButton(m_joystick0, 6);
     m_button06.whenReleased(new ReverseDrive(m_drivetrain));
 
+    final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
+    m_button08.whenReleased(new PivotCamera(m_camera, RobotMap.cam_fwd));
+
+    final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
+    m_button09.whenReleased(new PivotCamera(m_camera, RobotMap.cam_rev));
+
     final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
     m_button10.whenReleased(new ToggleLimeLightLED(m_limelight));
 
     final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
     m_button11.whenReleased(new ToggleLimeLightVision(m_limelight));
+
 
     //
     // Create some buttons Joystick 1 (climber drive)

@@ -48,7 +48,7 @@ public class RobotMap {
     public static final double heightOfTarget = 115.625;   //(h2) The height of the target 
     public static final double heightOfLimeLight = 42.25;   //(h1) The height of your camera above the floor
     public static final double angleOfLimeLight = 50.3; // in degrees 44.7
-    public static final double shoot_distance = 55; //how far to shoot from
+    public static final double shoot_distance = 120; //how far to shoot from
     public static final double x_speed = 0.8; //drive to target right/left speed
     public static final double y_speed = 0.8; //drive to trget forward/back up speed
     public static final double x_flex = 2; //amount of acceptable error in degrees when lining up on the X axis
@@ -98,5 +98,7 @@ public class RobotMap {
     public static boolean InFireMode = false; //when in fire mode this is true so the robot will not intkae balls
 
     //camera server DIO port
-    public static final int USB_camera_port = 4;
+    public static final int USB_camera_port = 0; //PWM port
+    public static final double cam_fwd = 0.3;
+    public static final double cam_rev = 1.0;
 }

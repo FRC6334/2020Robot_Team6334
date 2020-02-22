@@ -25,12 +25,15 @@ public class USBCamera extends SubsystemBase {
     cameraServo = new Servo(RobotMap.USB_camera_port);
   }
 
+  public double getAngle() { return cameraServo.getAngle(); }
+  public double getPosition() { return cameraServo.get(); }
+
   public void lookForward() {
-    cameraServo.set(0.1);
+    cameraServo.set(RobotMap.cam_fwd);
   }
 
   public void lookBackward() {
-    cameraServo.set(0.9);
+    cameraServo.set(RobotMap.cam_rev);
   }
 
   @Override

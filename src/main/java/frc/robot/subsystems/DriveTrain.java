@@ -16,9 +16,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.USBCamera;
 //import edu.wpi.first.wpilibj.SPI;
-
-
 
 public class DriveTrain extends SubsystemBase {
   /**
@@ -44,18 +43,16 @@ public class DriveTrain extends SubsystemBase {
 
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotor, m_rightMotor);
 
+  private final USBCamera cam;
+
   /**
    * Create a new drive train subsystem.
    */
-  public DriveTrain() {
+  public DriveTrain(USBCamera _c) {
     super();
     //reset encoders to 0
     this.resetEncoders();
-
-    
-
-    // Let's name the sensors on the LiveWindow
-    //addChild("Drive", m_drive);
+    cam = _c;
   }
 
   
@@ -83,12 +80,23 @@ public class DriveTrain extends SubsystemBase {
     this.drive(y, turningValue);
   }*/
 
-  public void reverseDriveDirection() { RobotMap.direction *= -1; }
+  private void setCameraDirection() {
+    if (RobotMap.direction == RobotMap.cam_rev) cam.lookBackward();
+    else cam.lookForward();
+  }
+
+  public void reverseDriveDirection() { 
+    RobotMap.direction *= -1; 
+    this.setCameraDirection();
+  }
 
   // as defined in robot map
   // public static final int direction_forward = -1;
    // public static final int direction_backward = 1;
-  public void setDriveDirection(int direction) { RobotMap.direction = direction; }
+  public void setDriveDirection(int direction) { 
+    RobotMap.direction = direction; 
+    this.setCameraDirection();
+  }
 
   /* not used but example of calling tank drive */
   /*

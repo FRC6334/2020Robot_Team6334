@@ -41,7 +41,7 @@ public class BallCounterManagementSystem extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
+  //  System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
     
     //a ball came into the intake and the intake switch has not previously been pressed during this ball coming in
     if (!RobotMap.InFireMode && bcdi.getInStatus() && !in_pressed && bcdi.getNumberofBalls() < 5) {
@@ -56,7 +56,7 @@ public class BallCounterManagementSystem extends CommandBase {
       }
       //for the last ball, we want to pull it in just enough to hold it in the basin but not bring it up the elevator
       else if (bcdi.getNumberofBalls() == 4)
-        ball_elevator.driveInInches(4);
+        ball_elevator.driveInInches(6);
       //for balls 2-4, we want to do the following:
       //first "while" loop - run the elevator until the bottom sensor no longer sees the ball
       //second "while" loop - run the elevator X number of crannks
