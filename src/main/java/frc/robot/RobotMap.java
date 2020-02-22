@@ -77,7 +77,7 @@ public class RobotMap {
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final int ballHoldChannel = 1; //Analog channel port
     public static final double ballIntakeSpeed = 0.5;  //ball intake motor speed
-    public static final double ballElevatorSpeed = 0.5;  //ball elevator motor speed
+    public static final double ballElevatorSpeed = 0.8;  //ball elevator motor speed
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
     //ball shooter variables

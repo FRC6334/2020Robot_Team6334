@@ -17,7 +17,7 @@ import frc.robot.subsystems.USBCamera;
 import frc.robot.subsystems.LimeLightVision;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveToTarget;
-//import frc.robot.commands.DriveInInchesGroup;
+import frc.robot.commands.DriveInInchesGroup;
 import frc.robot.commands.ReverseDrive;
 import frc.robot.commands.GetLimeLightValues;
 import frc.robot.commands.ToggleLimeLightLED;
@@ -34,6 +34,7 @@ import frc.robot.commands.ClimberDrive;
 import frc.robot.subsystems.RobotClimber;
 import frc.robot.commands.Vomit;
 import frc.robot.commands.PivotCamera;
+import edu.wpi.first.wpilibj2.command.Command;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -117,7 +118,6 @@ public class RobotContainer {
     final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
     m_button11.whenReleased(new ToggleLimeLightVision(m_limelight));
 
-
     //
     // Create some buttons Joystick 1 (climber drive)
     //
@@ -154,5 +154,8 @@ public class RobotContainer {
    m_button10.whenPressed(new GetColorInformation(m_color_sensor));
 */
   }
-
+  
+  public Command getAutonomousCommand(){
+    return new DriveInInchesGroup(m_drivetrain);
+  }
 }
