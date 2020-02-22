@@ -47,7 +47,7 @@ public class RobotMap {
     //target height calculaitons
     public static final double heightOfTarget = 115.625;   //(h2) The height of the target 
     public static final double heightOfLimeLight = 42.25;   //(h1) The height of your camera above the floor
-    public static final double angleOfLimeLight = 17.7; // in degrees 50.3   
+    public static final double angleOfLimeLight = 19.55; // in degrees 17.7  
     public static final double shoot_distance = 132; //how far to shoot from
     public static final double x_speed = 0.8; //drive to target right/left speed
     public static final double y_speed = 0.8; //drive to trget forward/back up speed
@@ -83,10 +83,10 @@ public class RobotMap {
     //ball shooter variables
     public static final double ball_shooter_max = -1.0; //need to test
     public static final double ball_shooter_max_v = -3800; //need to test
-    public static final double ball_shooter_far = -0.8; //shooter speed for 18.5 feet (tested)
-    public static final double ball_shooter_far_v = -3600; //motor velocity for 18.5 feet (tested)
-    public static final double ball_shooter_med = -0.6; //need to test
-    public static final double ball_shooter_med_v = -3400; //need to test
+    public static final double ball_shooter_far = -0.68; //shooter speed for ~18 feet (tested)
+    public static final double ball_shooter_far_v = -3400; //motor velocity for ~18 feet (tested)
+    public static final double ball_shooter_med = -0.6; //(tested)
+    public static final double ball_shooter_med_v = -3000; //(tested)
     public static final double ball_shooter_min = -0.5; //need to test
     public static final double ball_shooter_min_v = -3300; //need to test
 

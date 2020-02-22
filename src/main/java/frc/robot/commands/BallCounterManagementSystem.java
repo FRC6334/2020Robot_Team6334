@@ -65,7 +65,7 @@ public class BallCounterManagementSystem extends CommandBase {
         while (bcdi.getInStatus()) 
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
         ball_elevator.resetEncoders();
-        ball_elevator.driveInInches(6);        
+        ball_elevator.driveInInches(4);        
         while (bcdi.getHoldStatus()) 
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
       }
