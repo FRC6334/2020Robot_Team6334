@@ -71,7 +71,7 @@ public class DriveTrain extends SubsystemBase {
    *
    */
   public void drive(double y, double x) {
-    if (y > 0)
+    if (y >= 0)
       m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (-x*RobotMap.driveTrainPower));
     else
       m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (x*RobotMap.driveTrainPower));

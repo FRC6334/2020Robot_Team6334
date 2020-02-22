@@ -30,6 +30,10 @@ public class Fire extends SequentialCommandGroup {
    * Creates a new Fire.
    */
   public Fire(BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
+      this(_bs, _bi, _be, _bcdi, 150);
+  }
+
+  public Fire(BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi, int _inches) {
     //set mode to fire so that the ball intake will not activate
     addCommands(new setFireMode(true));
     
@@ -49,7 +53,7 @@ public class Fire extends SequentialCommandGroup {
     
     //load balls from the intake to the shooter
     addCommands(new SetBallIntakeSpeed(_bi, 0.2));
-    addCommands(new DriveElevatorInInches(_be, 150));
+    addCommands(new DriveElevatorInInches(_be, _inches));
   
     //Now turn off the shooter
     addCommands(new SetBallShooterSpeed(_bs, 0.0));

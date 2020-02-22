@@ -156,6 +156,6 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand(){
-    return new DriveInInchesGroup(m_drivetrain);
+    return new DriveInInchesGroup(m_drivetrain, m_limelight, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
   }
 }

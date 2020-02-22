@@ -90,19 +90,13 @@ public class DriveInInches extends InstantCommand {
     drive_train.resetEncoders();
   }
 
-  private void turnRight() {
-    //10.58 = 90 degree turn
-    //0.11755556 rotations per degree 
+  private void turnRight() { 
     double rotate = RobotMap.roations_per_angle * inches_or_angle;
-    System.out.println("turn right:"+rotate);
     while(drive_train.getRightEncoderDistance()<rotate)
       drive_train.drive(0,RobotMap.din_power); 
-    System.out.println("R:"+drive_train.getRightEncoderDistance()+", L:"+drive_train.getLeftEncoderDistance());
   }
 
-  private void turnLeft() {
-    //10.58 = 90 degree turn
-    //0.11755556 rotations per degree 
+  private void turnLeft() { 
     double rotate = RobotMap.roations_per_angle * inches_or_angle;
     while(Math.abs(drive_train.getRightEncoderDistance())<rotate)
       drive_train.drive(0,-RobotMap.din_power); 

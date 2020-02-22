@@ -14,16 +14,22 @@ import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Timer;
 
 public class DriveToTarget extends CommandBase {
-  LimeLightVision lime_light;
-  DriveTrain drive_train;
+  private LimeLightVision lime_light;
+  private DriveTrain drive_train;
+  private double shoot_distance;
 
   /**
    * Creates a new DriveToTarget.
    */
-  public DriveToTarget(LimeLightVision m_lime, DriveTrain m_drive) {
+  public DriveToTarget(LimeLightVision m_lime, DriveTrain m_drive, double _shootdistance) {
     // Use addRequirements() here to declare subsystem dependencies    
     lime_light = m_lime;
     drive_train = m_drive;
+    shoot_distance = _shootdistance;
+  }
+
+  public DriveToTarget(LimeLightVision m_lime, DriveTrain m_drive) {
+    this(m_lime, m_drive, RobotMap.shoot_distance);
   }
 
   // Called when the command is initially scheduled.
@@ -59,20 +65,20 @@ public class DriveToTarget extends CommandBase {
       double tx = lime_light.getTX();
 
       //calculate speed as a function of distance to shooting distance
-      double speed_adj = -Math.exp(-((dist-RobotMap.shoot_distance)-46)/10)+100;
+      double speed_adj = -Math.exp(-((dist-shoot_distance)-46)/10)+100;
       speed_adj *= RobotMap.y_speed / 100;
-      if (speed_adj < 0.1) speed_adj = 0.1;
+      if (speed_adj < 0.2) speed_adj = 0.2;
       if (speed_adj > 1.0) speed_adj = 1.0;
 
       //calculate center adjustment as a function of motor power to X offset
       //the larger the X offset the more motor power to turn and get back to x = 0
       double center_adj = Math.pow(tx/5, 2);
       center_adj *= RobotMap.x_speed / 10;
-      if (center_adj < 0.2) center_adj = 0.2;
+      if (center_adj < 0.3) center_adj = 0.3;
       if (center_adj > 0.7) center_adj = 0.7;
 
       //move to the target at the proper forward speed and X center adjustment speed
-      if (dist > RobotMap.shoot_distance && tv==1) {
+      if (dist > shoot_distance && tv==1) {
         if (tx < 0) {
           drive_train.drive(-speed_adj, -center_adj);
           alignReport(10, tv, tx, -speed_adj, -center_adj, dist);
@@ -83,7 +89,7 @@ public class DriveToTarget extends CommandBase {
         }
       }
       //too close to target move back
-      else if (tv==1 && (dist <= RobotMap.shoot_distance-2.5 || Math.abs(tx) > RobotMap.x_flex+1)) {
+      else if (tv==1 && (dist <= shoot_distance-2.5 || Math.abs(tx) > RobotMap.x_flex+1)) {
         drive_train.drive(RobotMap.y_speed*0.5, 0);
         alignReport(20, tv, tx, RobotMap.y_speed*0.5, 0, dist);
       } 

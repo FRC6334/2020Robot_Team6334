@@ -37,7 +37,7 @@ public class RobotMap {
     public static int direction = direction_forward;
 
     //Motor rotations per inch for DriveInInches
-    public static final double roations_per_angle = 0.1079282407;//0.117555;
+    public static final double roations_per_angle = 0.117555;//0.117555; 1079282407
     public static final double rotations_per_inch = 0.536100860941121;//0.5361;//0.5629;
     public static final double din_power = 0.5;
 
@@ -48,7 +48,7 @@ public class RobotMap {
     public static final double heightOfTarget = 115.625;   //(h2) The height of the target 
     public static final double heightOfLimeLight = 42.25;   //(h1) The height of your camera above the floor
     public static final double angleOfLimeLight = 19.55; // in degrees 17.7  
-    public static final double shoot_distance = 132; //how far to shoot from
+    public static final double shoot_distance = 195; //how far to shoot from
     public static final double x_speed = 0.8; //drive to target right/left speed
     public static final double y_speed = 0.8; //drive to trget forward/back up speed
     public static final double x_flex = 2; //amount of acceptable error in degrees when lining up on the X axis
@@ -72,7 +72,7 @@ public class RobotMap {
     public static final int ll_driver = 1;
 
     //ball intake system variables
-    public static final int startingNumberOfBalls = 0;
+    public static final int startingNumberOfBalls = 3;
     public static final int ballIntakeChannel = 0;  //Analog channel ports
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final int ballHoldChannel = 1; //Analog channel port
