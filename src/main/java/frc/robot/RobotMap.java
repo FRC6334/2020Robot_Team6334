@@ -29,6 +29,7 @@ public class RobotMap {
     //1 = full power
     public static final double driveTrainPower = 0.8;
     public static final double climberPower = 0.8;
+    public static boolean in_auto = false;
 
     //Drive Train
     // -1 is forward, 1 is reverse
@@ -38,8 +39,8 @@ public class RobotMap {
 
     //Motor rotations per inch for DriveInInches
     public static final double roations_per_angle = 0.138900;//0.117555; 1079282407
-    public static final double rotations_per_inch = 0.536100860941121;//0.5361;//0.5629;
-    public static final double din_power = 0.7;
+    public static final double rotations_per_inch = 0.516100860941121;//0.5361;//0.5629;//0.536100860941121
+    public static final double din_power = 0.5;
     public static final double din_rotatepower = 0.4;
 
     //Default LimeLight Value
@@ -48,11 +49,11 @@ public class RobotMap {
     //target height calculaitons
     public static final double heightOfTarget = 115.625;   //(h2) The height of the target 
     public static final double heightOfLimeLight = 42.25;   //(h1) The height of your camera above the floor
-    public static final double angleOfLimeLight = 19.55; // in degrees 17.7  
-    public static final double shoot_distance = 180; //how far to shoot from 195
+    public static final double angleOfLimeLight = 29.7; // in degrees 17.7  
+    public static final double shoot_distance = 120; //how far to shoot from 195
     public static final double x_speed = 0.8; //drive to target right/left speed
     public static final double y_speed = 0.8; //drive to trget forward/back up speed
-    public static final double x_flex = 2; //amount of acceptable error in degrees when lining up on the X axis
+    public static final double x_flex = 5; //amount of acceptable error in degrees when lining up on the X axis
 
     //color wheel colors
     public static final int color_red = 0;
@@ -73,12 +74,12 @@ public class RobotMap {
     public static final int ll_driver = 1;
 
     //ball intake system variables
-    public static final int startingNumberOfBalls = 3;
+    public static final int startingNumberOfBalls = 0;
     public static final int ballIntakeChannel = 0;  //Analog channel ports
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final int ballHoldChannel = 1; //Analog channel port
-    public static final double ballIntakeSpeed = 0.6;  //ball intake motor speed
-    public static final double ballElevatorSpeed = 0.9;  //ball elevator motor speed
+    public static final double ballIntakeSpeed = 0.5;  //ball intake motor speed
+    public static final double ballElevatorSpeed = 0.8;  //ball elevator motor speed
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
     //ball shooter variables

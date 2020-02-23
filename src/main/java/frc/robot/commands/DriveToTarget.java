@@ -80,7 +80,7 @@ public class DriveToTarget extends CommandBase {
       if (center_adj > 0.7) center_adj = 0.7;
 
       //move to the target at the proper forward speed and X center adjustment speed
-      if (dist > shoot_distance && tv==1) {
+      if (dist > shoot_distance+3 && tv==1) {
         if (tx < 0) {
           drive_train.drive(-speed_adj, -center_adj);
           alignReport(10, tv, tx, -speed_adj, -center_adj, dist);
@@ -91,7 +91,7 @@ public class DriveToTarget extends CommandBase {
         }
       }
       //too close to target move back
-      else if (tv==1 && (dist <= shoot_distance-2.5 || Math.abs(tx) > RobotMap.x_flex+1)) {
+      else if (tv==1 && (dist <= shoot_distance-3.5 || Math.abs(tx) > RobotMap.x_flex+5)) {
         drive_train.drive(RobotMap.y_speed*0.5, 0);
         alignReport(20, tv, tx, RobotMap.y_speed*0.5, 0, dist);
       } 

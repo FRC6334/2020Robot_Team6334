@@ -19,16 +19,23 @@ import frc.robot.subsystems.DriveTrain;
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class ReverseDrive extends InstantCommand {
   private DriveTrain drive;
-  
+  private int direction = 0;
 
   public ReverseDrive(DriveTrain d) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this(d, 0);
+  }
+
+  public ReverseDrive(DriveTrain d, int _direction) {
+    // Use addRequirements() here to declare subsystem dependencies.
     drive = d;
+    direction = _direction;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    drive.reverseDriveDirection();
+    if (direction == 0) drive.reverseDriveDirection();
+    drive.setDriveDirection(direction);
   }
 }

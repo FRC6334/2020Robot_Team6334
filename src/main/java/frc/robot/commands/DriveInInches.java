@@ -35,6 +35,8 @@ public class DriveInInches extends InstantCommand {
     direction = _direction;
   }
 
+
+
   @Override
   public void initialize() {
     System.out.println("begin ("+direction+"), inches="+inches_or_angle);
@@ -43,7 +45,6 @@ public class DriveInInches extends InstantCommand {
     t.start();
     while (t.get() < 0.08);
     t.stop();
-
     //go forward
     if (direction.equals("F")) {
       driveForward(); 

@@ -70,7 +70,8 @@ public class RobotContainer {
     
     // Assign default commands
     //
-    m_drivetrain.setDefaultCommand(new ArcadeDrive(m_joystick0, m_drivetrain));
+    ArcadeDrive ad = new ArcadeDrive(m_joystick0, m_drivetrain);
+    m_drivetrain.setDefaultCommand(ad);
     m_climber.setDefaultCommand(new ClimberDrive(m_joystick1, m_climber));
     bcdi.setDefaultCommand(new BallCounterManagementSystem(bcdi, m_ballintake, m_ballelevator));
     

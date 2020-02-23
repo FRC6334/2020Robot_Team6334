@@ -77,6 +77,10 @@ public class DriveTrain extends SubsystemBase {
       m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (x*RobotMap.driveTrainPower));
   }
 
+  public void drive_in_inches(double y, double x) {
+    m_drive.arcadeDrive(y, x);
+  }
+
   /*public void driveStraight(double y) {
     double turningValue = (kAngleSetpoint - navx.getAngle()) * kP;
     turningValue = Math.copySign(turningValue, y);

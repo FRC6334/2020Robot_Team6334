@@ -9,8 +9,9 @@ package frc.robot.commands;
 
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj2.command.Command;
 
 public class DriveInInches2 extends CommandBase {
   private DriveTrain drive_train;
@@ -33,40 +34,54 @@ public class DriveInInches2 extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    drive_train.resetEncoders();
+    Timer t = new Timer();
+    t.start();
+    while (t.get() < 0.08);
+    t.stop();
+
     //setup the encoder distances
     if (direction.equals("F") || direction.equals("B"))
       endDistance = drive_train.getLeftEncoderDistance() + (inches_or_angle * RobotMap.rotations_per_inch);
     else if (direction.equals("R") || direction.equals("L"))
       endDistance = drive_train.getLeftEncoderDistance() + (inches_or_angle * RobotMap.roations_per_angle);
 
-    //setup the y power
-    if (direction.equals("F") d_power = -RobotMap.din_power;
-    else if (direction.equals("B") d_power = RobotMap.din_power;
-    else if (direction.equals("R") r_power = RobotMap.din_rotatepower;
-    else if (direction.equals("L") r_power = -RobotMap.din_rotatepower;
+    //setup the drive and rotate power
+    if (direction.equals("F")) d_power = RobotMap.din_power;
+    else if (direction.equals("B")) d_power = -RobotMap.din_power;
+    else if (direction.equals("R")) r_power = RobotMap.din_rotatepower;
+    else if (direction.equals("L")) r_power = -RobotMap.din_rotatepower;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drive_train.drive(d_power, r_power);
+    drive_train.drive_in_inches(d_power, r_power);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drive_train.drive(0,0);
+    //drive_train.drive(0,0);
+    System.out.println("END");
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (direction.equals("F") || direction.equals("B"))
-      if (Math.abs(drive_train.getDistance()) >= endDistance) 
-        { drive_train.resetEncoders(); return true; }
+    System.out.println("current="+Math.abs(drive_train.getLeftEncoderDistance())+", goal="+endDistance+", d="+d_power+", r="+r_power);
+
+    if (direction.equals("F") || direction.equals("B")) {
+        if (Math.abs(drive_train.getLeftEncoderDistance()) >= endDistance)  { 
+          drive_train.resetEncoders(); 
+          return true; 
+        }
+    }
     else if (direction.equals("R") || direction.equals("L"))
-      if (Math.abs(drive_train.getRightEncoderDistance()) > endDistance) 
-        { drive_train.resetEncoders(); return true; }
+      if (Math.abs(drive_train.getLeftEncoderDistance()) >= endDistance) { 
+        drive_train.resetEncoders(); 
+        return true; 
+      }
 
     return false;
   }
