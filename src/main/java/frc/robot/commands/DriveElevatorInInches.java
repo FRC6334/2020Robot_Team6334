@@ -46,10 +46,13 @@ public class DriveElevatorInInches extends CommandBase {
   }
 
   @Override
-  public boolean isFinished() {    
-    if (Math.abs(ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevator) > inches) {
-      return true;
+  public boolean isFinished() {  
+    if (inches == 0) return true;
+    else if (Math.abs((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevator)) > Math.abs(inches)) {
+        ball_elevator.resetEncoders();
+        return true;
     }
+  
     return false;
   }
 

@@ -17,7 +17,6 @@ public class BallCounterManagementSystem extends CommandBase {
   private BallCounterDigitalInput bcdi;
   private BallIntake ball_intake;
   private BallElevator ball_elevator;
-  private boolean out_pressed;
   private boolean in_pressed;
 
   /**
@@ -29,7 +28,6 @@ public class BallCounterManagementSystem extends CommandBase {
     ball_intake = _bi;
     ball_elevator = _be;
     addRequirements(bcdi);
-    out_pressed=false;
     in_pressed=false;
   }
 

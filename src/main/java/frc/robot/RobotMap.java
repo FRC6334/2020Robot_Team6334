@@ -50,7 +50,7 @@ public class RobotMap {
     public static final double heightOfTarget = 115.625;   //(h2) The height of the target 
     public static final double heightOfLimeLight = 42.25;   //(h1) The height of your camera above the floor
     public static final double angleOfLimeLight = 29.7; // in degrees 17.7  
-    public static final double shoot_distance = 120; //how far to shoot from 195
+    public static final double shoot_distance = 150; //how far to shoot from 195
     public static final double x_speed = 0.8; //drive to target right/left speed
     public static final double y_speed = 0.8; //drive to trget forward/back up speed
     public static final double x_flex = 5; //amount of acceptable error in degrees when lining up on the X axis
@@ -79,7 +79,7 @@ public class RobotMap {
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final int ballHoldChannel = 1; //Analog channel port
     public static final double ballIntakeSpeed = 0.5;  //ball intake motor speed
-    public static final double ballElevatorSpeed = 0.8;  //ball elevator motor speed
+    public static final double ballElevatorSpeed = 0.7;  //ball elevator motor speed
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
     //ball shooter variables
