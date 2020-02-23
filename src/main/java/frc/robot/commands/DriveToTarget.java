@@ -46,7 +46,7 @@ public class DriveToTarget extends CommandBase {
     Timer t = new Timer();
     t.start();
     while (tv == 0 && t.get() < 10) {
-        drive_train.drive(0, 0.35);
+        drive_train.drive(0, 0.5);
         tv = lime_light.getTV();
     }
     t.stop();

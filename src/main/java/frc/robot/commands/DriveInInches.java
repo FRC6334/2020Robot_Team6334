@@ -43,7 +43,6 @@ public class DriveInInches extends InstantCommand {
     t.start();
     while (t.get() < 0.08);
     t.stop();
-    //drive_train.resetNAVX();
 
     //go forward
     if (direction.equals("F")) {

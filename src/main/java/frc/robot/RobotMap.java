@@ -40,7 +40,7 @@ public class RobotMap {
     public static final double roations_per_angle = 0.138900;//0.117555; 1079282407
     public static final double rotations_per_inch = 0.536100860941121;//0.5361;//0.5629;
     public static final double din_power = 0.7;
-    public static final double din_rotatepower = 0.35;
+    public static final double din_rotatepower = 0.4;
 
     //Default LimeLight Value
     public static final double defaultLimeLight = -999;
