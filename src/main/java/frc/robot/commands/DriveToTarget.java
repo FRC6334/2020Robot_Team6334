@@ -56,6 +56,8 @@ public class DriveToTarget extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    boolean done = false;
+    while (!done) {
       //check if we can see a target
       double tv = lime_light.getTV();  
       if (tv == 0) this.end(true);
@@ -93,6 +95,8 @@ public class DriveToTarget extends CommandBase {
         drive_train.drive(RobotMap.y_speed*0.5, 0);
         alignReport(20, tv, tx, RobotMap.y_speed*0.5, 0, dist);
       } 
+      else done = true;
+    }
   }
 
   private void alignReport(int id, double tv, double tx, double speed, double turn, double dist) {

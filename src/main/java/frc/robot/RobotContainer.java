@@ -92,7 +92,7 @@ public class RobotContainer {
     m_button01.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
 
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
-    m_button02.whileHeld(new DriveToTarget(m_limelight, m_drivetrain));
+    m_button02.whenReleased(new DriveToTarget(m_limelight, m_drivetrain));
 
     final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
     m_button03.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0));

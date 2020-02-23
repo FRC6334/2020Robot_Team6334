@@ -43,8 +43,8 @@ public class Fire extends SequentialCommandGroup {
     addCommands(new SetBallElevatorSpeed(_be, 0));
 
     //back up balls in intake tube
-    addCommands(new SetBallIntakeSpeed(_bi, -0.2));
-    addCommands(new DriveElevatorInInches(_be, -5));
+    addCommands(new SetBallIntakeSpeed(_bi, -0.4));
+    addCommands(new DriveElevatorInInches(_be, -4));
 
     addCommands(new SetBallIntakeSpeed(_bi, 0.0));
 

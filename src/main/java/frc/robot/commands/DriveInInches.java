@@ -93,13 +93,13 @@ public class DriveInInches extends InstantCommand {
   private void turnRight() { 
     double rotate = RobotMap.roations_per_angle * inches_or_angle;
     while(drive_train.getRightEncoderDistance()<rotate)
-      drive_train.drive(0,RobotMap.din_power); 
+      drive_train.drive(0,RobotMap.din_rotatepower); 
   }
 
   private void turnLeft() { 
     double rotate = RobotMap.roations_per_angle * inches_or_angle;
     while(Math.abs(drive_train.getRightEncoderDistance())<rotate)
-      drive_train.drive(0,-RobotMap.din_power); 
+      drive_train.drive(0,-RobotMap.din_rotatepower); 
   }
 
 }

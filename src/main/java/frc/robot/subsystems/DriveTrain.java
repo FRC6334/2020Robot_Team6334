@@ -71,9 +71,9 @@ public class DriveTrain extends SubsystemBase {
    *
    */
   public void drive(double y, double x) {
-    if (y >= 0)
-      m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (-x*RobotMap.driveTrainPower));
-    else
+    //if (y >= 0)
+    //  m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (-x*RobotMap.driveTrainPower));
+    //else
       m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (x*RobotMap.driveTrainPower));
   }
 
@@ -115,7 +115,7 @@ public class DriveTrain extends SubsystemBase {
     left_encoder.setPosition(0.0000);
     right_encoder.setPosition(0.0000); 
     //navx.reset();
-    log();
+    //log();
     //System.out.println("End Reset: L:"+left_encoder.getPosition()+",R:"+right_encoder.getPosition());
   }
 
