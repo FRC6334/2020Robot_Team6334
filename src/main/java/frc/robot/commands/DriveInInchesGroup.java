@@ -26,7 +26,7 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
    * Creates a new DriveInInchesGroup.
    */
   public DriveInInchesGroup(DriveTrain _dt, LimeLightVision _ll, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
-    addCommands(new Fire(_bs, _bi, _be, _bcdi, 90));
+    /*addCommands(new Fire(_bs, _bi, _be, _bcdi, 90));
     addCommands(new DriveInInches(_dt, 36, "F"));
     addCommands(new DriveInInches(_dt, 1, "R"));
     addCommands(new DriveInInches(_dt, 120, "F"));
@@ -34,8 +34,8 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
     addCommands(new DriveInInches(_dt, 2, "L"));
     addCommands(new DriveToTarget(_ll, _dt, 195));
     addCommands(new Fire(_bs, _bi, _be, _bcdi));
-
-    //addCommands(new DriveInInches(_dt, 360, "R"));
+*/
+    addCommands(new DriveInInches2(_dt, 60, "F"));
     //addCommands(new DriveInInches(_dt, 90, "R"));
   }
 }
