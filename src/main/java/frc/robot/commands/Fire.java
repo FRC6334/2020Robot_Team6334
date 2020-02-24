@@ -9,18 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-
-import frc.robot.commands.SetBallIntakeSpeed;
-import frc.robot.commands.SetBallShooterSpeed;
 import frc.robot.RobotMap;
-import frc.robot.commands.DriveElevatorInInches;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.BallShooter;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.subsystems.BallCounterDigitalInput;
-import edu.wpi.first.wpilibj.Timer;
-import frc.robot.commands.setFireMode;
-import frc.robot.commands.SetBallIntakeSpeed;
+
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
