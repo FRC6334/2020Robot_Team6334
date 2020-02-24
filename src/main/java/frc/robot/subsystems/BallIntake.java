@@ -24,15 +24,6 @@ public class BallIntake extends SubsystemBase {
    */
   public BallIntake() {
     super();
-
-    
-  }
-
-  /**
-   * The log method puts interesting information to the SmartDashboard.
-   */
-  public void log() {
-    
   }
 
   /**

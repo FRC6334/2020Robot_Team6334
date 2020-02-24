@@ -18,39 +18,27 @@ public class BallElevator extends SubsystemBase {
    * Create a new drive train subsystem.
    */
   public BallElevator() {
-    super();
-
-    
+    super();    
   }
 
-  /**
-   * The log method puts interesting information to the SmartDashboard.
-   */
-  public void log() {
-    
-  }
-
-  /**
-    *
-   */
+  //set the speed of the elevator motor
   public void setSpeed(double speed) { m_ballelevator.set(speed); }
   
+  //distance of the motor encoder
   public double getDistance() { return m_encoder.getPosition(); }
+  public double getDistanceInInches() { return (m_encoder.getPosition()*RobotMap.rotations_per_inch_elevator); }
 
+  //returns if the elevator has traveled the specific number of inches (positive or negative)
+  public boolean hasTraveled(double inches) {
+    if (inches == 0) 
+      return true;
+    else if (Math.abs(this.getDistanceInInches()) > Math.abs(inches))
+      return true;
+
+    return false;
+  }  
+
+  //reset the encoder distance
   public synchronized void resetEncoders() { m_encoder.setPosition(0.0000); }
-
-  public void driveInInches(int inches) {
-    this.resetEncoders();
-    if (inches > 0)
-      while ((this.getDistance()*RobotMap.rotations_per_inch_elevator) > -inches) {
-        this.setSpeed(-RobotMap.ballElevatorSpeed*.8);
-      }
-    else if (inches < 0)
-      while ((this.getDistance()*RobotMap.rotations_per_inch_elevator) < -inches) {
-        this.setSpeed(RobotMap.ballElevatorSpeed*.8); 
-      }
-    this.setSpeed(0.0);
-    this.resetEncoders();
-  }
 
 }

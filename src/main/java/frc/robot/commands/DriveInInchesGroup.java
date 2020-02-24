@@ -10,16 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotMap;
-import frc.robot.commands.DriveToTarget;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLightVision;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.BallShooter;
 import frc.robot.subsystems.BallCounterDigitalInput;
-import frc.robot.commands.Fire;
-import frc.robot.commands.ReverseDrive;
-import frc.robot.commands.DriveElevatorInInches;
+
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -37,7 +34,7 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
       new DriveInInches2(_dt, 0.2, "R"),
       new DriveInInches2(_dt, 132, "F"), 
       new DriveInInches2(_dt, 1, "L"), 
-      new ParallelCommandGroup(      
+      new ParallelCommandGroup (      
         new DriveInInches2(_dt, 110, "B"),
         new DriveElevatorInInches(_be, 5)
       ),
@@ -46,5 +43,4 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
       new Fire(_bs, _bi, _be, _bcdi)
     );
   }
-
 }

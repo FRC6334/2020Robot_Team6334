@@ -25,8 +25,7 @@ public class SetBallIntakeSpeed extends InstantCommand {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void execute() {
     ballintake.setSpeed(speed);
-    System.out.println("Ball Intake sepeed set to: "+speed);
   }
 }

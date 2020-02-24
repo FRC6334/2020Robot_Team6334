@@ -34,34 +34,35 @@ public class Fire extends SequentialCommandGroup {
   }
 
   public Fire(BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi, int _inches, int _backup) {
-    //set mode to fire so that the ball intake will not activate
-    addCommands(new setFireMode(true));
     
-    //set all speed to 0
-    addCommands(new SetBallShooterSpeed(_bs, 0));
-    addCommands(new SetBallIntakeSpeed(_bi, 0));
-    addCommands(new SetBallElevatorSpeed(_be, 0));
+    addCommands(
+        new setFireMode(true),                          //set mode to fire so that the ball intake will not activate
 
-    //back up balls in intake tube
-    addCommands(new SetBallIntakeSpeed(_bi, -0.4));
-    addCommands(new DriveElevatorInInches(_be, _backup));
+        new ParallelCommandGroup (      
+          new SetBallShooterSpeed(_bs, 0),              //set all speed to 0
+          new SetBallIntakeSpeed(_bi, 0),
+          new SetBallElevatorSpeed(_be, 0)
+        ),
 
-    addCommands(new SetBallIntakeSpeed(_bi, 0.0));
+        new ParallelCommandGroup (                      //back up balls in intake tube
+          new SetBallIntakeSpeed(_bi, -0.4),
+          new DriveElevatorInInches(_be, _backup)
+        ),
 
-    //fire up the shooter for 18.5 foot shot
-    addCommands(new SetBallShooterDistance(_bs, RobotMap.ball_shooter_far));
+        new SetBallIntakeSpeed(_bi, 0.0),                           //turn off the ball intake
+
+        new SetBallShooterDistance(_bs, RobotMap.ball_shooter_far),    //fire up the shooter for 18.5 foot shot
+
+        new ParallelCommandGroup (                      //load balls from the intake to the shooter
+          new SetBallIntakeSpeed(_bi, 0.2),
+          new DriveElevatorInInches(_be, _inches)
+        ),
+
+        new SetBallShooterSpeed(_bs, 0.0),             //Now turn off the shooter
+
+        new ResetBallCounter(_bcdi, _bi),      //reset number of balls to 0 which will also restart the ball intake
     
-    //load balls from the intake to the shooter
-    addCommands(new SetBallIntakeSpeed(_bi, 0.2));
-    addCommands(new DriveElevatorInInches(_be, _inches));
-  
-    //Now turn off the shooter
-    addCommands(new SetBallShooterSpeed(_bs, 0.0));
-
-    //reset number of balls to 0 which will also restart the ball intake
-    addCommands(new ResetBallCounter(_bcdi, _bi));
-    
-    //turn off fire mode that the bal intake will activate
-    addCommands(new setFireMode(false));
+        new setFireMode(false)                  //turn off fire mode that the bal intake will activate
+    );
   }
 }

@@ -21,18 +21,20 @@ public class DriveElevatorInInches extends CommandBase {
   private double speed;
 
   public DriveElevatorInInches(BallElevator _be, int _in) {
-    // Use addRequirements() here to declare subsystem dependencies.
     ball_elevator = _be;
     inches = _in;
-    _be.resetEncoders();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     ball_elevator.resetEncoders();
-    if (inches > 0) speed = -RobotMap.ballElevatorSpeed;
-    else speed = RobotMap.ballElevatorSpeed;
+    if (inches == 0) 
+      this.end(false);
+    else if (inches > 0) 
+      speed = -RobotMap.ballElevatorSpeed;
+    else 
+      speed = RobotMap.ballElevatorSpeed;
   }
 
   @Override
@@ -47,10 +49,9 @@ public class DriveElevatorInInches extends CommandBase {
 
   @Override
   public boolean isFinished() {  
-    if (inches == 0) return true;
-    else if (Math.abs((ball_elevator.getDistance()*RobotMap.rotations_per_inch_elevator)) > Math.abs(inches)) {
-        ball_elevator.resetEncoders();
-        return true;
+    if (ball_elevator.hasTraveled(inches)) {
+      ball_elevator.resetEncoders();
+      return true;
     }
   
     return false;

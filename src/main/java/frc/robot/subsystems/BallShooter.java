@@ -26,40 +26,11 @@ public class BallShooter extends SubsystemBase {
    */
   public BallShooter() {
     super();
-
-    
   }
 
-  /**
-   * The log method puts interesting information to the SmartDashboard.
-   */
-  public void log() {
-    
-  }
-
-  /**
-    *
-   */
   public void setSpeed(double speed) {
     m_ballshooter.set(speed);
   }
 
-  public void setSpeedForDistance(double distance) {
-    m_ballshooter.set(distance);
-    double v = 0;
-
-    if (distance == RobotMap.ball_shooter_max) v = RobotMap.ball_shooter_max_v;
-    else if (distance == RobotMap.ball_shooter_far) v = RobotMap.ball_shooter_far_v;
-    else if (distance == RobotMap.ball_shooter_med) v = RobotMap.ball_shooter_med_v;
-    else if (distance == RobotMap.ball_shooter_min) v = RobotMap.ball_shooter_min_v;
-
-    while (m_encoder.getVelocity() > v) ;
-  }
-
-  public double getCurrentVelocity() {
-   //System.out.println(">"+m_encoder.getVelocity());
-   //return m_encoder.getVelocity();
-   return 0;
-  }
-
+  public double getVelocity() { return m_encoder.getVelocity(); }
 }
