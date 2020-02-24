@@ -32,12 +32,12 @@ public class ResetBallCounter extends InstantCommand {
     this(_bcdi , _bi, 0);
   }
 
-
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void execute() {
     bcdi.setNumberofBalls(balls);
     if (balls < 5) bi.setSpeed(RobotMap.ballIntakeSpeed);
+    
     System.out.println("BALLS=" + balls);
   }
 }

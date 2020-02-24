@@ -23,7 +23,7 @@ public class GetLimeLightValues extends InstantCommand {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void execute() {
     lime_light.outputLimeLightValues();
   }
 }

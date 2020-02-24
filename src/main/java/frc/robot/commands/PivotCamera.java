@@ -27,17 +27,13 @@ public class PivotCamera extends InstantCommand {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    System.out.println("Moving camera: A("+c.getAngle()+"),P("+c.getPosition()+")");
-
+  public void execute() {
     if (d == RobotMap.cam_fwd) {
      c.lookForward();
-     System.out.println("CAMERA: look forward");
     }
 
     else if (d == RobotMap.cam_rev) {
       c.lookBackward();
-      System.out.println("CAMERA: look reverse");
     } 
   }
 }

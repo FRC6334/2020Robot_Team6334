@@ -34,7 +34,7 @@ public class ReverseDrive extends InstantCommand {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void execute() {
     if (direction == 0) drive.reverseDriveDirection();
     drive.setDriveDirection(direction);
   }
