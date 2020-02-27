@@ -17,25 +17,39 @@ import frc.robot.RobotMap;
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class DriveElevatorInInches extends CommandBase {
   private BallElevator ball_elevator;
-  private int inches;
+  private double inches;
   private double speed;
+  private double override_speed;
 
-  public DriveElevatorInInches(BallElevator _be, int _in) {
+  public DriveElevatorInInches(BallElevator _be, double _in){
+    this(_be, _in, 0);
+  }
+
+  public DriveElevatorInInches(BallElevator _be, double _in, double _speed) {
     ball_elevator = _be;
     inches = _in;
+    override_speed = _speed;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     ball_elevator.resetEncoders();
-    System.out.println("DriveElevatorInInches: inches: "+inches);
+
     if (inches == 0) 
       this.end(false);
-    else if (inches > 0) 
-      speed = -RobotMap.ballElevatorSpeed;
-    else 
-      speed = RobotMap.ballElevatorSpeed;
+    else if (inches > 0){ 
+      if(override_speed == 0)
+        speed = -RobotMap.ballElevatorSpeed;
+      else
+        speed = -override_speed;
+    }
+    else {
+      if(override_speed == 0)
+        speed = RobotMap.ballElevatorSpeed;
+      else
+        speed = override_speed;
+    }
   }
 
   @Override
@@ -46,7 +60,6 @@ public class DriveElevatorInInches extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     ball_elevator.setSpeed(0);
-    System.out.println("DriveElevatorInInches: end");
   }
 
   @Override

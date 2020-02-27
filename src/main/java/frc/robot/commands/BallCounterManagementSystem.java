@@ -56,7 +56,7 @@ public class BallCounterManagementSystem extends CommandBase {
 
       //for the last ball, we want to pull it in just enough to hold it in the basin but not bring it up the elevator
       else if (bcdi.getNumberofBalls() == 4) 
-        new DriveElevatorInInches(ball_elevator, 2).schedule();
+        new DriveElevatorInInches(ball_elevator, 3).schedule();
 
       //for balls 2-4, we want to do the following:
       //first "while" loop - run the elevator until the bottom sensor no longer sees the ball
@@ -65,9 +65,10 @@ public class BallCounterManagementSystem extends CommandBase {
       else {
         while (bcdi.getInStatus()) 
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
-        new DriveElevatorInInches(ball_elevator, 1).schedule();
+        new DriveElevatorInInches(ball_elevator, 0.5).schedule();
         //while (bcdi.getHoldStatus()) 
         //  ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+        //ball_elevator.setSpeed(0);
       }
       
       //these are done by the DriveElevatorInInches command
@@ -86,7 +87,7 @@ public class BallCounterManagementSystem extends CommandBase {
       in_pressed=true;
       
       //print the number of balls
-      System.out.println("BALLS="+bcdi.getNumberofBalls());
+      System.out.println("BallCounterManagementSystem: BALLS="+bcdi.getNumberofBalls());
     }
     
     //the intake switch has been deprsessed so we need to account for the next time it is pressed
