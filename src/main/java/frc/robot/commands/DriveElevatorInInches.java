@@ -29,6 +29,7 @@ public class DriveElevatorInInches extends CommandBase {
   @Override
   public void initialize() {
     ball_elevator.resetEncoders();
+    System.out.println("DriveElevatorInInches: inches: "+inches);
     if (inches == 0) 
       this.end(false);
     else if (inches > 0) 
@@ -45,6 +46,7 @@ public class DriveElevatorInInches extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     ball_elevator.setSpeed(0);
+    System.out.println("DriveElevatorInInches: end");
   }
 
   @Override
