@@ -47,6 +47,10 @@ public class LimeLightVision extends SubsystemBase {
         ",ts="+getValue("ts").getDouble(RobotMap.defaultLimeLight));
 
       System.out.println("distance to target (inches): "+this.getDistanceToTarget());
+
+      
+      System.out.println("limelight="+NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(-999));
+      System.out.println("balltarget="+NetworkTableInstance.getDefault().getTable("balltarget").getEntry("tv").getDouble(-999));
   }
 
   //working within 1-2" of actual distance, a wider angle makes it less accurate
