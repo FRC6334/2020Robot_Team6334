@@ -8,27 +8,27 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.LimeLightVision;
+import frc.robot.subsystems.LimeLightTarget;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Timer;
 
 public class DriveToTarget extends CommandBase {
-  private LimeLightVision lime_light;
+  private LimeLightTarget lime_light;
   private DriveTrain drive_train;
   private double shoot_distance;
 
   /**
    * Creates a new DriveToTarget.
    */
-  public DriveToTarget(LimeLightVision m_lime, DriveTrain m_drive, double _shootdistance) {
+  public DriveToTarget(LimeLightTarget m_lime, DriveTrain m_drive, double _shootdistance) {
     // Use addRequirements() here to declare subsystem dependencies    
     lime_light = m_lime;
     drive_train = m_drive;
     shoot_distance = _shootdistance;
   }
 
-  public DriveToTarget(LimeLightVision m_lime, DriveTrain m_drive) {
+  public DriveToTarget(LimeLightTarget m_lime, DriveTrain m_drive) {
     this(m_lime, m_drive, RobotMap.shoot_distance);
   }
 

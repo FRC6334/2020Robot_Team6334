@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.LimeLightVision;
+import frc.robot.subsystems.LimeLightTarget;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.BallShooter;
@@ -25,7 +25,7 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
   /**
    * Creates a new DriveInInchesGroup.
    */
-  public DriveInInchesGroup(DriveTrain _dt, LimeLightVision _ll, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
+  public DriveInInchesGroup(DriveTrain _dt, LimeLightTarget _ll, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
     addCommands(
       new ReverseDrive(_dt, RobotMap.direction_forward),
       new Fire(_bs, _bi, _be, _bcdi, 90, 0),

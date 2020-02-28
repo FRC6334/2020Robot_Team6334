@@ -14,7 +14,7 @@ import frc.robot.commands.SetBallIntakeSpeed;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.USBCamera;
-import frc.robot.subsystems.LimeLightVision;
+import frc.robot.subsystems.LimeLightTarget;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveToTarget;
 import frc.robot.commands.DriveInInchesGroup;
@@ -47,7 +47,7 @@ public class RobotContainer {
   //private final LEDLightStrip12V ledLightStrip = new LEDLightStrip12V();
   private final USBCamera m_camera = new USBCamera();
   private final DriveTrain m_drivetrain = new DriveTrain(m_camera);
-  private final LimeLightVision m_limelight = new LimeLightVision();
+  private final LimeLightTarget m_limelight = new LimeLightTarget();
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
   private final Joystick m_joystick1 = new Joystick(1);

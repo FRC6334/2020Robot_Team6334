@@ -30,14 +30,16 @@ camtran	Results of a 3D position solution, 6 numbers: Translation (x,y,y) Rotati
 
 public class LimeLightVision extends SubsystemBase {
   private static NetworkTableInstance nTable = null;
+  private static String table;
 
   /**
    * Creates a new LimeLightVision.
    */
-  public LimeLightVision() {
+  public LimeLightVision(String _table) {
+    table = _table;
   }
 
-  public void outputLimeLightValues() {
+  public void outputValues() {
       this.setLedMode(RobotMap.ll_on);
       this.setCameraMode(RobotMap.ll_vision);
       System.out.println(">>>>>>>>>>>>>>tx="+getValue("tx").getDouble(RobotMap.defaultLimeLight)+
@@ -46,26 +48,8 @@ public class LimeLightVision extends SubsystemBase {
         ",tv="+getValue("tv").getDouble(RobotMap.defaultLimeLight)+
         ",ts="+getValue("ts").getDouble(RobotMap.defaultLimeLight));
 
-      System.out.println("distance to target (inches): "+this.getDistanceToTarget());
-
-      
-      System.out.println("limelight="+NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(-999));
-      System.out.println("balltarget="+NetworkTableInstance.getDefault().getTable("balltarget").getEntry("tv").getDouble(-999));
-  }
-
-  //working within 1-2" of actual distance, a wider angle makes it less accurate
-  public double getDistanceToTarget() {
-    this.setLedMode(RobotMap.ll_on);
-    if (this.getTV() != 1.0) return RobotMap.defaultLimeLight;
-    
-    //d = (h2-h1) / tan(a1+a2)
-    double heightOfTarget = RobotMap.heightOfTarget; //h2 
-    double heightOfLimeLight = RobotMap.heightOfLimeLight; // h1
-    double a2 = this.getTY(); // The limelight (or your vision system) can tell you the y angle to the target (a2).
-    double a1 = RobotMap.angleOfLimeLight;   //lime light mounting angle is known (a1)
-
-    //calculate distance
-    return (heightOfTarget - heightOfLimeLight) / Math.tan(Math.toRadians(a1+a2));
+      //System.out.println("limelight="+NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(-999));
+      //System.out.println("balltarget="+NetworkTableInstance.getDefault().getTable("balltarget").getEntry("tv").getDouble(-999));
   }
 
   //X offset to center of target
@@ -96,11 +80,11 @@ public class LimeLightVision extends SubsystemBase {
 	 * @return NetworkTableEntry of given entry.
 	 */
 	private static NetworkTableEntry getValue(String key) {
-		if (nTable == null) {
-			nTable = NetworkTableInstance.getDefault();
-		}
+		// if (nTable == null) {
+		// 	nTable = NetworkTableInstance.getDefault();
+		// }
 
-		return nTable.getTable("limelight").getEntry(key);
+    return NetworkTableInstance.getDefault().getTable(table).getEntry(key);
   }
   
   	/**
