@@ -35,7 +35,7 @@ public class RobotMap {
     // -1 is forward, 1 is reverse
     public static final int direction_forward = -1;
     public static final int direction_backward = 1;
-    public static int direction = direction_forward;
+    public static int direction = -1;
 
     //Motor rotations per inch for DriveInInches
     public static final double roations_per_angle = 0.138900;//0.117555; 1079282407
@@ -82,19 +82,19 @@ public class RobotMap {
     public static final int ballIntakeChannel = 0;  //Analog channel ports
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final int ballHoldChannel = 1; //Analog channel port
-    public static final double ballIntakeSpeed = 0.5;  //ball intake motor speed
-    public static final double ballElevatorSpeed = 0.6;  //ball elevator motor speed
+    public static final double ballIntakeSpeed = 0.7;  //ball intake motor speed
+    public static final double ballElevatorSpeed = 0.85;  //ball elevator motor speed
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
     //ball shooter variables
     public static final double ball_shooter_max = -1.0; //need to test
-    public static final double ball_shooter_max_v = -3800; //need to test
-    public static final double ball_shooter_far = -0.68; //shooter speed for ~18 feet (tested)
+    public static final double ball_shooter_max_v = -3300; //need to test
+    public static final double ball_shooter_far = -0.7; //shooter speed for ~18 feet (tested)
     public static final double ball_shooter_far_v = -3200; //motor velocity for ~18 feet (tested)
-    public static final double ball_shooter_med = -0.6; //(tested)
-    public static final double ball_shooter_med_v = -3000; //(tested)
+    public static final double ball_shooter_med = -0.68; //(tested)
+    public static final double ball_shooter_med_v = -3100; //(tested)
     public static final double ball_shooter_min = -0.5; //need to test
-    public static final double ball_shooter_min_v = -3300; //need to test
+    public static final double ball_shooter_min_v = -3000; //need to test
 
     //led Lights
     public static final int LEDLightsPWMport = 0; // PWM port the LED lights are connected to

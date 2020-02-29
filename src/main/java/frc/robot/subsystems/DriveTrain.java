@@ -59,21 +59,23 @@ public class DriveTrain extends SubsystemBase {
   /**
    * The log method puts interesting information to the SmartDashboard.
    */
-  public void log() {
-    SmartDashboard.putNumber("Left Position", left_encoder.getPosition());
-    SmartDashboard.putNumber("Right Position", right_encoder.getPosition());
-    SmartDashboard.putNumber("Left Speed", left_encoder.getVelocity());
-    SmartDashboard.putNumber("Right Speed", right_encoder.getVelocity());
-  }
+  // public void log() {
+  //   SmartDashboard.putNumber("Left Position", left_encoder.getPosition());
+  //   SmartDashboard.putNumber("Right Position", right_encoder.getPosition());
+  //   SmartDashboard.putNumber("Left Speed", left_encoder.getVelocity());
+  //   SmartDashboard.putNumber("Right Speed", right_encoder.getVelocity());
+  // }
 
   /**
    * Arcade style driving for the DriveTrain.
    *
    */
   public void drive(double y, double x) {
+
     //if (y >= 0)
     //  m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (-x*RobotMap.driveTrainPower));
     //else
+    //System.out.println((y*RobotMap.driveTrainPower*RobotMap.direction)+","+(x*RobotMap.driveTrainPower)+","+RobotMap.driveTrainPower+","+RobotMap.direction);
       m_drive.arcadeDrive((y*RobotMap.driveTrainPower*RobotMap.direction), (x*RobotMap.driveTrainPower));
   }
 
@@ -88,13 +90,18 @@ public class DriveTrain extends SubsystemBase {
   }*/
 
   private void setCameraDirection() {
-    if (RobotMap.direction == RobotMap.cam_rev) cam.lookBackward();
+    if (RobotMap.direction == RobotMap.direction_backward) cam.lookBackward();
     else cam.lookForward();
   }
 
   public void reverseDriveDirection() { 
-    RobotMap.direction *= -1; 
-    this.setCameraDirection();
+    System.out.println("directionBEFORE="+RobotMap.direction);
+    //RobotMap.direction *= -1;
+    if (RobotMap.direction == -1) RobotMap.direction = 1;
+    else RobotMap.direction = -1;
+
+    setCameraDirection();
+    System.out.println("directionAFTER="+RobotMap.direction);
   }
 
   // as defined in robot map

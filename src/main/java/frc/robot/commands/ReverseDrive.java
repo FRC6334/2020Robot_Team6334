@@ -35,6 +35,6 @@ public class ReverseDrive extends InstantCommand {
   @Override
   public void execute() {
     if (direction == 0) drive.reverseDriveDirection();
-    drive.setDriveDirection(direction);
+    else drive.setDriveDirection(direction);
   }
 }

@@ -16,6 +16,7 @@ import frc.robot.subsystems.BallElevator;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.BallShooter;
 import frc.robot.subsystems.BallCounterDigitalInput;
+import frc.robot.subsystems.LimeLightBall;
 
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -25,22 +26,27 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
   /**
    * Creates a new DriveInInchesGroup.
    */
-  public DriveInInchesGroup(DriveTrain _dt, LimeLightTarget _ll, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
+  public DriveInInchesGroup(DriveTrain _dt, LimeLightTarget _ll, LimeLightBall _lb, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
     addCommands(
       new ReverseDrive(_dt, RobotMap.direction_forward),
-      new Fire(_bs, _bi, _be, _bcdi, 90, 0),
+      new Fire(_bs, _bi, _be, _bcdi, 55, 0, RobotMap.ball_shooter_med),
       new setAutonomousMode(true),
-      new DriveInInches2(_dt, 54, "F"),
+      new ParallelCommandGroup (      
+        new SetBallIntakeSpeed(_bi, 0.6),
+        new DriveInInches2(_dt, 54, "F")
+      ),
       new DriveInInches2(_dt, 0.2, "R"),
-      new DriveInInches2(_dt, 132, "F"), 
+      new DriveInInches2(_dt, 132, "F", _lb), 
       new DriveInInches2(_dt, 1, "L"), 
       new ParallelCommandGroup (      
-        new DriveInInches2(_dt, 110, "B"),
-        new DriveElevatorInInches(_be, 5)
+        new DriveInInches2(_dt, 135, "B"),
+        new DriveElevatorInInches(_be, 5),
+        new SetBallShooterSpeed(_bs, -0.7)
       ),
       new setAutonomousMode(false),
-      new DriveToTarget(_ll, _dt, 160),
-      new Fire(_bs, _bi, _be, _bcdi)
+      //new DriveToTarget(_ll, _dt, 175),
+      new DriveInInches2(_dt, 1.3, "L"),
+      new Fire(_bs, _bi, _be, _bcdi, 90, 0,RobotMap.ball_shooter_far)
     );
   }
 }

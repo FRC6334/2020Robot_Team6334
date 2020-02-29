@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.SetBallIntakeSpeed;
+import frc.robot.commands.SetBallShooterSpeed;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.USBCamera;
@@ -38,6 +39,7 @@ import frc.robot.subsystems.RobotClimber;
 import frc.robot.commands.Vomit;
 import frc.robot.commands.PivotCamera;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.FollowBall;
 import frc.robot.commands.DriveToBall;
@@ -71,9 +73,8 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    m_limelight.setLedMode(RobotMap.ll_off);
-    m_limeball.setLedMode(RobotMap.ll_off);
     m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
+    //m_ballintake.setSpeed(0);
     m_camera.lookForward();
     
     // Assign default commands
@@ -85,6 +86,9 @@ public class RobotContainer {
     
     // Configure the button bindings
     configureButtonBindings();
+
+    m_limelight.setLedMode(RobotMap.ll_off);
+    m_limeball.setLedMode(RobotMap.ll_off);
   }
 
   /**
@@ -98,10 +102,17 @@ public class RobotContainer {
     // Create some buttons Joystick 0 (Drive train)
     //
     final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
-    m_button01.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
+    //m_button01.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
+    m_button01.whenReleased(new SequentialCommandGroup(
+        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi),
+        new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
+    ));
 
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
-    m_button02.whenReleased(new DriveToTarget(m_limelight, m_drivetrain));
+    m_button02.whenReleased(new ParallelCommandGroup(
+      new SetBallShooterSpeed(m_ballshooter, -0.7),
+      new DriveToTarget(m_limelight, m_drivetrain)
+    ));
 
     final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
     m_button03.whenReleased(new SetBallIntakeSpeed(m_ballintake, 0));
@@ -131,7 +142,7 @@ public class RobotContainer {
     // Create some buttons Joystick 1 (climber drive)
     //
     final JoystickButton m_button2 = new JoystickButton(m_joystick1, 2);
-    m_button2.whenReleased(new GetLimeLightBallValues(m_limeball));
+    m_button2.whenReleased(new GetLimeLightValues(m_limelight));
 
     final JoystickButton m_button4 = new JoystickButton(m_joystick1, 4);
     m_button4.whenReleased(new DriveElevatorInInches(m_ballelevator, -7));
@@ -171,12 +182,12 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand(){
-    return new SequentialCommandGroup(
-      new frc.robot.commands.setAutonomousMode(true),
-      new DriveInInches2(m_drivetrain, 85, "F", m_limeball),
-      new frc.robot.commands.setAutonomousMode(false)
-    );
+    // return new SequentialCommandGroup(
+    //   new frc.robot.commands.setAutonomousMode(true),
+    //   new DriveInInches2(m_drivetrain, 145, "F", m_limeball),
+    //   new frc.robot.commands.setAutonomousMode(false)
+    // );
 
-    //return new DriveInInchesGroup(m_drivetrain, m_limelight, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
+    return new DriveInInchesGroup(m_drivetrain, m_limelight, m_limeball, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
   }
 }
