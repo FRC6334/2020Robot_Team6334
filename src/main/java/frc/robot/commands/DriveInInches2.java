@@ -69,7 +69,7 @@ public class DriveInInches2 extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("current="+Math.abs(drive_train.getLeftEncoderDistance())+", goal="+endDistance+", d="+d_power+", r="+r_power);
+    System.out.println("DIN2: current="+Math.abs(drive_train.getLeftEncoderDistance())+", goal="+endDistance+", d="+d_power+", r="+r_power);
 
     if (direction.equals("F") || direction.equals("B")) {
         if (Math.abs(drive_train.getLeftEncoderDistance()) >= endDistance)  { 

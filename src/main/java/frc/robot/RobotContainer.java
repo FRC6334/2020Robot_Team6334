@@ -37,7 +37,9 @@ import frc.robot.subsystems.RobotClimber;
 import frc.robot.commands.Vomit;
 import frc.robot.commands.PivotCamera;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.FollowBall;
+import frc.robot.commands.DriveToBall;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -69,6 +71,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     m_limelight.setLedMode(RobotMap.ll_off);
+    m_limeball.setLedMode(RobotMap.ll_off);
     m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
     m_camera.lookForward();
     
@@ -144,6 +147,9 @@ public class RobotContainer {
     final JoystickButton m_button9 = new JoystickButton(m_joystick1, 9);
     m_button9.whenHeld(new FollowBall(m_limeball, m_drivetrain));
 
+    final JoystickButton m_button110 = new JoystickButton(m_joystick1, 10);
+    m_button110.whenReleased(new DriveToBall(m_limeball, m_drivetrain));
+
     //Extra commands not used in this release
 /*
     final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
@@ -164,6 +170,13 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand(){
-    return new DriveInInchesGroup(m_drivetrain, m_limelight, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
+    return new SequentialCommandGroup(
+      new frc.robot.commands.setAutonomousMode(true),
+      new DriveToBall(m_limeball, m_drivetrain),
+      new DriveToBall(m_limeball, m_drivetrain),
+      new frc.robot.commands.setAutonomousMode(false)
+    );
+
+    //return new DriveInInchesGroup(m_drivetrain, m_limelight, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
   }
 }

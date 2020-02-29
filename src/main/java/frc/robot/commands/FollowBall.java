@@ -33,7 +33,7 @@ public class FollowBall extends CommandBase {
   @Override
   public void initialize() {
     lime_light.setCameraMode(RobotMap.ll_vision);
-    lime_light.setLedMode(RobotMap.ll_on);
+    lime_light.setLedMode(RobotMap.ll_off);
     drive_train.setDriveDirection(RobotMap.direction_forward);
   }
 
@@ -47,10 +47,10 @@ public class FollowBall extends CommandBase {
       double tx = lime_light.getTX();
 
       //move to the target at the proper forward speed and X center adjustment speed
-      if (tx < 3) {
+      if (tx < 9) {
         drive_train.drive(0, -0.3);
       }
-      else if (tx > 3) {
+      else if (tx > 4) {
           drive_train.drive(0, 0.3);
       }
   }

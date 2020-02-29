@@ -40,7 +40,11 @@ public class LimeLightVision extends SubsystemBase {
   }
 
   public void outputValues() {
-      this.setLedMode(RobotMap.ll_on);
+    outputValues(RobotMap.ll_on);
+  }
+
+  public void outputValues(int _lights) {
+      this.setLedMode(_lights);
       this.setCameraMode(RobotMap.ll_vision);
       System.out.println(">>>>>>>>>>>>>>tx="+getValue("tx").getDouble(RobotMap.defaultLimeLight)+
         ", ty="+getValue("ty").getDouble(RobotMap.defaultLimeLight)+

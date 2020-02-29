@@ -21,7 +21,7 @@ public class LimeLightBall extends LimeLightVision {
   }
 
   public void outputLimeLightValues() {
-    this.outputValues();
+    this.outputValues(RobotMap.ll_off);
     System.out.println("distance to target (inches): "+this.getDistanceToTarget());
     //System.out.println("upper: "+NetworkTableInstance.getDefault().getTable("limelight-target").getEntry("tv").getDouble(-999));
     //System.out.println("lower: "+NetworkTableInstance.getDefault().getTable("limelight-ball").getEntry("tv").getDouble(-999));
@@ -34,7 +34,7 @@ public class LimeLightBall extends LimeLightVision {
 
   //working within 1-2" of actual distance, a wider angle makes it less accurate
   public double getDistanceToTarget() {
-    this.setLedMode(RobotMap.ll_on);
+    this.setLedMode(RobotMap.ll_off);
     if (this.getTV() != 1.0) return RobotMap.defaultLimeLight;
     
     //d = (h2-h1) / tan(a1+a2)

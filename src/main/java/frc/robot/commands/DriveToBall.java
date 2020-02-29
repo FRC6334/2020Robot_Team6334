@@ -40,7 +40,7 @@ public class DriveToBall extends CommandBase {
   @Override
   public void initialize() {
     lime_light.setCameraMode(RobotMap.ll_vision);
-    lime_light.setLedMode(RobotMap.ll_on);
+    lime_light.setLedMode(RobotMap.ll_off);
     drive_train.setDriveDirection(RobotMap.direction_forward);
 
     //check if we can see a target
@@ -83,13 +83,17 @@ public class DriveToBall extends CommandBase {
       if (center_adj > 0.7) center_adj = 0.7;
 
       //move to the target at the proper forward speed and X center adjustment speed
-      if (tx < 0) {
+      if (tx < 9) {
         drive_train.drive(-speed_adj, -center_adj);
         alignReport(10, tv, tx, -speed_adj, -center_adj, dist);
       }
-      else {
+      else if (tx > 4) {
           drive_train.drive(-speed_adj, center_adj);
           alignReport(11, tv, tx, -speed_adj, center_adj, dist);
+      }
+      else {
+        drive_train.drive(-speed_adj, 0);
+        alignReport(12, tv, tx, -speed_adj, center_adj, dist);
       }
   }
 
@@ -106,8 +110,10 @@ public class DriveToBall extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (dist <= shoot_distance+1) return true;
-
+    if (dist <= shoot_distance+1) {
+      new frc.robot.commands.DriveInInches2(drive_train, 20, "F").schedule();
+      return true;
+    }
     return false;
   }
 }
