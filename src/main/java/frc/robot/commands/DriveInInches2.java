@@ -11,6 +11,7 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.subsystems.LimeLightBall;
 //import edu.wpi.first.wpilibj2.command.Command;
 
 public class DriveInInches2 extends CommandBase {
@@ -20,15 +21,23 @@ public class DriveInInches2 extends CommandBase {
   private double endDistance;
   private double d_power = 0;  //drive power
   private double r_power = 0;  //rotate power
+  private LimeLightBall ll_ball;
+  private double tv;
 
   /**
    * Creates a new DriveInInches2.
    */
-  public DriveInInches2(DriveTrain dt, double _inches_or_angle, String _direction) {
+  public DriveInInches2(DriveTrain dt, double _inches_or_angle, String _direction, LimeLightBall _ll) {
     // Use addRequirements() here to declare subsystem dependencies.
     drive_train = dt;
     inches_or_angle = _inches_or_angle;
     direction = _direction;
+    ll_ball = _ll;
+    tv = 0;
+  }
+
+  public DriveInInches2(DriveTrain dt, double _inches_or_angle, String _direction){
+    this(dt, _inches_or_angle, _direction, null);
   }
 
   // Called when the command is initially scheduled.
@@ -56,7 +65,27 @@ public class DriveInInches2 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (direction.equals("F") && ll_ball != null) {
+      r_power = alignToBall();
+    }
+
     drive_train.drive_in_inches(d_power, r_power);
+  }
+
+  //get rotate value to line up robot with ball
+  private double alignToBall(){
+    tv = ll_ball.getTV();
+    if (tv == 1){
+      double tx = ll_ball.getTX();
+
+      if (tx < 9) {
+        return -0.3;
+      }
+      else if (tx > 4) {
+        return 0.3;
+      }
+    }
+    return 0;
   }
 
   // Called once the command ends or is interrupted.

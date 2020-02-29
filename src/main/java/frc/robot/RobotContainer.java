@@ -31,6 +31,7 @@ import frc.robot.subsystems.BallCounterDigitalInput;
 import frc.robot.commands.BallCounterManagementSystem;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.commands.DriveElevatorInInches;
+import frc.robot.commands.DriveInInches2;
 //import frc.robot.subsystems.LEDLightStrip12V;
 import frc.robot.commands.ClimberDrive;
 import frc.robot.subsystems.RobotClimber;
@@ -172,8 +173,7 @@ public class RobotContainer {
   public Command getAutonomousCommand(){
     return new SequentialCommandGroup(
       new frc.robot.commands.setAutonomousMode(true),
-      new DriveToBall(m_limeball, m_drivetrain),
-      new DriveToBall(m_limeball, m_drivetrain),
+      new DriveInInches2(m_drivetrain, 85, "F", m_limeball),
       new frc.robot.commands.setAutonomousMode(false)
     );
 
