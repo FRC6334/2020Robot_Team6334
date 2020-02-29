@@ -9,18 +9,22 @@ package frc.robot.subsystems;
 
 import frc.robot.subsystems.LimeLightVision;
 import frc.robot.RobotMap;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 
 public class LimeLightBall extends LimeLightVision {
   /**
    * Creates a new LimeLightBall.
    */
   public LimeLightBall() {
-    super("balltarget");
+    super("limelight-ball");
   }
 
   public void outputLimeLightValues() {
     this.outputValues();
     System.out.println("distance to target (inches): "+this.getDistanceToTarget());
+    //System.out.println("upper: "+NetworkTableInstance.getDefault().getTable("limelight-target").getEntry("tv").getDouble(-999));
+    //System.out.println("lower: "+NetworkTableInstance.getDefault().getTable("limelight-ball").getEntry("tv").getDouble(-999));
   }
 
   @Override
@@ -40,6 +44,7 @@ public class LimeLightBall extends LimeLightVision {
     double a1 = RobotMap.angleOfBallLimeLight;   //lime light mounting angle is known (a1)
 
     //calculate distance
-    return (heightOfTarget - heightOfLimeLight) / Math.tan(Math.toRadians(a1+a2));
+    System.out.println("("+heightOfLimeLight+"-"+heightOfTarget+") / tan("+a1+"+"+a2+")");
+    return (heightOfLimeLight - heightOfTarget) / Math.tan(Math.toRadians(a1+a2));
   }
 }

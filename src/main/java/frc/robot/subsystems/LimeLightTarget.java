@@ -15,7 +15,7 @@ public class LimeLightTarget extends LimeLightVision {
    * Creates a new LimeLightTarget.
    */
   public LimeLightTarget() {
-    super("limelight");
+    super("limelight-target");
   }
 
   public void outputLimeLightValues() {

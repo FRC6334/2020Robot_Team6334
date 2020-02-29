@@ -29,8 +29,8 @@ camtran	Results of a 3D position solution, 6 numbers: Translation (x,y,y) Rotati
 */
 
 public class LimeLightVision extends SubsystemBase {
-  private static NetworkTableInstance nTable = null;
-  private static String table;
+  protected static NetworkTableInstance nTable = null;
+  protected static String table;
 
   /**
    * Creates a new LimeLightVision.

@@ -15,11 +15,13 @@ import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.USBCamera;
 import frc.robot.subsystems.LimeLightTarget;
+import frc.robot.subsystems.LimeLightBall;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveToTarget;
 import frc.robot.commands.DriveInInchesGroup;
 import frc.robot.commands.ReverseDrive;
 import frc.robot.commands.GetLimeLightValues;
+import frc.robot.commands.GetLimeLightBallValues;
 import frc.robot.commands.ToggleLimeLightLED;
 import frc.robot.commands.ToggleLimeLightVision;
 import frc.robot.commands.ResetBallCounter;
@@ -35,6 +37,7 @@ import frc.robot.subsystems.RobotClimber;
 import frc.robot.commands.Vomit;
 import frc.robot.commands.PivotCamera;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.FollowBall;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -48,6 +51,7 @@ public class RobotContainer {
   private final USBCamera m_camera = new USBCamera();
   private final DriveTrain m_drivetrain = new DriveTrain(m_camera);
   private final LimeLightTarget m_limelight = new LimeLightTarget();
+  private final LimeLightBall m_limeball = new LimeLightBall();
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
   private final Joystick m_joystick1 = new Joystick(1);
@@ -123,7 +127,7 @@ public class RobotContainer {
     // Create some buttons Joystick 1 (climber drive)
     //
     final JoystickButton m_button2 = new JoystickButton(m_joystick1, 2);
-    m_button2.whenReleased(new GetLimeLightValues(m_limelight));
+    m_button2.whenReleased(new GetLimeLightBallValues(m_limeball));
 
     final JoystickButton m_button4 = new JoystickButton(m_joystick1, 4);
     m_button4.whenReleased(new DriveElevatorInInches(m_ballelevator, -7));
@@ -136,6 +140,9 @@ public class RobotContainer {
 
     final JoystickButton m_button8 = new JoystickButton(m_joystick1, 8);
     m_button8.whenReleased(new Vomit(m_ballintake, m_ballelevator, bcdi));
+
+    final JoystickButton m_button9 = new JoystickButton(m_joystick1, 9);
+    m_button9.whenHeld(new FollowBall(m_limeball, m_drivetrain));
 
     //Extra commands not used in this release
 /*
