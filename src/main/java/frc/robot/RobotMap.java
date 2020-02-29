@@ -56,7 +56,8 @@ public class RobotMap {
     public static final double x_flex = 5; //amount of acceptable error in degrees when lining up on the X axis
     public static final double heightOfBallLimeLight = 18;   //(h1) The height of your camera above the floor (limelight to find the ball)
     public static final double heightOfBall = 3.5;   //(h2) The height of the ball on the ground
-    public static final double angleOfBallLimeLight = 29.7; // in degrees 17.7  
+    public static final double angleOfBallLimeLight = 29.7; // in degrees 17.7
+    public static final double ball_distance = 18; //how close to the ball we want to get  
 
     //color wheel colors
     public static final int color_red = 0;
