@@ -20,6 +20,7 @@ public class RobotMap {
     public static final int ballShooterMotor = 6;
     public static final int ballIntakeMotor = 5;
     public static final int ballElevatorMotor = 7;
+    public static final int ballElevatorMotor2 = 10;
     public static final int climberMotorRight = 8;
     public static final int climberMotorLeft = 9;
 
@@ -83,7 +84,7 @@ public class RobotMap {
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final int ballHoldChannel = 1; //Analog channel port
     public static final double ballIntakeSpeed = 0.7;  //ball intake motor speed
-    public static final double ballElevatorSpeed = 0.85;  //ball elevator motor speed
+    public static final double ballElevatorSpeed = 0.85;  //ball elevator motor speed 
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
     //ball shooter variables
@@ -97,8 +98,8 @@ public class RobotMap {
     public static final double ball_shooter_min_v = -3000; //need to test
 
     //led Lights
-    public static final int LEDLightsPWMport = 0; // PWM port the LED lights are connected to
-    public static final double LEDLightsInitialColor = 0.77;
+    public static final int LEDLightsPWMport = 1; // PWM port the LED lights are connected to
+    public static final double LEDLightsInitialColor = 0.93;
 
     //sets mode to be in fireing
     public static boolean InFireMode = false; //when in fire mode this is true so the robot will not intkae balls

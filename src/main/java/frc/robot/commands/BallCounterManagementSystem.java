@@ -43,31 +43,31 @@ public class BallCounterManagementSystem extends CommandBase {
   public void execute() {
     //System.out.println("IN="+bcdi.getInValue()+"HOLD=" + bcdi.getHoldValue());
     //a ball came into the intake and the intake switch has not previously been pressed during this ball coming in
-    if (!RobotMap.InFireMode && bcdi.getInStatus() && !in_pressed && bcdi.getNumberofBalls() < 5) {
+    if (!RobotMap.InFireMode && bcdi.getInStatus() && !in_pressed && bcdi.getNumberofBalls() < 4) {
       //reduce speed to very very slow
       ball_intake.setSpeed(0.3);
 
       //for the first ball, we want to run the elevator until the hold sensor sees the ball
       if (bcdi.getNumberofBalls() == 0) {
-        while (!bcdi.getHoldStatus())
-          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
-       // new DriveElevatorInInches(ball_elevator, 5).schedule();
-        ball_elevator.setSpeed(0);
+        //while (!bcdi.getHoldStatus())
+        //  ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+        new DriveElevatorInInches(ball_elevator, 5.5).schedule();
+       // ball_elevator.setSpeed(0);
       }
 
       //for the last ball, we want to pull it in just enough to hold it in the basin but not bring it up the elevator
-      else if (bcdi.getNumberofBalls() == 4) 
-        new DriveElevatorInInches(ball_elevator, 3).schedule();
+      else if (bcdi.getNumberofBalls() == 3); 
+        //new DriveElevatorInInches(ball_elevator, 0.1).schedule();
 
       //for balls 2-4, we want to do the following:
       //first "while" loop - run the elevator until the bottom sensor no longer sees the ball
       //second "while" loop - run the elevator X number of crannks
       //third "while" loop - run the elevator to just past where the hold sensor can see the ball
       else {
-        while (bcdi.getInStatus()) 
-          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
-        new DriveElevatorInInches(ball_elevator, 1.5).schedule();
-        //while (bcdi.getHoldStatus()) 
+        //while (bcdi.getInStatus()) 
+         // ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+        new DriveElevatorInInches(ball_elevator, 6.5).schedule();
+        //while (bcdi.getHoldStatus())
         //  ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
         //ball_elevator.setSpeed(0);
       }
@@ -81,7 +81,7 @@ public class BallCounterManagementSystem extends CommandBase {
       bcdi.addBall();
       
       //if there are less than 5 balls then start the ball intake, if there are 5 balls stop the ball intake
-      if (bcdi.getNumberofBalls() < 5) ball_intake.setSpeed(RobotMap.ballIntakeSpeed); 
+      if (bcdi.getNumberofBalls() < 4) ball_intake.setSpeed(RobotMap.ballIntakeSpeed); 
       else ball_intake.setSpeed(0);
       
       //record that we took in a ball

@@ -33,7 +33,7 @@ import frc.robot.commands.BallCounterManagementSystem;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.commands.DriveElevatorInInches;
 import frc.robot.commands.DriveInInches2;
-//import frc.robot.subsystems.LEDLightStrip12V;
+import frc.robot.subsystems.LEDLightStrip12V;
 import frc.robot.commands.ClimberDrive;
 import frc.robot.subsystems.RobotClimber;
 import frc.robot.commands.Vomit;
@@ -52,7 +52,7 @@ import frc.robot.commands.DriveToBall;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  //private final LEDLightStrip12V ledLightStrip = new LEDLightStrip12V();
+  private final LEDLightStrip12V ledLightStrip = new LEDLightStrip12V();
   private final USBCamera m_camera = new USBCamera();
   private final DriveTrain m_drivetrain = new DriveTrain(m_camera);
   private final LimeLightTarget m_limelight = new LimeLightTarget();
@@ -73,8 +73,8 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
-    //m_ballintake.setSpeed(0);
+    //m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
+    m_ballintake.setSpeed(0);
     m_camera.lookForward();
     
     // Assign default commands

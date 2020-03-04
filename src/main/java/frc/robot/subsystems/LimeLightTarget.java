@@ -135,8 +135,8 @@ public class LimeLightTarget extends SubsystemBase {
 	 */
 	public void toggleLedMode() {
     if (getValue("ledMode").getDouble(RobotMap.defaultLimeLight) == RobotMap.ll_on)
-      setLedMode(RobotMap.ll_off);
+      { setLedMode(RobotMap.ll_off); System.out.println("LimeLightTarget: turn off led"); }
     else 
-      setLedMode(RobotMap.ll_on);
+      { setLedMode(RobotMap.ll_on); System.out.println("LimeLightTarget: turn on led"); }
 	}
 }

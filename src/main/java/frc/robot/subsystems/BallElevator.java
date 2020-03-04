@@ -14,15 +14,19 @@ public class BallElevator extends SubsystemBase {
   private final CANSparkMax m_ballelevator = new CANSparkMax(RobotMap.ballElevatorMotor, MotorType.kBrushless);
   private final CANEncoder m_encoder = m_ballelevator.getEncoder();
 
+  private final CANSparkMax m_ballelevator2 = new CANSparkMax(RobotMap.ballElevatorMotor2, MotorType.kBrushless);
+
+
   /**
    * Create a new drive train subsystem.
    */
   public BallElevator() {
     super();    
+    //m_ballelevator2.follow(m_ballelevator);
   }
 
   //set the speed of the elevator motor
-  public void setSpeed(double speed) { m_ballelevator.set(speed); }
+  public void setSpeed(double speed) { m_ballelevator.set(speed); m_ballelevator2.set(speed*1.20);}
   
   //distance of the motor encoder
   public double getDistance() { return m_encoder.getPosition(); }
