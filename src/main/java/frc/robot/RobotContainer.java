@@ -33,7 +33,7 @@ import frc.robot.commands.BallCounterManagementSystem;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.commands.DriveElevatorInInches;
 import frc.robot.commands.DriveInInches2;
-import frc.robot.subsystems.LEDLightStrip12V;
+import frc.robot.subsystems.LEDLightRing;
 import frc.robot.commands.ClimberDrive;
 import frc.robot.subsystems.RobotClimber;
 import frc.robot.commands.Vomit;
@@ -52,11 +52,11 @@ import frc.robot.commands.DriveToBall;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final LEDLightStrip12V ledLightStrip = new LEDLightStrip12V();
+  private final LEDLightRing ledRing = new LEDLightRing();
   private final USBCamera m_camera = new USBCamera();
   private final DriveTrain m_drivetrain = new DriveTrain(m_camera);
   private final LimeLightTarget m_limelight = new LimeLightTarget();
-  private final LimeLightBall m_limeball = new LimeLightBall();
+  private final LimeLightBall m_limeball = new LimeLightBall(ledRing);
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
   private final Joystick m_joystick1 = new Joystick(1);
@@ -73,9 +73,10 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    //m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
-    m_ballintake.setSpeed(0);
+    m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
+    //m_ballintake.setSpeed(0);
     m_camera.lookForward();
+    //ledRing.turnOn();
     
     // Assign default commands
     //
@@ -182,12 +183,12 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand(){
-    // return new SequentialCommandGroup(
-    //   new frc.robot.commands.setAutonomousMode(true),
-    //   new DriveInInches2(m_drivetrain, 145, "F", m_limeball),
-    //   new frc.robot.commands.setAutonomousMode(false)
-    // );
+    return new SequentialCommandGroup(
+      new frc.robot.commands.setAutonomousMode(true),
+      new DriveInInches2(m_drivetrain, 96, "F", m_limeball),
+      new frc.robot.commands.setAutonomousMode(false)
+    );
 
-    return new DriveInInchesGroup(m_drivetrain, m_limelight, m_limeball, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
+    //return new DriveInInchesGroup(m_drivetrain, m_limelight, m_limeball, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
   }
 }

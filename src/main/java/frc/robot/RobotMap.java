@@ -99,7 +99,8 @@ public class RobotMap {
 
     //led Lights
     public static final int LEDLightsPWMport = 1; // PWM port the LED lights are connected to
-    public static final double LEDLightsInitialColor = 0.93;
+    public static final double LEDLightsWhite = 0.93; //all white
+    public static final double LEDLightsOff = 0.99; //off - all black
 
     //sets mode to be in fireing
     public static boolean InFireMode = false; //when in fire mode this is true so the robot will not intkae balls

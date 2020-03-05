@@ -11,24 +11,28 @@ import frc.robot.RobotMap;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import frc.robot.subsystems.LEDLightRing;
 
 
 public class LimeLightBall extends SubsystemBase {
-  protected static String table;
-  protected static NetworkTableInstance nTable = null;
+  private static String table;
+  private static NetworkTableInstance nTable = null;
+  private static LEDLightRing led;
 
 
   /**
    * Creates a new LimeLightBall.
    */
-  public LimeLightBall() {
+  public LimeLightBall(LEDLightRing _led) {
     table = "limelight-ball";
+    led = _led;
   }
 
 
   public void outputLimeLightValues() {
     setLedMode(RobotMap.ll_off);
     setCameraMode(RobotMap.ll_vision);
+    led.turnOn();
 
     System.out.println(">>>>>>>>>>>>>>tx="+getValue("tx").getDouble(RobotMap.defaultLimeLight)+
       ", ty="+getValue("ty").getDouble(RobotMap.defaultLimeLight)+
@@ -37,8 +41,8 @@ public class LimeLightBall extends SubsystemBase {
       ",ts="+getValue("ts").getDouble(RobotMap.defaultLimeLight));
 
     System.out.println("distance to target (inches): "+this.getDistanceToTarget());
-    //System.out.println("upper: "+NetworkTableInstance.getDefault().getTable("limelight-target").getEntry("tv").getDouble(-999));
-    //System.out.println("lower: "+NetworkTableInstance.getDefault().getTable("limelight-ball").getEntry("tv").getDouble(-999));
+    led.turnOff();
+
   }
 
   /**
@@ -110,7 +114,15 @@ public class LimeLightBall extends SubsystemBase {
 	 */
 	public void setLedMode(int ll_ledmode) {
 		getValue("ledMode").setNumber(ll_ledmode);
-	}
+  }
+  
+  public void ledRingOn() {
+    led.turnOn();
+  }
+
+  public void ledRingOff() {
+    led.turnOff();
+  }
   
   /**
 	 * Sets camera mode for Limelight.
@@ -121,28 +133,4 @@ public class LimeLightBall extends SubsystemBase {
 	public void setCameraMode(int ll_cammode) {
 		getValue("camMode").setNumber(ll_cammode);
   }
-  
-   /**
-	 * Toggles camera mode for Limelight between driver and vision
-	 */
-	public void toggleCameraMode() {
-    if (getValue("camMode").getDouble(RobotMap.defaultLimeLight) == RobotMap.ll_vision) {
-      setLedMode(RobotMap.ll_off);
-      setCameraMode(RobotMap.ll_driver);
-    } else{
-      setLedMode(RobotMap.ll_on);
-      setCameraMode(RobotMap.ll_vision);
-    } 
-      
-  }
-  
-  /**
-	 * Toggles led light mode for Limelight between on / off
-	 */
-	public void toggleLedMode() {
-    if (getValue("ledMode").getDouble(RobotMap.defaultLimeLight) == RobotMap.ll_on)
-      setLedMode(RobotMap.ll_off);
-    else 
-      setLedMode(RobotMap.ll_on);
-	}
 }

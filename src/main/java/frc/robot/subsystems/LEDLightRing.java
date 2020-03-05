@@ -11,14 +11,22 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.PWM;
 import frc.robot.RobotMap;
 
-public class LEDLightStrip12V extends SubsystemBase {
+public class LEDLightRing extends SubsystemBase {
   private final PWM ledLights = new PWM(RobotMap.LEDLightsPWMport);
 
   /**
    * Creates a new LEDLightStrip12V.
    */
-  public LEDLightStrip12V() {
-    ledLights.setSpeed(RobotMap.LEDLightsInitialColor);
+  public LEDLightRing() {
+    ledLights.setSpeed(RobotMap.LEDLightsOff);
+  }
+
+  public void turnOn() {
+    ledLights.setSpeed(RobotMap.LEDLightsWhite);
+  }
+
+  public void turnOff() {
+    ledLights.setSpeed(RobotMap.LEDLightsOff);
   }
 
   public void setColor(double color) { ledLights.setSpeed(color); }

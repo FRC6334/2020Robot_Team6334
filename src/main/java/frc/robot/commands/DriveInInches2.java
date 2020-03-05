@@ -49,8 +49,11 @@ public class DriveInInches2 extends CommandBase {
     while (t.get() < 0.08);
     t.stop();
 
-    if(ll_ball != null) ll_ball.setLedMode(RobotMap.ll_off);
-    
+    if(ll_ball != null) {
+      ll_ball.setLedMode(RobotMap.ll_off);
+      ll_ball.ledRingOn();
+    }
+
     //setup the encoder distances
     if (direction.equals("F") || direction.equals("B"))
       endDistance = drive_train.getLeftEncoderDistance() + (inches_or_angle * RobotMap.rotations_per_inch);
@@ -81,10 +84,10 @@ public class DriveInInches2 extends CommandBase {
       double tx = ll_ball.getTX();
 
       if (tx < 8) {
-        return -0.35;
+        return -0.4;
       }
       else if (tx > 5) {
-        return 0.35;
+        return 0.4;
       }
     }
     return 0;
@@ -94,6 +97,7 @@ public class DriveInInches2 extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     //drive_train.drive(0,0);
+    ll_ball.ledRingOff();
     System.out.println("END");
   }
 
