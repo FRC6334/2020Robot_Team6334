@@ -24,7 +24,7 @@ public class Vomit extends SequentialCommandGroup {
     addCommands(
       new setFireMode(true),
       new SetBallIntakeSpeed(_bi, -1),
-      new DriveElevatorInInches(_be, -150, RobotMap.ballElevatorSpeed*0.5),
+      new DriveElevatorInInches(_be, -60, RobotMap.ballElevatorSpeed*0.5),
       new SetBallIntakeSpeed(_bi, RobotMap.ballIntakeSpeed),
       new ResetBallCounter(_bcdi, _bi),
       new setFireMode(false)

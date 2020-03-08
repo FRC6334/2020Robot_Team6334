@@ -49,10 +49,10 @@ public class BallCounterManagementSystem extends CommandBase {
 
       //for the first ball, we want to run the elevator until the hold sensor sees the ball
       if (bcdi.getNumberofBalls() == 0) {
-        //while (!bcdi.getHoldStatus())
-        //  ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
-        new DriveElevatorInInches(ball_elevator, 5.5).schedule();
-       // ball_elevator.setSpeed(0);
+        while (bcdi.getInStatus())
+          ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
+        new DriveElevatorInInches(ball_elevator, 2).schedule();
+        //ball_elevator.setSpeed(0);
       }
 
       //for the last ball, we want to pull it in just enough to hold it in the basin but not bring it up the elevator
@@ -66,7 +66,7 @@ public class BallCounterManagementSystem extends CommandBase {
       else {
         //while (bcdi.getInStatus()) 
          // ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
-        new DriveElevatorInInches(ball_elevator, 6.5).schedule();
+        new DriveElevatorInInches(ball_elevator, 7.5).schedule();
         //while (bcdi.getHoldStatus())
         //  ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
         //ball_elevator.setSpeed(0);

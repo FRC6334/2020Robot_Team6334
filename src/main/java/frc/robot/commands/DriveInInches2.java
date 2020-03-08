@@ -84,10 +84,10 @@ public class DriveInInches2 extends CommandBase {
       double tx = ll_ball.getTX();
 
       if (tx < 8) {
-        return -0.4;
+        return -0.32;
       }
       else if (tx > 5) {
-        return 0.4;
+        return 0.32;
       }
     }
     return 0;
@@ -97,7 +97,7 @@ public class DriveInInches2 extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     //drive_train.drive(0,0);
-    ll_ball.ledRingOff();
+    if(ll_ball!=null) ll_ball.ledRingOff();
     System.out.println("END");
   }
 

@@ -31,25 +31,22 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
       new ReverseDrive(_dt, RobotMap.direction_forward),
       new Fire(_bs, _bi, _be, _bcdi, 46, 0, RobotMap.ball_shooter_med),
       new setAutonomousMode(true),
-      new DriveInInches2(_dt, 12, "B"),
-      new setAutonomousMode(false)
-      // new setAutonomousMode(true),
-      // new ParallelCommandGroup (      
-      //   new SetBallIntakeSpeed(_bi, 0.6),
-      //   new DriveInInches2(_dt, 54, "F")
-      // ),
-      // new DriveInInches2(_dt, 0.2, "R"),
-      // new DriveInInches2(_dt, 132, "F", _lb), 
-      // new DriveInInches2(_dt, 1, "L"), 
-      // new ParallelCommandGroup (      
-      //   new DriveInInches2(_dt, 135, "B"),
-      //   new DriveElevatorInInches(_be, 5),
-      //   new SetBallShooterSpeed(_bs, -0.7)
-      // ),
-      // new setAutonomousMode(false),
-      // //new DriveToTarget(_ll, _dt, 175),
-      // new DriveInInches2(_dt, 1.3, "L"),
-      // new Fire(_bs, _bi, _be, _bcdi, 90, 0,RobotMap.ball_shooter_far)
+      new ParallelCommandGroup (      
+        new SetBallIntakeSpeed(_bi, 0.85),
+        new DriveInInches2(_dt, 54, "F")
+      ),
+      new DriveInInches2(_dt, 0.2, "R"),
+      new DriveInInches2(_dt, 110, "F", _lb), 
+      new DriveInInches2(_dt, 1, "L"), 
+      new ParallelCommandGroup (      
+        new DriveInInches2(_dt, 115, "B"),
+        new DriveElevatorInInches(_be, 3),
+        new SetBallShooterSpeed(_bs, -0.7)
+      ),
+      new setAutonomousMode(false),
+      //new DriveInInches2(_dt, 1.3, "L"),
+      new DriveToTarget(_ll, _dt),
+      new Fire(_bs, _bi, _be, _bcdi, 90, 0,RobotMap.ball_shooter_far)
     );
   }
 }

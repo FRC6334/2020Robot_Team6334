@@ -25,5 +25,6 @@ public class setAutonomousMode extends InstantCommand {
   @Override
   public void execute() {
     RobotMap.in_auto = mode;
+    System.out.println("Set Autonomous Mode:" + mode);
   }
 }

@@ -27,5 +27,6 @@ public class SetBallIntakeSpeed extends InstantCommand {
   @Override
   public void execute() {
     ballintake.setSpeed(speed);
+    System.out.println("Set ball intake speed:" + speed);
   }
 }

@@ -76,7 +76,7 @@ public class DriveToTarget extends CommandBase {
       //the larger the X offset the more motor power to turn and get back to x = 0
       double center_adj = Math.pow(tx/5, 2);
       center_adj *= RobotMap.x_speed / 10;
-      if (center_adj < 0.3) center_adj = 0.3;
+      if (center_adj < 0.3) center_adj = 0.35;
       if (center_adj > 0.7) center_adj = 0.7;
 
       //move to the target at the proper forward speed and X center adjustment speed

@@ -41,7 +41,7 @@ public class RobotMap {
     //Motor rotations per inch for DriveInInches
     public static final double roations_per_angle = 0.138900;//0.117555; 1079282407
     public static final double rotations_per_inch = 0.516100860941121;//0.5361;//0.5629;//0.536100860941121
-    public static final double din_power = 0.5;
+    public static final double din_power = 0.45;
     public static final double din_rotatepower = 0.4;
 
     //Default LimeLight Value
@@ -83,15 +83,15 @@ public class RobotMap {
     public static final int ballIntakeChannel = 0;  //Analog channel ports
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final int ballHoldChannel = 1; //Analog channel port
-    public static final double ballIntakeSpeed = 0.7;  //ball intake motor speed
-    public static final double ballElevatorSpeed = 0.85;  //ball elevator motor speed 
+    public static final double ballIntakeSpeed = 0.85;  //ball intake motor speed
+    public static final double ballElevatorSpeed = 0.6;  //ball elevator motor speed 
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
     //ball shooter variables
     public static final double ball_shooter_max = -1.0; //need to test
     public static final double ball_shooter_max_v = -3300; //need to test
-    public static final double ball_shooter_far = -0.7; //shooter speed for ~18 feet (tested)
-    public static final double ball_shooter_far_v = -3200; //motor velocity for ~18 feet (tested)
+    public static final double ball_shooter_far = -0.6; //shooter speed for ~18 feet (tested)
+    public static final double ball_shooter_far_v = -3100; //motor velocity for ~18 feet (tested)
     public static final double ball_shooter_med = -0.68; //(tested)
     public static final double ball_shooter_med_v = -3100; //(tested)
     public static final double ball_shooter_min = -0.5; //need to test

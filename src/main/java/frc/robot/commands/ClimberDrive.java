@@ -16,7 +16,8 @@ import frc.robot.subsystems.RobotClimber;
  */
 public class ClimberDrive extends CommandBase {
     private final RobotClimber m_climber;
-    private final Joystick m_stick;
+    private final Joystick m_stickLeft;
+    private final Joystick m_stickRight;
 
   /**
    * Creates a new TankDrive command.
@@ -25,17 +26,18 @@ public class ClimberDrive extends CommandBase {
    * @param right      The control input for the right sight of the drive
    * @param drivetrain The drivetrain subsystem to drive
    */
-  public ClimberDrive(Joystick stick, RobotClimber climber) {
+  public ClimberDrive(Joystick stick1, Joystick stick2, RobotClimber climber) {
     m_climber = climber;
-    m_stick = stick;
+    m_stickLeft = stick1;
+    m_stickRight = stick2;
     addRequirements(m_climber);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    m_climber.drive(m_stick.getY(), m_stick.getX());
-    //m_climber.log();
+    //m_climber.drive(-m_stickLeft.getX(), m_stickLeft.getY());
+    m_climber.drive(m_stickLeft.getY(), m_stickRight.getY());
   }
 
   // Make this return true when this Command no longer needs to run execute()
