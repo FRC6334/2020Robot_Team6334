@@ -10,19 +10,31 @@ package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.networktables.NetworkTableEntry;
 
 
 public class LimeLightTarget extends SubsystemBase {
-  protected static String table;
-  protected static NetworkTableInstance nTable = null;
-
+  private static String table;
+  private static NetworkTableInstance nTable = null;
+  private static AddressableLED m_led = new AddressableLED(2);
+  private static AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(24);
 
   /**
    * Creates a new LimeLightTarget.
    */
   public LimeLightTarget() {
     table = "limelight-target";
+    m_led.setLength(m_ledBuffer.getLength());
+
+    // Set the data
+    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+      // Sets the specified LED to the RGB values for red
+      m_ledBuffer.setRGB(i, 0, 255, 0);
+   }   
+    m_led.setData(m_ledBuffer);
+    m_led.start();
   }
 
   public void outputLimeLightValues() {

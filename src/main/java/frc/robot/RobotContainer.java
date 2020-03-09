@@ -128,11 +128,20 @@ public class RobotContainer {
     final JoystickButton m_button06 = new JoystickButton(m_joystick0, 6);
     m_button06.whenReleased(new ReverseDrive(m_drivetrain));
 
-    final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
-    m_button08.whenReleased(new PivotCamera(m_camera, RobotMap.cam_fwd));
+     final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
+     //m_button08.whenReleased(new PivotCamera(m_camera, RobotMap.cam_fwd));
+     m_button08.whenReleased(new SequentialCommandGroup(
+      new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_min),
+      new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
+      )); 
 
-    final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
-    m_button09.whenReleased(new PivotCamera(m_camera, RobotMap.cam_rev));
+     final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
+     //m_button09.whenReleased(new PivotCamera(m_camera, RobotMap.cam_rev));
+     m_button09.whenReleased(new SequentialCommandGroup(
+      new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_max),
+      new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
+      )); 
+
 
     final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
     m_button10.whenReleased(new ToggleLimeLightLED(m_limelight));
@@ -143,6 +152,18 @@ public class RobotContainer {
     //
     // Create some buttons Joystick 1 (climber drive)
     //
+    final JoystickButton m_button1 = new JoystickButton(m_joystick1, 1);
+    m_button1.whenReleased(new SequentialCommandGroup(
+        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_max),
+        new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
+    ));    
+
+    final JoystickButton m_button2_1 = new JoystickButton(m_joystick2, 1);
+    m_button2_1.whenReleased(new SequentialCommandGroup(
+        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_min),
+        new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
+    )); 
+
     final JoystickButton m_button2 = new JoystickButton(m_joystick1, 2);
     m_button2.whenReleased(new GetLimeLightValues(m_limelight));
 

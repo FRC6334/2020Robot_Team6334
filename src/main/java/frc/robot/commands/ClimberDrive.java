@@ -37,7 +37,7 @@ public class ClimberDrive extends CommandBase {
   @Override
   public void execute() {
     //m_climber.drive(-m_stickLeft.getX(), m_stickLeft.getY());
-    m_climber.drive(m_stickLeft.getY(), m_stickRight.getY());
+    m_climber.drive(m_stickRight.getY(), m_stickLeft.getY());
   }
 
   // Make this return true when this Command no longer needs to run execute()

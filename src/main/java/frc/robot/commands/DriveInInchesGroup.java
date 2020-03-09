@@ -32,7 +32,7 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
       new Fire(_bs, _bi, _be, _bcdi, 46, 0, RobotMap.ball_shooter_med),
       new setAutonomousMode(true),
       new ParallelCommandGroup (      
-        new SetBallIntakeSpeed(_bi, 0.85),
+        new SetBallIntakeSpeed(_bi, 1),
         new DriveInInches2(_dt, 54, "F")
       ),
       new DriveInInches2(_dt, 0.2, "R"),
@@ -46,7 +46,7 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
       new setAutonomousMode(false),
       //new DriveInInches2(_dt, 1.3, "L"),
       new DriveToTarget(_ll, _dt),
-      new Fire(_bs, _bi, _be, _bcdi, 90, 0,RobotMap.ball_shooter_far)
+      new Fire(_bs, _bi, _be, _bcdi, 90, 0,RobotMap.ball_shooter_min)
     );
   }
 }

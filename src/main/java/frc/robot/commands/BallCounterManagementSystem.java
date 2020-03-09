@@ -51,7 +51,7 @@ public class BallCounterManagementSystem extends CommandBase {
       if (bcdi.getNumberofBalls() == 0) {
         while (bcdi.getInStatus())
           ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
-        new DriveElevatorInInches(ball_elevator, 2).schedule();
+        new DriveElevatorInInches(ball_elevator, 4).schedule();
         //ball_elevator.setSpeed(0);
       }
 
@@ -66,7 +66,7 @@ public class BallCounterManagementSystem extends CommandBase {
       else {
         //while (bcdi.getInStatus()) 
          // ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
-        new DriveElevatorInInches(ball_elevator, 7.5).schedule();
+        new DriveElevatorInInches(ball_elevator, 8).schedule();
         //while (bcdi.getHoldStatus())
         //  ball_elevator.setSpeed(-RobotMap.ballElevatorSpeed);
         //ball_elevator.setSpeed(0);

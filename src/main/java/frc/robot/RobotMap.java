@@ -83,7 +83,7 @@ public class RobotMap {
     public static final int ballIntakeChannel = 0;  //Analog channel ports
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final int ballHoldChannel = 1; //Analog channel port
-    public static final double ballIntakeSpeed = 0.85;  //ball intake motor speed
+    public static final double ballIntakeSpeed = 1;  //ball intake motor speed
     public static final double ballElevatorSpeed = 0.6;  //ball elevator motor speed 
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
@@ -94,7 +94,7 @@ public class RobotMap {
     public static final double ball_shooter_far_v = -3100; //motor velocity for ~18 feet (tested)
     public static final double ball_shooter_med = -0.68; //(tested)
     public static final double ball_shooter_med_v = -3100; //(tested)
-    public static final double ball_shooter_min = -0.5; //need to test
+    public static final double ball_shooter_min = -0.55; //need to test
     public static final double ball_shooter_min_v = -3000; //need to test
 
     //led Lights
