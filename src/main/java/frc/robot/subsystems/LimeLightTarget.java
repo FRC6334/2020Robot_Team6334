@@ -68,6 +68,8 @@ public class LimeLightTarget extends SubsystemBase {
     
     if (this.getTV() != 1.0) {
       rings.turnOff();
+      RobotMap.current_distance_to_target = RobotMap.defaultLimeLight;
+      System.out.println("LimeLightTarget:getDistanceToTarget:: cannot find a target, distance="+RobotMap.current_distance_to_target);
       return RobotMap.defaultLimeLight;
     }
     
@@ -79,7 +81,10 @@ public class LimeLightTarget extends SubsystemBase {
 
     //calculate distance
     rings.turnOff();
-    return (heightOfTarget - heightOfLimeLight) / Math.tan(Math.toRadians(a1+a2));
+    double d = (heightOfTarget - heightOfLimeLight) / Math.tan(Math.toRadians(a1+a2));
+    RobotMap.current_distance_to_target = d;
+    System.out.println("LimeLightTarget:getDistanceToTarget:: distance="+RobotMap.current_distance_to_target);
+    return d;
   }
 
   //X offset to center of target

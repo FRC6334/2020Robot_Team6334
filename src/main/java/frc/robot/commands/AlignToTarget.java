@@ -18,6 +18,7 @@ public class AlignToTarget extends CommandBase {
   private DriveTrain drive_train;
   private LedTargetRings rings;
   private double tv;
+  private static double power = 0.3;
 
   /**
    * Creates a new AlignToTarget.
@@ -48,10 +49,12 @@ public class AlignToTarget extends CommandBase {
 
       //move to the target at the proper forward speed and X center adjustment speed
       if (tx <= -3) {
-        drive_train.drive(0, -0.3);
+        drive_train.drive(0, -power);
+        System.out.println("AlignToTarget:-"+power+" power: TX="+tx);
       }
       else if (tx >= 3) {
-          drive_train.drive(0, 0.3);
+          drive_train.drive(0, power);
+          System.out.println("AlignToTarget:+"+power+" power: TX="+tx);
       }
   }
 
