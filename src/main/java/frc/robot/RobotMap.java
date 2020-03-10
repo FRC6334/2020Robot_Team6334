@@ -48,7 +48,7 @@ public class RobotMap {
     public static final double defaultLimeLight = -999;
 
     //target height calculaitons
-    public static final double heightOfTarget = 115.625;   //(h2) The height of the target 
+    public static final double heightOfTarget = 98.25;   //(h2) The height of the target 
     public static final double heightOfTargetLimeLight = 42.25;   //(h1) The height of your camera above the floor (ball shooter limelight)
     public static final double angleOfTargetLimeLight = 29.7; // in degrees 17.7  
     public static final double shoot_distance = 150; //how far to shoot from 195
