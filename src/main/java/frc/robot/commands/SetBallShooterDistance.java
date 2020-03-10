@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.BallShooter;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Timer;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -18,51 +19,42 @@ public class SetBallShooterDistance extends InstantCommand {
   private double distance;
   private BallShooter ballshooter;
   private double v;
+  private double RPM;
  
 
   public SetBallShooterDistance(BallShooter _b, double _d) {
     // Use addRequirements() here to declare subsystem dependencies.
     ballshooter = _b;
-    distance = _d;
+    //distance = _d;
+    distance = -0.55;
     v = 0;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (distance == RobotMap.ball_shooter_auto) {
-     if (RobotMap.current_distance_to_target <= 120) 
-        distance = RobotMap.ball_shooter_50s;
-     else if (RobotMap.current_distance_to_target > 120 && RobotMap.current_distance_to_target <= 140)
-        distance = RobotMap.ball_shooter_60;
-     else if (RobotMap.current_distance_to_target > 140 && RobotMap.current_distance_to_target <= 160)
-        distance = RobotMap.ball_shooter_68;
-     else if (RobotMap.current_distance_to_target > 160 && RobotMap.current_distance_to_target <= 170)
-        distance = RobotMap.ball_shooter_70;
-     else if (RobotMap.current_distance_to_target > 170 && RobotMap.current_distance_to_target <= 180)
-        distance = RobotMap.ball_shooter_80;
-     else if (RobotMap.current_distance_to_target > 180 && RobotMap.current_distance_to_target <= 190)
-        distance = RobotMap.ball_shooter_90;
-     else if (RobotMap.current_distance_to_target > 190)
-        distance = RobotMap.ball_shooter_100;
-     else distance = RobotMap.ball_shooter_68;  
+     if (RobotMap.current_distance_to_target == -999)ballshooter.setSpeed(RobotMap.ball_shooter_68);
+      else{
+     RPM = 0.628 * 8 * (((0.00688033 * RobotMap.current_distance_to_target) * Math.sqrt(80057441 * RobotMap.current_distance_to_target - 82901907 * 98.25))/(RobotMap.current_distance_to_target-1.03553 * 98.25));
+      v = RPM;
+      }
+      
     }
 
 
-    ballshooter.setSpeed(distance);
-
-    if (distance == RobotMap.ball_shooter_80) v = RobotMap.ball_shooter_80_v;
-    else if (distance == RobotMap.ball_shooter_60) v = RobotMap.ball_shooter_60_v;
-    else if (distance == RobotMap.ball_shooter_68) v = RobotMap.ball_shooter_68_v;
-    else if (distance == RobotMap.ball_shooter_50s) v = RobotMap.ball_shooter_50s_v;
-    else if (distance == RobotMap.ball_shooter_90) v = RobotMap.ball_shooter_90_v;
-    else if (distance == RobotMap.ball_shooter_100) v = RobotMap.ball_shooter_100_v;
-    else if (distance == RobotMap.ball_shooter_70) v = RobotMap.ball_shooter_70_v;
-  }
+    private Timer increTime = new Timer();
+    
 
   // Called when the command is initially scheduled.
   @Override
   public void execute() {
-    while (ballshooter.getVelocity() > v) ;
+    while (Math.abs(ballshooter.getVelocity()) < v){
+         distance -= 0.1;
+         ballshooter.setSpeed(distance);
+         increTime.start();
+         while (increTime.get() < 0.05);
+         increTime.stop();
+         increTime.reset();
+    }
   }
 }
