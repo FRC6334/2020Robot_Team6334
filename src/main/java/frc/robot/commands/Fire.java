@@ -24,7 +24,7 @@ public class Fire extends SequentialCommandGroup {
    * Creates a new Fire.
    */
   public Fire(BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
-      this(_bs, _bi, _be, _bcdi, 150, 0, RobotMap.ball_shooter_far);
+      this(_bs, _bi, _be, _bcdi, 150, 0, RobotMap.ball_shooter_60);
   }
 
   public Fire(BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi, int _inches, int _backup, double _shootpower) {

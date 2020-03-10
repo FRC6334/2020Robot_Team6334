@@ -59,6 +59,7 @@ public class RobotMap {
     public static final double heightOfBall = 3.5;   //(h2) The height of the ball on the ground
     public static final double angleOfBallLimeLight = 27; // in degrees 17.7
     public static final double ball_distance = 20; //how close to the ball we want to get  
+    public static double current_distance_to_target = -999; //last calculated distance to target 
 
     //color wheel colors
     public static final int color_red = 0;
@@ -84,18 +85,25 @@ public class RobotMap {
     public static final int ballOutputChannel = 9;  //DIO ports
     public static final int ballHoldChannel = 1; //Analog channel port
     public static final double ballIntakeSpeed = 1;  //ball intake motor speed
-    public static final double ballElevatorSpeed = 0.6;  //ball elevator motor speed 
+    public static final double ballElevatorSpeed = 0.45;  //ball elevator motor speed 
     public static final double rotations_per_inch_elevator = 0.7; //higher values mean less movement per turn
 
     //ball shooter variables
-    public static final double ball_shooter_max = -1.0; //need to test
-    public static final double ball_shooter_max_v = -3300; //need to test
-    public static final double ball_shooter_far = -0.6; //shooter speed for ~18 feet (tested)
-    public static final double ball_shooter_far_v = -3100; //motor velocity for ~18 feet (tested)
-    public static final double ball_shooter_med = -0.68; //(tested)
-    public static final double ball_shooter_med_v = -3100; //(tested)
-    public static final double ball_shooter_min = -0.55; //need to test
-    public static final double ball_shooter_min_v = -3000; //need to test
+    public static final double ball_shooter_100 = -1; //need to test
+    public static final double ball_shooter_100_v = -3450; //need to test
+    public static final double ball_shooter_90 = -0.9; //need to test
+    public static final double ball_shooter_90_v = -3350; //need to test
+    public static final double ball_shooter_80 = -0.8; //need to test
+    public static final double ball_shooter_80_v = -3300; //need to test
+    public static final double ball_shooter_70 = -0.7; //need to test
+    public static final double ball_shooter_70_v = -3200; //need to test
+    public static final double ball_shooter_60 = -0.6; //shooter speed for ~18 feet (tested)
+    public static final double ball_shooter_60_v = -3100; //motor velocity for ~18 feet (tested)
+    public static final double ball_shooter_68 = -0.68; //(tested)
+    public static final double ball_shooter_68_v = -3100; //(tested)
+    public static final double ball_shooter_50s = -0.55; //need to test
+    public static final double ball_shooter_50s_v = -3000; //need to test
+    public static final double ball_shooter_auto = -999;
 
     //led Lights
     public static final int LEDLightsPWMport = 1; // PWM port the LED lights are connected to

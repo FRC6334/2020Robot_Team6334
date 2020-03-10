@@ -17,6 +17,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.USBCamera;
 import frc.robot.subsystems.LimeLightTarget;
 import frc.robot.subsystems.LimeLightBall;
+import frc.robot.commands.AlignToTarget;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveToTarget;
 import frc.robot.commands.DriveInInchesGroup;
@@ -34,6 +35,7 @@ import frc.robot.subsystems.BallElevator;
 import frc.robot.commands.DriveElevatorInInches;
 import frc.robot.commands.DriveInInches2;
 import frc.robot.subsystems.LEDLightRing;
+import frc.robot.subsystems.LedTargetRings;
 import frc.robot.commands.ClimberDrive;
 import frc.robot.subsystems.RobotClimber;
 import frc.robot.commands.Vomit;
@@ -53,6 +55,7 @@ import frc.robot.commands.DriveToBall;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final LEDLightRing ledRing = new LEDLightRing();
+  private final LedTargetRings target_rings = new LedTargetRings();
   private final USBCamera m_camera = new USBCamera();
   private final DriveTrain m_drivetrain = new DriveTrain(m_camera);
   private final LimeLightTarget m_limelight = new LimeLightTarget();
@@ -106,14 +109,15 @@ public class RobotContainer {
     final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
     //m_button01.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
     m_button01.whenReleased(new SequentialCommandGroup(
-        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi),
+        new AlignToTarget(m_limelight, m_drivetrain, target_rings),
+        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 120, 0, RobotMap.ball_shooter_auto),
         new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
     ));
 
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
     m_button02.whileHeld(new ParallelCommandGroup( //we need to test this as whileheld so the driver can cancel at any time
       new SetBallShooterSpeed(m_ballshooter, -0.7),
-      new DriveToTarget(m_limelight, m_drivetrain)
+      new AlignToTarget(m_limelight, m_drivetrain, target_rings)
     ));
 
     final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
@@ -131,14 +135,14 @@ public class RobotContainer {
      final JoystickButton m_button08 = new JoystickButton(m_joystick0, 8);
      //m_button08.whenReleased(new PivotCamera(m_camera, RobotMap.cam_fwd));
      m_button08.whenReleased(new SequentialCommandGroup(
-      new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_min),
+      new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_50s),
       new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
       )); 
 
      final JoystickButton m_button09 = new JoystickButton(m_joystick0, 9);
      //m_button09.whenReleased(new PivotCamera(m_camera, RobotMap.cam_rev));
      m_button09.whenReleased(new SequentialCommandGroup(
-      new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_max),
+      new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_80),
       new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
       )); 
 
@@ -154,13 +158,13 @@ public class RobotContainer {
     //
     final JoystickButton m_button1 = new JoystickButton(m_joystick1, 1);
     m_button1.whenReleased(new SequentialCommandGroup(
-        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_max),
+        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_80),
         new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
     ));    
 
     final JoystickButton m_button2_1 = new JoystickButton(m_joystick2, 1);
     m_button2_1.whenReleased(new SequentialCommandGroup(
-        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_min),
+        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 90, 0, RobotMap.ball_shooter_50s),
         new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
     )); 
 

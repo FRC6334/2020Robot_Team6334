@@ -29,7 +29,7 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
   public DriveInInchesGroup(DriveTrain _dt, LimeLightTarget _ll, LimeLightBall _lb, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
     addCommands(
       new ReverseDrive(_dt, RobotMap.direction_forward),
-      new Fire(_bs, _bi, _be, _bcdi, 46, 0, RobotMap.ball_shooter_med),
+      new Fire(_bs, _bi, _be, _bcdi, 46, 0, RobotMap.ball_shooter_68),
       new setAutonomousMode(true),
       new ParallelCommandGroup (      
         new SetBallIntakeSpeed(_bi, 1),
@@ -46,7 +46,7 @@ public class DriveInInchesGroup extends SequentialCommandGroup {
       new setAutonomousMode(false),
       //new DriveInInches2(_dt, 1.3, "L"),
       new DriveToTarget(_ll, _dt),
-      new Fire(_bs, _bi, _be, _bcdi, 90, 0,RobotMap.ball_shooter_min)
+      new Fire(_bs, _bi, _be, _bcdi, 90, 0,RobotMap.ball_shooter_50s)
     );
   }
 }
