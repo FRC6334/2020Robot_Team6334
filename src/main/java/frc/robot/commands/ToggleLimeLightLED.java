@@ -8,15 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.LimeLightTarget;
+import frc.robot.subsystems.LedTargetRings;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class ToggleLimeLightLED extends InstantCommand {
-  private LimeLightTarget m_vision;
+  private LedTargetRings m_vision;
 
-  public ToggleLimeLightLED(LimeLightTarget vision) {
+  public ToggleLimeLightLED(LedTargetRings vision) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_vision = vision;
   }
@@ -24,6 +24,7 @@ public class ToggleLimeLightLED extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void execute() {
-    m_vision.toggleLedMode();
+    if (m_vision.isOn()) m_vision.turnOff();
+    else m_vision.turnOn();
   }
 }

@@ -20,7 +20,7 @@ import frc.robot.subsystems.LimeLightBall;
 import frc.robot.commands.AlignToTarget;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveToTarget;
-import frc.robot.commands.DriveInInchesGroup;
+import frc.robot.commands.DriveInInchesGroup_Richmond;
 import frc.robot.commands.ReverseDrive;
 import frc.robot.commands.GetLimeLightValues;
 import frc.robot.commands.GetLimeLightBallValues;
@@ -34,6 +34,7 @@ import frc.robot.commands.BallCounterManagementSystem;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.commands.DriveElevatorInInches;
 import frc.robot.commands.DriveInInches2;
+import frc.robot.commands.DriveInInchesGroup_Portsmith;
 import frc.robot.subsystems.LEDLightRing;
 import frc.robot.subsystems.LedTargetRings;
 import frc.robot.commands.ClimberDrive;
@@ -58,7 +59,7 @@ public class RobotContainer {
   private final LedTargetRings target_rings = new LedTargetRings();
   private final USBCamera m_camera = new USBCamera();
   private final DriveTrain m_drivetrain = new DriveTrain(m_camera);
-  private final LimeLightTarget m_limelight = new LimeLightTarget();
+  private final LimeLightTarget m_limelight = new LimeLightTarget(target_rings);
   private final LimeLightBall m_limeball = new LimeLightBall(ledRing);
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
@@ -146,9 +147,8 @@ public class RobotContainer {
       new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
       )); 
 
-
     final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
-    m_button10.whenReleased(new ToggleLimeLightLED(m_limelight));
+    m_button10.whenReleased(new ToggleLimeLightLED(target_rings));
 
     final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
     m_button11.whenReleased(new ToggleLimeLightVision(m_limelight));
@@ -223,6 +223,7 @@ public class RobotContainer {
     //   new frc.robot.commands.setAutonomousMode(false)
     // );
 
-    return new DriveInInchesGroup(m_drivetrain, m_limelight, m_limeball, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
+    //return new DriveInInchesGroup_Richmond(m_drivetrain, m_limelight, m_limeball, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
+    return new DriveInInchesGroup_Portsmith(m_drivetrain, m_limelight, m_limeball, m_ballshooter, m_ballintake, m_ballelevator, bcdi, target_rings);
   }
 }

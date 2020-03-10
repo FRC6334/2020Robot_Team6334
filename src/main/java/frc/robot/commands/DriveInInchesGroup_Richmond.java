@@ -22,11 +22,11 @@ import frc.robot.subsystems.LimeLightBall;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class DriveInInchesGroup extends SequentialCommandGroup {
+public class DriveInInchesGroup_Richmond extends SequentialCommandGroup {
   /**
    * Creates a new DriveInInchesGroup.
    */
-  public DriveInInchesGroup(DriveTrain _dt, LimeLightTarget _ll, LimeLightBall _lb, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
+  public DriveInInchesGroup_Richmond(DriveTrain _dt, LimeLightTarget _ll, LimeLightBall _lb, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
     addCommands(
       new ReverseDrive(_dt, RobotMap.direction_forward),
       new Fire(_bs, _bi, _be, _bcdi, 46, 0, RobotMap.ball_shooter_68),

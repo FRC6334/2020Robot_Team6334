@@ -16,24 +16,29 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 public class LimeLightTarget extends SubsystemBase {
   private static String table;
   private static NetworkTableInstance nTable = null;
+  private static LedTargetRings rings;
 
 
   /**
    * Creates a new LimeLightTarget.
    */
-  public LimeLightTarget() {
+  public LimeLightTarget(LedTargetRings _rings) {
     table = "limelight-target";
+    rings = _rings;
   }
 
   public void outputLimeLightValues() {
-    setLedMode(RobotMap.ll_on);
     setCameraMode(RobotMap.ll_vision);
+    setLedMode(RobotMap.ll_off);
+    rings.turnOn();
 
     System.out.println(">>>>>>>>>>>>>>tx="+getValue("tx").getDouble(RobotMap.defaultLimeLight)+
       ", ty="+getValue("ty").getDouble(RobotMap.defaultLimeLight)+
       ",ta="+getValue("ta").getDouble(RobotMap.defaultLimeLight)+
       ",tv="+getValue("tv").getDouble(RobotMap.defaultLimeLight)+
       ",ts="+getValue("ts").getDouble(RobotMap.defaultLimeLight));    System.out.println("distance to target (inches): "+this.getDistanceToTarget());
+
+      rings.turnOff();
   }
 
   /**
@@ -58,8 +63,13 @@ public class LimeLightTarget extends SubsystemBase {
 
   //working within 1-2" of actual distance, a wider angle makes it less accurate
   public double getDistanceToTarget() {
-    this.setLedMode(RobotMap.ll_on);
-    if (this.getTV() != 1.0) return RobotMap.defaultLimeLight;
+    rings.turnOn();
+    this.setLedMode(RobotMap.ll_off);
+    
+    if (this.getTV() != 1.0) {
+      rings.turnOff();
+      return RobotMap.defaultLimeLight;
+    }
     
     //d = (h2-h1) / tan(a1+a2)
     double heightOfTarget = RobotMap.heightOfTarget; //h2 
@@ -68,6 +78,7 @@ public class LimeLightTarget extends SubsystemBase {
     double a1 = RobotMap.angleOfTargetLimeLight;   //lime light mounting angle is known (a1)
 
     //calculate distance
+    rings.turnOff();
     return (heightOfTarget - heightOfLimeLight) / Math.tan(Math.toRadians(a1+a2));
   }
 
@@ -123,20 +134,13 @@ public class LimeLightTarget extends SubsystemBase {
     if (getValue("camMode").getDouble(RobotMap.defaultLimeLight) == RobotMap.ll_vision) {
       setLedMode(RobotMap.ll_off);
       setCameraMode(RobotMap.ll_driver);
+      rings.turnOff();
     } else{
-      setLedMode(RobotMap.ll_on);
       setCameraMode(RobotMap.ll_vision);
+      setLedMode(RobotMap.ll_off);
+      rings.turnOn();
     } 
       
   }
-  
-  /**
-	 * Toggles led light mode for Limelight between on / off
-	 */
-	public void toggleLedMode() {
-    if (getValue("ledMode").getDouble(RobotMap.defaultLimeLight) == RobotMap.ll_on)
-      { setLedMode(RobotMap.ll_off); System.out.println("LimeLightTarget: turn off led"); }
-    else 
-      { setLedMode(RobotMap.ll_on); System.out.println("LimeLightTarget: turn on led"); }
-	}
+
 }
