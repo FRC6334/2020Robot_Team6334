@@ -21,6 +21,9 @@ public class SetBallShooterDistance extends InstantCommand {
   private double v;
   private double RPM;
   private Timer increTime;
+  private double arg1 = 4500639166632303.0;
+  private double arg2 = 4660548288480875.0;
+  private double arg3 = 196908165188316992.0;
 
   public SetBallShooterDistance(BallShooter _b, double _d) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -37,7 +40,7 @@ public class SetBallShooterDistance extends InstantCommand {
       if (RobotMap.current_distance_to_target == -999)
          v = RobotMap.ball_shooter_68_v;
       else {
-         RPM = 0.628 * 7 * (((0.00688033 * RobotMap.current_distance_to_target) * Math.sqrt(80057441 * RobotMap.current_distance_to_target - 82901907 * 98.25))/(RobotMap.current_distance_to_target-1.03553 * 98.25));
+         RPM = 0.628 * 7 * ((4.12998*(10^9)* RobotMap.current_distance_to_target)/(Math.sqrt(arg1*RobotMap.current_distance_to_target-arg2 * 98.25 + arg3)));
          v = RPM/5;
       }
 
