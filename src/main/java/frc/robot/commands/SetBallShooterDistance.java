@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.BallShooter;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -40,7 +41,7 @@ public class SetBallShooterDistance extends InstantCommand {
       if (RobotMap.current_distance_to_target == -999)
          v = RobotMap.ball_shooter_68_v;
       else {
-         RPM = 0.628 * 7 * ((4.12998*(10^9)* RobotMap.current_distance_to_target)/(Math.sqrt(arg1*RobotMap.current_distance_to_target-arg2 * 98.25 + arg3)));
+         RPM = 0.628 * 7 * ( ( 4.12998 * (Math.pow(10,9)) * RobotMap.current_distance_to_target ) / ( Math.sqrt ((arg1 * RobotMap.current_distance_to_target) - (arg2*98.25) + arg3)  ) );
          v = RPM/5;
       }
 
