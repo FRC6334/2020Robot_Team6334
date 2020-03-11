@@ -20,7 +20,6 @@ public class SetBallShooterDistance extends InstantCommand {
   private double distance;
   private BallShooter ballshooter;
   private double v;
-  private double RPM;
   private Timer increTime;
   private double arg1 = 4500639166632303.0;
   private double arg2 = 4660548288480875.0;
@@ -41,8 +40,8 @@ public class SetBallShooterDistance extends InstantCommand {
       if (RobotMap.current_distance_to_target == -999)
          v = RobotMap.ball_shooter_68_v;
       else {
-         RPM = 0.628 * 7 * ( ( 4.12998 * (Math.pow(10,9)) * RobotMap.current_distance_to_target ) / ( Math.sqrt ((arg1 * RobotMap.current_distance_to_target) - (arg2*98.25) + arg3)  ) );
-         v = RPM/5;
+         v = 0.628 * 7 * ( ( 4.12998 * (Math.pow(10,9)) * RobotMap.current_distance_to_target ) / ( Math.sqrt ((arg1 * RobotMap.current_distance_to_target) - (arg2*98.25) + arg3)  ) );
+         //v = RPM;
       }
 
       System.out.println("SetBallShooterDistance: v = " + v + "   Distance = " + RobotMap.current_distance_to_target);
