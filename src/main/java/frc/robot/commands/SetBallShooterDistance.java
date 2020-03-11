@@ -40,8 +40,8 @@ public class SetBallShooterDistance extends InstantCommand {
       if (RobotMap.current_distance_to_target == -999)
          v = RobotMap.ball_shooter_68_v;
       else {
-         v = 0.628 * 7 * ( ( 4.12998 * (Math.pow(10,9)) * RobotMap.current_distance_to_target ) / ( Math.sqrt ((arg1 * RobotMap.current_distance_to_target) - (arg2*98.25) + arg3)  ) );
-         //v = RPM;
+         v = 0.628 * 7 * ((4.12998 * (Math.pow(10, 9)) * RobotMap.current_distance_to_target)/
+         (Math.sqrt((arg1 * RobotMap.current_distance_to_target) - (arg2 * 98.25) + arg3)));
       }
 
       System.out.println("SetBallShooterDistance: v = " + v + "   Distance = " + RobotMap.current_distance_to_target);
