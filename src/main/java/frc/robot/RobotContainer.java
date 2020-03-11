@@ -110,14 +110,14 @@ public class RobotContainer {
     final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
     //m_button01.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
     m_button01.whenReleased(new SequentialCommandGroup(
-        new AlignToTarget(m_limelight, m_drivetrain, target_rings),
+        //new AlignToTarget(m_limelight, m_drivetrain, target_rings),
         new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 120, 0, RobotMap.ball_shooter_auto),
         new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
     ));
 
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
     m_button02.whileHeld(new ParallelCommandGroup( //we need to test this as whileheld so the driver can cancel at any time
-      new SetBallShooterSpeed(m_ballshooter, -0.7),
+      //new SetBallShooterSpeed(m_ballshooter, -0.7),
       new AlignToTarget(m_limelight, m_drivetrain, target_rings)
     ));
 

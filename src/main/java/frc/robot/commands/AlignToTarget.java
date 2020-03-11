@@ -18,7 +18,7 @@ public class AlignToTarget extends CommandBase {
   private DriveTrain drive_train;
   private LedTargetRings rings;
   private double tv;
-  private static double power = 0.3;
+  private static double power = 0.4;
 
   /**
    * Creates a new AlignToTarget.

@@ -20,7 +20,7 @@ public class SetBallShooterDistance extends InstantCommand {
   private BallShooter ballshooter;
   private double v;
   private double RPM;
- 
+  private Timer increTime;
 
   public SetBallShooterDistance(BallShooter _b, double _d) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -28,33 +28,39 @@ public class SetBallShooterDistance extends InstantCommand {
     //distance = _d;
     distance = -0.55;
     v = 0;
+    increTime = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-     if (RobotMap.current_distance_to_target == -999)ballshooter.setSpeed(RobotMap.ball_shooter_68);
-      else{
-     RPM = 0.628 * 8 * (((0.00688033 * RobotMap.current_distance_to_target) * Math.sqrt(80057441 * RobotMap.current_distance_to_target - 82901907 * 98.25))/(RobotMap.current_distance_to_target-1.03553 * 98.25));
-      v = RPM;
+      if (RobotMap.current_distance_to_target == -999)
+         v = RobotMap.ball_shooter_68_v;
+      else {
+         RPM = 0.628 * 7 * (((0.00688033 * RobotMap.current_distance_to_target) * Math.sqrt(80057441 * RobotMap.current_distance_to_target - 82901907 * 98.25))/(RobotMap.current_distance_to_target-1.03553 * 98.25));
+         v = RPM/5;
       }
-      
-    }
 
-
-    private Timer increTime = new Timer();
+      System.out.println("SetBallShooterDistance: v = " + v + "   Distance = " + RobotMap.current_distance_to_target);
+    } 
     
-
   // Called when the command is initially scheduled.
   @Override
   public void execute() {
-    while (Math.abs(ballshooter.getVelocity()) < v){
-         distance -= 0.1;
-         ballshooter.setSpeed(distance);
-         increTime.start();
-         while (increTime.get() < 0.05);
-         increTime.stop();
-         increTime.reset();
+    if (RobotMap.current_distance_to_target == -999) {
+      while (Math.abs(ballshooter.getVelocity()) < v);
     }
+    else {
+      while (Math.abs(ballshooter.getVelocity()) < v){
+            distance -= 0.05;
+            ballshooter.setSpeed(distance);
+            increTime.start();
+            while (increTime.get() < 0.03);
+            increTime.stop();
+            increTime.reset();
+      }
+    }
+
+    System.out.println("Final velocity = " + ballshooter.getVelocity()); 
   }
 }
