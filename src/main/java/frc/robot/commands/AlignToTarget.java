@@ -10,13 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.LedTargetRings;
 import frc.robot.subsystems.LimeLightTarget;
 
 public class AlignToTarget extends CommandBase {
   private LimeLightTarget lime_light;
   private DriveTrain drive_train;
-  private LedTargetRings rings;
   private double tv;
   private static double power = 0.35;
   private boolean done;
@@ -24,9 +22,8 @@ public class AlignToTarget extends CommandBase {
   /**
    * Creates a new AlignToTarget.
    */
-  public AlignToTarget(LimeLightTarget m_lime, DriveTrain m_drive, LedTargetRings _rings) {
+  public AlignToTarget(LimeLightTarget m_lime, DriveTrain m_drive) {
     done = false;
-    rings = _rings;
     lime_light = m_lime;
     drive_train = m_drive;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -37,7 +34,7 @@ public class AlignToTarget extends CommandBase {
   public void initialize() {
     lime_light.setCameraMode(RobotMap.ll_vision);
     lime_light.setLedMode(RobotMap.ll_off);
-    rings.turnOn();
+    lime_light.turnRingsOn();
     drive_train.setDriveDirection(RobotMap.direction_backward);
   }
 
@@ -65,7 +62,7 @@ public class AlignToTarget extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotMap.current_distance_to_target = lime_light.getDistanceToTarget();
-    rings.turnOff();
+    lime_light.turnRingsOff();
     drive_train.drive(0, 0);
   }
 

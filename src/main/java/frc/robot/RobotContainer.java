@@ -19,11 +19,8 @@ import frc.robot.subsystems.LimeLightTarget;
 import frc.robot.subsystems.LimeLightBall;
 import frc.robot.commands.AlignToTarget;
 import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.DriveToTarget;
-import frc.robot.commands.DriveInInchesGroup_Richmond;
 import frc.robot.commands.ReverseDrive;
 import frc.robot.commands.GetLimeLightValues;
-import frc.robot.commands.GetLimeLightBallValues;
 import frc.robot.commands.ToggleLimeLightLED;
 import frc.robot.commands.ToggleLimeLightVision;
 import frc.robot.commands.ResetBallCounter;
@@ -33,19 +30,14 @@ import frc.robot.subsystems.BallCounterDigitalInput;
 import frc.robot.commands.BallCounterManagementSystem;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.commands.DriveElevatorInInches;
-import frc.robot.commands.DriveInInches2;
 import frc.robot.commands.DriveInInchesGroup_Portsmith;
-import frc.robot.subsystems.LEDLightRing;
-import frc.robot.subsystems.LedTargetRings;
 import frc.robot.commands.ClimberDrive;
 import frc.robot.subsystems.RobotClimber;
 import frc.robot.commands.Vomit;
-import frc.robot.commands.PivotCamera;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.FollowBall;
-import frc.robot.commands.DriveToBall;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -54,13 +46,11 @@ import frc.robot.commands.DriveToBall;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final LEDLightRing ledRing = new LEDLightRing();
-  private final LedTargetRings target_rings = new LedTargetRings();
+  // The robot's subsystems and commands are defined here..
   private final USBCamera m_camera = new USBCamera();
   private final DriveTrain m_drivetrain = new DriveTrain(m_camera);
-  private final LimeLightTarget m_limelight = new LimeLightTarget(target_rings);
-  private final LimeLightBall m_limeball = new LimeLightBall(ledRing);
+  private final LimeLightTarget m_limelight = new LimeLightTarget();
+  private final LimeLightBall m_limeball = new LimeLightBall();
   //private final ColorSensor m_color_sensor = new ColorSensor();
   private final Joystick m_joystick0 = new Joystick(0);
   private final Joystick m_joystick1 = new Joystick(1);
@@ -78,12 +68,9 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    m_camera.lookForward();
     m_ballintake.setSpeed(RobotMap.ballIntakeSpeed);
     //m_ballintake.setSpeed(0);
-    m_camera.lookForward();
-    //ledRing.turnOn();
-    target_rings.turnOff();
-   //target_rings.turnOn();
     
     // Assign default commands
     //
@@ -112,7 +99,7 @@ public class RobotContainer {
     final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
     //m_button01.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
     m_button01.whenReleased(new SequentialCommandGroup(
-        new AlignToTarget(m_limelight, m_drivetrain, target_rings),
+        new AlignToTarget(m_limelight, m_drivetrain),
         new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 120, 0, RobotMap.ball_shooter_70),
         new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
     ));
@@ -120,7 +107,7 @@ public class RobotContainer {
     final JoystickButton m_button02 = new JoystickButton(m_joystick0, 2);
     m_button02.whileHeld(new ParallelCommandGroup( //we need to test this as whileheld so the driver can cancel at any time
       //new SetBallShooterSpeed(m_ballshooter, -0.7),
-      new AlignToTarget(m_limelight, m_drivetrain, target_rings)
+      new AlignToTarget(m_limelight, m_drivetrain)
     ));
 
     final JoystickButton m_button03 = new JoystickButton(m_joystick0, 3);
@@ -150,7 +137,7 @@ public class RobotContainer {
       )); 
 
     final JoystickButton m_button10 = new JoystickButton(m_joystick0, 10);
-    m_button10.whenReleased(new ToggleLimeLightLED(target_rings));
+    m_button10.whenReleased(new ToggleLimeLightLED(m_limelight));
 
     final JoystickButton m_button11 = new JoystickButton(m_joystick0, 11);
     m_button11.whenReleased(new ToggleLimeLightVision(m_limelight));
@@ -226,6 +213,6 @@ public class RobotContainer {
     // );
 
     //return new DriveInInchesGroup_Richmond(m_drivetrain, m_limelight, m_limeball, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
-    return new DriveInInchesGroup_Portsmith(m_drivetrain, m_limelight, m_limeball, m_ballshooter, m_ballintake, m_ballelevator, bcdi, target_rings);
+    return new DriveInInchesGroup_Portsmith(m_drivetrain, m_limelight, m_limeball, m_ballshooter, m_ballintake, m_ballelevator, bcdi);
   }
 }

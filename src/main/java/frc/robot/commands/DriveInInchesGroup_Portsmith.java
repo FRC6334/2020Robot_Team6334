@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.LedTargetRings;
 import frc.robot.subsystems.LimeLightTarget;
 import frc.robot.subsystems.BallElevator;
 import frc.robot.subsystems.BallIntake;
@@ -27,7 +26,7 @@ public class DriveInInchesGroup_Portsmith extends SequentialCommandGroup {
   /**
    * Creates a new DriveInInchesGroup.
    */
-  public DriveInInchesGroup_Portsmith(DriveTrain _dt, LimeLightTarget _ll, LimeLightBall _lb, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi, LedTargetRings _r) {
+  public DriveInInchesGroup_Portsmith(DriveTrain _dt, LimeLightTarget _ll, LimeLightBall _lb, BallShooter _bs, BallIntake _bi, BallElevator _be, BallCounterDigitalInput _bcdi) {
     addCommands(
       new ReverseDrive(_dt, RobotMap.direction_forward),
       new Fire(_bs, _bi, _be, _bcdi, 46, 0, RobotMap.ball_shooter_68),
@@ -42,7 +41,7 @@ public class DriveInInchesGroup_Portsmith extends SequentialCommandGroup {
         new SetBallShooterSpeed(_bs, -0.7)
       ),
       new DriveInInches2(_dt, 1, "L"),
-      new AlignToTarget(_ll, _dt, _r),
+      new AlignToTarget(_ll, _dt),
       new setAutonomousMode(false),
       new Fire(_bs, _bi, _be, _bcdi, 120, 0,RobotMap.ball_shooter_70)
     );

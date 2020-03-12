@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LedTargetRings extends SubsystemBase {
-  private static AddressableLED m_led1 = new AddressableLED(3); //ring number and PWM port it is on
+  private static AddressableLED m_led1 = new AddressableLED(2); //ring number and PWM port it is on
  // private static AddressableLED m_led2 = new AddressableLED(3); //ring number and PWM port it is on
   //private static AddressableLED m_led3 = new AddressableLED(4); //ring number and PWM port it is on
   private static AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(24);

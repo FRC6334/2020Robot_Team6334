@@ -15,16 +15,15 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 
 public class LimeLightTarget extends SubsystemBase {
   private static String table;
-  private static NetworkTableInstance nTable = null;
-  private static LedTargetRings rings;
+  //sprivate static NetworkTableInstance nTable = null;
+  private final LedTargetRings rings = new LedTargetRings();
 
 
   /**
    * Creates a new LimeLightTarget.
    */
-  public LimeLightTarget(LedTargetRings _rings) {
+  public LimeLightTarget() {
     table = "limelight-target";
-    rings = _rings;
   }
 
   public void outputLimeLightValues() {
@@ -86,6 +85,9 @@ public class LimeLightTarget extends SubsystemBase {
     System.out.println("LimeLightTarget:getDistanceToTarget:: distance="+RobotMap.current_distance_to_target);
     return d;
   }
+
+  public void turnRingsOn() { rings.turnOn(); }
+  public void turnRingsOff() { rings.turnOff(); }
 
   //X offset to center of target
   public double getTX() { return getValue("tx").getDouble(RobotMap.defaultLimeLight); }

@@ -11,21 +11,21 @@ import frc.robot.RobotMap;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTableEntry;
-import frc.robot.subsystems.LEDLightRing;
+import frc.robot.subsystems.LEDBallLightRing;
 
 
 public class LimeLightBall extends SubsystemBase {
   private static String table;
-  private static NetworkTableInstance nTable = null;
-  private static LEDLightRing led;
+  //private static NetworkTableInstance nTable = null;
+  private static final LEDBallLightRing led = new LEDBallLightRing();
 
 
   /**
    * Creates a new LimeLightBall.
    */
-  public LimeLightBall(LEDLightRing _led) {
+  public LimeLightBall() {
     table = "limelight-ball";
-    led = _led;
+    led.turnOff();
   }
 
 
