@@ -82,6 +82,8 @@ public class RobotContainer {
     //m_ballintake.setSpeed(0);
     m_camera.lookForward();
     //ledRing.turnOn();
+    target_rings.turnOff();
+   //target_rings.turnOn();
     
     // Assign default commands
     //
@@ -110,8 +112,8 @@ public class RobotContainer {
     final JoystickButton m_button01 = new JoystickButton(m_joystick0, 1);
     //m_button01.whenReleased(new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi));
     m_button01.whenReleased(new SequentialCommandGroup(
-        //new AlignToTarget(m_limelight, m_drivetrain, target_rings),
-        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 120, 0, RobotMap.ball_shooter_auto),
+        new AlignToTarget(m_limelight, m_drivetrain, target_rings),
+        new Fire(m_ballshooter, m_ballintake, m_ballelevator, bcdi, 120, 0, RobotMap.ball_shooter_70),
         new ReverseDrive(m_drivetrain, RobotMap.direction_forward)
     ));
 

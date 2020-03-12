@@ -41,7 +41,7 @@ public class RobotMap {
     //Motor rotations per inch for DriveInInches
     public static final double roations_per_angle = 0.138900;//0.117555; 1079282407
     public static final double rotations_per_inch = 0.516100860941121;//0.5361;//0.5629;//0.536100860941121
-    public static final double din_power = 0.45;
+    public static final double din_power = 0.4;
     public static final double din_rotatepower = 0.4;
 
     //Default LimeLight Value
@@ -95,12 +95,12 @@ public class RobotMap {
     public static final double ball_shooter_90_v = -3350; //need to test
     public static final double ball_shooter_80 = -0.8; //need to test
     public static final double ball_shooter_80_v = -3300; //need to test
-    public static final double ball_shooter_70 = -0.7; //need to test
+    public static final double ball_shooter_70 = -0.74; //need to test
     public static final double ball_shooter_70_v = -3200; //need to test
     public static final double ball_shooter_60 = -0.6; //shooter speed for ~18 feet (tested)
     public static final double ball_shooter_60_v = -3100; //motor velocity for ~18 feet (tested)
     public static final double ball_shooter_68 = -0.68; //(tested)
-    public static final double ball_shooter_68_v = -3100; //(tested)
+    public static final double ball_shooter_68_v = -3000; //(tested)
     public static final double ball_shooter_50s = -0.55; //need to test
     public static final double ball_shooter_50s_v = -3000; //need to test
     public static final double ball_shooter_auto = -999;

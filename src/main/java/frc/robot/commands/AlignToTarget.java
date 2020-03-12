@@ -18,12 +18,14 @@ public class AlignToTarget extends CommandBase {
   private DriveTrain drive_train;
   private LedTargetRings rings;
   private double tv;
-  private static double power = 0.4;
+  private static double power = 0.35;
+  private boolean done;
 
   /**
    * Creates a new AlignToTarget.
    */
   public AlignToTarget(LimeLightTarget m_lime, DriveTrain m_drive, LedTargetRings _rings) {
+    done = false;
     rings = _rings;
     lime_light = m_lime;
     drive_train = m_drive;
@@ -48,14 +50,15 @@ public class AlignToTarget extends CommandBase {
       double tx = lime_light.getTX();
 
       //move to the target at the proper forward speed and X center adjustment speed
-      if (tx <= -3) {
+      if (tx <= -2) {
         drive_train.drive(0, -power);
         System.out.println("AlignToTarget:-"+power+" power: TX="+tx);
       }
-      else if (tx >= 3) {
+      else if (tx >= 2) {
           drive_train.drive(0, power);
           System.out.println("AlignToTarget:+"+power+" power: TX="+tx);
       }
+      else done = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -69,6 +72,6 @@ public class AlignToTarget extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return done;
   }
 }

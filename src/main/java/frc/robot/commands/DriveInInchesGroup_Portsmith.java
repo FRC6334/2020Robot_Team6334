@@ -38,13 +38,13 @@ public class DriveInInchesGroup_Portsmith extends SequentialCommandGroup {
       ),
       new DriveInInches2(_dt, 0.2, "R"),
       new ParallelCommandGroup(
-        new DriveInInches2(_dt, 150, "F", _lb), 
+        new DriveInInches2(_dt, 140, "F", _lb), 
         new SetBallShooterSpeed(_bs, -0.7)
       ),
       new DriveInInches2(_dt, 1, "L"),
       new AlignToTarget(_ll, _dt, _r),
       new setAutonomousMode(false),
-      new Fire(_bs, _bi, _be, _bcdi, 120, 0,RobotMap.ball_shooter_80)
+      new Fire(_bs, _bi, _be, _bcdi, 120, 0,RobotMap.ball_shooter_70)
     );
   }
 }

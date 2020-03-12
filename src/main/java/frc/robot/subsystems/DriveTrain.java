@@ -55,10 +55,10 @@ public class DriveTrain extends SubsystemBase {
     this.resetEncoders();
     cam = _c;
 
-    leftBackMotor.setOpenLoopRampRate(3);
-    leftFrontMotor.setOpenLoopRampRate(3);
-    rightBackMotor.setOpenLoopRampRate(3);
-    rightFrontMotor.setOpenLoopRampRate(3);
+    // leftBackMotor.setOpenLoopRampRate(3);
+    // leftFrontMotor.setOpenLoopRampRate(3);
+    // rightBackMotor.setOpenLoopRampRate(3);
+    // rightFrontMotor.setOpenLoopRampRate(3);
   }
 
   
